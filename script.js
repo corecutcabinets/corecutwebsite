@@ -3,6 +3,26 @@ const mobileMenu = document.querySelector("#mobile-menu");
 const leadForms = document.querySelectorAll(".lead-form");
 const introOverlay = document.querySelector(".intro-overlay");
 const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+const localAssetImages = document.querySelectorAll('img[src^="./assets/"], img[src^="assets/"]');
+
+const retryFromSiteRoot = (image) => {
+  if (!(image instanceof HTMLImageElement) || image.dataset.assetRetry === "true") return;
+  if (window.location.protocol === "file:") return;
+
+  const assetPath = image.getAttribute("src")?.replace(/^\.\//, "");
+  if (!assetPath?.startsWith("assets/")) return;
+
+  image.dataset.assetRetry = "true";
+  image.src = `/${assetPath}`;
+};
+
+localAssetImages.forEach((image) => {
+  image.addEventListener("error", () => retryFromSiteRoot(image));
+
+  if (image instanceof HTMLImageElement && image.complete && image.naturalWidth === 0) {
+    retryFromSiteRoot(image);
+  }
+});
 
 if (introOverlay) {
   const introStorageKey = "corecutIntroSeen";

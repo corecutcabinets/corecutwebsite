@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1100" viewBox="0 0 900 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Harinder Brar temporary portrait placeholder</title>
+  <desc id="desc">A warm neutral placeholder graphic with HB initials for the CoreCut Cabinets team section.</desc>
+  <rect width="900" height="1100" fill="#f3eee8"/>
+  <rect x="70" y="70" width="760" height="960" rx="22" fill="#fbfaf7" stroke="#d9c4aa" stroke-width="3"/>
+  <circle cx="450" cy="390" r="142" fill="#c5a071"/>
+  <rect x="245" y="585" width="410" height="260" rx="130" fill="#6f421b"/>
+  <text x="450" y="425" fill="#4b2e19" font-family="Inter, Arial, sans-serif" font-size="124" font-weight="800" text-anchor="middle">HB</text>
+  <text x="450" y="930" fill="#6f421b" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="800" text-anchor="middle">Photo coming soon</text>
+</svg>

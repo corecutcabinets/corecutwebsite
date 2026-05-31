@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book a Design Call | Corecut Cabinets</title>
+    <meta
+      name="description"
+      content="Book a design call with Corecut Cabinets for custom cabinets, kitchen cabinetry, garage storage, commercial millwork, and installation planning."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Corecut Cabinets home">
+        <img src="./assets/corecut-logo-transparent.png" alt="Corecut Cabinets" />
+      </a>
+
+            <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/residential">Residential</a>
+        <a href="/commercial">Commercial</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Gallery</button>
+          <div class="dropdown-menu">
+            <a href="/gallery">Projects</a>
+            <a href="/before-after">Before &amp; After</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" type="button" aria-expanded="false">How We Work</button>
+          <div class="dropdown-menu">
+            <a href="/our-process">Our Process</a>
+            <a href="/our-approach">Our Approach</a>
+            <a href="/installation-service">Installation &amp; Service</a>
+            <a href="/showroom">Showroom</a>
+          </div>
+        </div>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="quote-button" href="/contact">Free Quote</a>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation">
+      <a href="/">Home</a>
+      <a href="/residential">Residential</a>
+      <a href="/commercial">Commercial</a>
+      <div class="mobile-nav-group" aria-label="Gallery pages">
+        <button class="mobile-nav-toggle" type="button" aria-expanded="false">Gallery</button>
+        <div class="mobile-submenu">
+          <a href="/gallery">Projects</a>
+          <a href="/before-after">Before &amp; After</a>
+        </div>
+      </div>
+      <div class="mobile-nav-group" aria-label="How We Work pages">
+        <button class="mobile-nav-toggle" type="button" aria-expanded="false">How We Work</button>
+        <div class="mobile-submenu">
+          <a href="/our-process">Our Process</a>
+          <a href="/our-approach">Our Approach</a>
+          <a href="/installation-service">Installation &amp; Service</a>
+          <a href="/showroom">Showroom</a>
+        </div>
+      </div>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+
+    <main>
+      <section class="lead-section quote-page-section design-call-section">
+        <div class="container design-call-flow" data-scheduler-flow>
+          <div class="design-call-intro">
+            <p class="eyebrow">Book a design call</p>
+            <h1>Starting made easy with a simple form</h1>
+            <p>Share the basics, then choose a time for a phone call, Google Meet, or in-person consultation with Corecut Cabinets.</p>
+          </div>
+
+          <div class="design-call-steps" aria-label="Contact form steps">
+            <article>
+              <span>Step 1</span>
+              <strong>Send project details</strong>
+              <p>Tell us what you are planning and the type of cabinetry you need.</p>
+            </article>
+            <article>
+              <span>Step 2</span>
+              <strong>Book the consultation</strong>
+              <p>After the form sends, pick a phone call, Google Meet, or in-person consultation.</p>
+            </article>
+          </div>
+
+          <div class="lead-grid scheduler-grid">
+            <form class="lead-form scheduler-form" data-scheduler-form action="https://formspree.io/f/xnjweogk" method="post">
+              <input type="hidden" name="_subject" value="New Corecut Cabinets design call request" />
+              <input type="hidden" name="city_area" value="Not collected in website booking form" />
+              <input class="honeypot-field" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+              <label>
+                Full Name
+                <input type="text" name="full_name" autocomplete="name" required />
+              </label>
+              <label>
+                Email
+                <input
+                  type="email"
+                  name="email"
+                  autocomplete="email"
+                  pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$"
+                  title="Enter a valid email address with a domain, like name@example.com."
+                  required
+                />
+              </label>
+              <label>
+                Phone Number
+                <input
+                  type="tel"
+                  name="phone"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  pattern="^(?:\+?1[\s.-]?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$"
+                  title="Enter a full 10-digit phone number, like 780-123-4567."
+                  required
+                />
+              </label>
+              <label>
+                Project Type
+                <select name="project_type" required>
+                  <option value="">Select a project type</option>
+                  <option>Residential</option>
+                  <option>Commercial</option>
+                </select>
+              </label>
+              <label>
+                Preferred Contact Method
+                <select name="preferred_contact_method" required>
+                  <option value="">Choose one</option>
+                  <option>Email</option>
+                  <option>Text</option>
+                  <option>Phone</option>
+                </select>
+              </label>
+              <label>
+                Short Project Details
+                <textarea name="project_details" rows="5" required></textarea>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="consent" value="Agreed" required />
+                <span>I agree to be contacted by Corecut Cabinets about my project.</span>
+              </label>
+              <button class="button primary" type="submit">Continue to Scheduler</button>
+              <p class="form-message" role="status" aria-live="polite"></p>
+            </form>
+
+            <div class="scheduler-panel" data-scheduler-panel hidden>
+              <div class="scheduler-success" data-scheduler-success hidden>
+                <p class="eyebrow">Details received</p>
+                <h2>Choose a time for your initial consultation.</h2>
+                <p>Your project details were sent. Pick a phone call, Google Meet, or in-person consultation time below so we can talk through the next step.</p>
+              </div>
+              <div class="calendly-shell">
+                <!-- Standard inline scheduler widget. JavaScript updates data-url after the form submits so supported details are prefilled. -->
+                <div
+                  class="calendly-inline-widget"
+                  data-calendly-widget
+                  data-url="https://calendly.com/corecutcabinets/30min?hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=8a5a2c"
+                  style="min-width:320px;min-height:800px;height:800px;width:100%;"
+                ></div>
+              </div>
+              <a class="button secondary" data-scheduler-fallback href="https://calendly.com/corecutcabinets/30min?hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=8a5a2c" target="_blank" rel="noopener">Open Scheduler in New Tab</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="journal">
+      <div class="container footer-grid">
+        <div>
+          <img src="./assets/corecut-logo-transparent.png" alt="Corecut Cabinets" />
+          <p>Custom cabinetry for residential and commercial projects.</p>
+        </div>
+        <nav aria-label="Footer company links">
+          <h2>Company</h2>
+          <a href="/residential">Residential</a>
+          <a href="/commercial">Commercial</a>
+          <a href="/gallery">Gallery</a>
+          <a href="/before-after">Before &amp; After</a>
+          <a href="/our-process">Our Process</a>
+          <a href="/our-approach">Our Approach</a>
+          <a href="/installation-service">Installation &amp; Service</a>
+          <a href="/showroom">Showroom</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+        </nav>
+        <div>
+          <h2>Contact</h2>
+          <address class="footer-contact">
+            <a href="tel:+17802430645">780-243-0645</a>
+            <a href="mailto:info@corecutcabinets.com">info@corecutcabinets.com</a>
+            <span>6152 50 St NW<br />Edmonton, Alberta</span>
+            <span>Mon-Sat: 9AM - 5PM<br />Sunday: Closed</span>
+            <a href="/contact">Book a design call</a>
+          </address>
+        </div>
+      </div>
+    </footer>
+
+    <elevenlabs-convai agent-id="agent_8001krqh9m9wfn3rd86v18scbe61"></elevenlabs-convai>
+    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+    <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

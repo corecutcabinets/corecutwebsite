@@ -65,7 +65,9 @@ window.corecutTrack = (eventName, properties = {}) => {
       ([key, value]) =>
         (key === "mode" && ["homeowner", "business"].includes(String(value))) ||
         (key === "plan" &&
-          ["accelerated", "balanced", "extended"].includes(String(value))),
+          ["weeks-4", "weeks-8", "weeks-12", "weeks-26", "weeks-52"].includes(
+            String(value),
+          )),
     ),
   );
 

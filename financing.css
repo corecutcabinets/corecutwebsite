@@ -438,17 +438,19 @@
   font-weight: 750;
 }
 
+/* Five fixed terms sit in one row on a wide calculator column and wrap to
+   three, then two, as it narrows. */
 .plan-picker-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+  gap: 8px;
 }
 
 .plan-card {
   position: relative;
   display: grid;
-  gap: 4px;
-  padding: 14px 13px;
+  gap: 3px;
+  padding: 12px 10px;
   border: 1px solid rgba(75, 46, 25, 0.24);
   border-radius: 10px;
   background: #fff;
@@ -473,6 +475,7 @@
   border-color: rgba(197, 160, 113, 0.65);
 }
 
+.plan-card.is-selected,
 .plan-card:has(input:checked) {
   border-color: var(--walnut);
   background: linear-gradient(160deg, #fff, var(--sand));
@@ -487,35 +490,29 @@
 .plan-card-name {
   color: var(--walnut);
   font-family: var(--font-display);
-  font-size: 1.02rem;
+  font-size: 0.95rem;
   font-weight: 800;
   letter-spacing: -0.01em;
 }
 
-.plan-card-meta {
-  color: var(--ink-soft);
-  font-size: 0.78rem;
-  font-weight: 650;
-}
-
 .plan-card-rate {
-  color: var(--walnut);
-  font-size: 0.77rem;
-  font-weight: 750;
+  color: var(--ink-soft);
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 
 .plan-card-price {
-  margin-top: 6px;
+  margin-top: 5px;
   color: var(--coffee);
   font-family: var(--font-display);
-  font-size: 1.06rem;
+  font-size: 0.9rem;
   font-weight: 800;
 }
 
 .plan-card-price small {
-  margin-left: 2px;
+  display: block;
   color: rgba(51, 41, 31, 0.55);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 650;
 }
 
@@ -579,7 +576,7 @@
 }
 
 .calculator-result {
-  min-height: 150px;
+  min-height: 130px;
   padding: 20px;
   border: 1px solid rgba(255, 255, 255, 0.17);
   border-radius: var(--radius-sm);
@@ -600,10 +597,158 @@
   line-height: 1.15;
 }
 
+/* Business panel, laid out like the Tabit breakdown: a centred weekly-payment
+   headline, a pair of tiles for total and term, then the fee breakdown. */
+.financing-calculator[data-mode="business"] .calculator-result {
+  min-height: 0;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  padding: 24px 20px;
+}
+
+.calculator-estimate-unit {
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.86rem;
+}
+
+.financing-calculator.is-inquiry-only .calculator-estimate-unit {
+  display: none;
+}
+
+.calculator-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.calculator-tile {
+  display: grid;
+  gap: 3px;
+  justify-items: center;
+  padding: 13px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.07);
+  text-align: center;
+}
+
+.calculator-tile-label {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.8rem;
+}
+
+.calculator-tile strong {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 800;
+}
+
+.calculator-fee-box {
+  margin-top: 10px;
+  padding: 13px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+}
+
 .calculator-plan-disclosure {
   margin: 12px 0 0;
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.78rem;
+}
+
+/* Fee breakdown: amount financed, service fee and total. */
+.calculator-breakdown-title {
+  margin: 0;
+  color: var(--tan);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.calculator-breakdown {
+  display: grid;
+  gap: 0;
+  margin: 8px 0 0;
+}
+
+.calculator-breakdown > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.calculator-breakdown > div:last-child {
+  border-bottom: 0;
+}
+
+.calculator-breakdown dt {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.88rem;
+}
+
+.calculator-breakdown dd {
+  margin: 0;
+  color: #fff;
+  font-weight: 800;
+}
+
+.calculator-breakdown-sum dt,
+.calculator-breakdown-sum dd {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.calculator-print {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.calculator-print:hover {
+  color: #fff;
+}
+
+.calculator-print:focus-visible {
+  outline: 2px solid var(--tan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Moved-in "why" and "how it works" content now lives inside FAQ answers. */
+.faq-answer-list,
+.faq-answer-steps {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0 0;
+  padding-left: 20px;
+}
+
+.faq-answer-list li,
+.faq-answer-steps li {
+  padding-left: 2px;
+}
+
+.faq-answer-list strong,
+.faq-answer-steps strong {
+  color: var(--walnut);
+}
+
+.faq-answer-terms {
+  gap: 6px;
 }
 
 .calculator-actions {
@@ -1046,12 +1191,12 @@
     column-gap: 12px;
   }
 
-  .plan-card-meta {
+  .plan-card-rate {
     grid-column: 1;
   }
 
   .plan-card-price {
-    grid-row: 1 / span 3;
+    grid-row: 1 / span 2;
     grid-column: 2;
     margin-top: 0;
     text-align: right;
@@ -1062,8 +1207,8 @@
   }
 }
 
-/* Second mobile pass: the three business plan cards are the tallest remaining
-   block in that calculator, so tighten them without dropping any of the plan
+/* Second mobile pass: the five business term cards are the tallest remaining
+   block in that calculator, so tighten them without dropping any of the term
    details. */
 @media (max-width: 640px) {
   .plan-picker-grid {
@@ -1079,7 +1224,6 @@
     font-size: 0.97rem;
   }
 
-  .plan-card-meta,
   .plan-card-rate {
     font-size: 0.73rem;
     line-height: 1.32;
@@ -1087,6 +1231,11 @@
 
   .plan-card-price {
     font-size: 1rem;
+  }
+
+  .plan-card-price small {
+    display: inline;
+    margin-left: 2px;
   }
 
   .plan-picker legend {
@@ -1814,5 +1963,382 @@
   .finance-hero-lines {
     transform: none;
     transition: none;
+  }
+}
+
+/* ==========================================================================
+   Business calculator: two light cards (Tabit-style)
+   The business calculator drops the single walnut-panel shell for two separate
+   white cards, icon-led headings, a two-column term grid and a soft fee box.
+   Everything is scoped to [data-mode="business"] so the homeowner calculator
+   keeps its existing dark result panel.
+   ========================================================================== */
+
+.financing-calculator[data-mode="business"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 26px);
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.financing-calculator[data-mode="business"] .financing-calculator-inputs,
+.financing-calculator[data-mode="business"] .financing-result-card {
+  align-content: start;
+  gap: 14px;
+  padding: clamp(16px, 2vw, 26px);
+  border: 1px solid rgba(75, 46, 25, 0.14);
+  border-radius: calc(var(--radius) + 4px);
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+  color: var(--ink);
+}
+
+/* ---- Icon-led card headings ---- */
+
+.calculator-card-title {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 0;
+  color: var(--walnut);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.calculator-card-title svg,
+.financing-calculator[data-mode="business"] .plan-picker legend svg,
+.financing-calculator[data-mode="business"] .calculator-status svg,
+.financing-calculator[data-mode="business"] .calculator-tile-label svg,
+.financing-calculator[data-mode="business"] .calculator-breakdown-title svg {
+  flex: none;
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: var(--tan);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.financing-calculator[data-mode="business"] .plan-picker legend,
+.financing-calculator[data-mode="business"] .calculator-status,
+.financing-calculator[data-mode="business"] .calculator-tile-label,
+.financing-calculator[data-mode="business"] .calculator-breakdown-title {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.financing-calculator[data-mode="business"] .calculator-status,
+.financing-calculator[data-mode="business"] .calculator-tile-label {
+  justify-content: center;
+}
+
+.financing-calculator[data-mode="business"] .calculator-tile-label svg,
+.financing-calculator[data-mode="business"] .calculator-breakdown-title svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ---- Inputs ---- */
+
+.financing-calculator[data-mode="business"] .money-input {
+  border-color: rgba(75, 46, 25, 0.16);
+  background: var(--sand);
+}
+
+.financing-calculator[data-mode="business"] .money-input:focus-within {
+  background: #fff;
+}
+
+/* ---- Term buttons: two per row, the fifth spanning both ---- */
+
+.financing-calculator[data-mode="business"] .plan-picker-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.financing-calculator[data-mode="business"] .plan-card {
+  justify-items: center;
+  gap: 1px;
+  padding: 9px 10px;
+  border-color: rgba(75, 46, 25, 0.16);
+  border-radius: 10px;
+  background: var(--sand);
+  text-align: center;
+}
+
+.financing-calculator[data-mode="business"] .plan-card:last-child {
+  grid-column: 1 / -1;
+}
+
+.financing-calculator[data-mode="business"] .plan-card-name {
+  font-size: 0.9rem;
+}
+
+.financing-calculator[data-mode="business"] .plan-card-rate {
+  font-size: 0.69rem;
+}
+
+.financing-calculator[data-mode="business"] .plan-card-price {
+  margin-top: 1px;
+  font-size: 0.8rem;
+}
+
+.financing-calculator[data-mode="business"] .plan-card-price small {
+  display: inline;
+  margin-left: 3px;
+}
+
+.financing-calculator[data-mode="business"] .plan-card.is-selected,
+.financing-calculator[data-mode="business"] .plan-card:has(input:checked) {
+  border-color: var(--walnut);
+  background: var(--walnut);
+  box-shadow: var(--shadow-soft);
+}
+
+.financing-calculator[data-mode="business"] .plan-card.is-selected .plan-card-name,
+.financing-calculator[data-mode="business"] .plan-card.is-selected .plan-card-price,
+.financing-calculator[data-mode="business"]
+  .plan-card:has(input:checked)
+  .plan-card-name,
+.financing-calculator[data-mode="business"]
+  .plan-card:has(input:checked)
+  .plan-card-price {
+  color: var(--cream);
+}
+
+.financing-calculator[data-mode="business"] .plan-card.is-selected .plan-card-rate,
+.financing-calculator[data-mode="business"]
+  .plan-card.is-selected
+  .plan-card-price
+  small,
+.financing-calculator[data-mode="business"]
+  .plan-card:has(input:checked)
+  .plan-card-rate,
+.financing-calculator[data-mode="business"]
+  .plan-card:has(input:checked)
+  .plan-card-price small {
+  color: rgba(253, 252, 250, 0.72);
+}
+
+/* ---- Result panel ---- */
+
+.financing-calculator[data-mode="business"] .calculator-result {
+  gap: 1px;
+  padding: 18px 15px;
+  border-color: rgba(75, 46, 25, 0.14);
+  background: var(--cream);
+}
+
+.financing-calculator[data-mode="business"] .calculator-status {
+  color: var(--walnut);
+  font-weight: 750;
+}
+
+.financing-calculator[data-mode="business"] .calculator-estimate {
+  margin-top: 4px;
+  color: var(--coffee);
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  font-weight: 800;
+}
+
+.financing-calculator[data-mode="business"] .calculator-estimate-unit {
+  color: var(--ink-soft);
+}
+
+.financing-calculator[data-mode="business"] .calculator-tile {
+  border-color: rgba(75, 46, 25, 0.14);
+  background: var(--cream);
+}
+
+.financing-calculator[data-mode="business"] .calculator-tile-label {
+  color: var(--walnut);
+  font-weight: 750;
+}
+
+.financing-calculator[data-mode="business"] .calculator-tile strong {
+  color: var(--walnut);
+  font-size: 1.06rem;
+}
+
+.financing-calculator[data-mode="business"]
+  .calculator-tile--total
+  strong {
+  color: var(--coffee);
+}
+
+.financing-calculator[data-mode="business"] .calculator-fee-box {
+  border-color: rgba(75, 46, 25, 0.12);
+  background: var(--sand);
+}
+
+.financing-calculator[data-mode="business"] .calculator-breakdown-title {
+  color: var(--walnut);
+  font-size: 0.86rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.financing-calculator[data-mode="business"] .calculator-breakdown > div {
+  border-bottom: 0;
+  padding: 5px 0;
+}
+
+.financing-calculator[data-mode="business"] .calculator-breakdown dt {
+  color: var(--ink-soft);
+}
+
+.financing-calculator[data-mode="business"] .calculator-breakdown dd {
+  color: var(--walnut);
+}
+
+.financing-calculator[data-mode="business"] .calculator-breakdown-sum {
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(75, 46, 25, 0.16);
+}
+
+.financing-calculator[data-mode="business"] .calculator-breakdown-sum dt {
+  color: var(--walnut);
+  font-weight: 800;
+}
+
+.financing-calculator[data-mode="business"] .calculator-plan-disclosure {
+  color: var(--ink-soft);
+}
+
+.financing-calculator[data-mode="business"] .button.secondary {
+  border-color: rgba(75, 46, 25, 0.28);
+  color: var(--walnut);
+}
+
+.financing-calculator[data-mode="business"] .button.secondary:hover {
+  background: var(--sand);
+}
+
+.financing-calculator[data-mode="business"] .calculator-print {
+  color: var(--coffee);
+}
+
+.financing-calculator[data-mode="business"] .financing-disclosure {
+  padding-inline: 0;
+  border-top: 0;
+  background: none;
+}
+
+/* Tighter field rhythm so the whole calculator clears a laptop viewport. */
+.financing-calculator[data-mode="business"] .calculator-field {
+  gap: 6px;
+}
+
+.financing-calculator[data-mode="business"] .calculator-field > label,
+.financing-calculator[data-mode="business"] .plan-picker legend {
+  font-size: 0.92rem;
+}
+
+.financing-calculator[data-mode="business"] .money-input input[type="number"] {
+  min-height: 40px;
+}
+
+.financing-calculator[data-mode="business"] .field-help {
+  font-size: 0.76rem;
+}
+
+.financing-calculator[data-mode="business"] .calculator-actions {
+  margin-top: 16px;
+}
+
+.financing-calculator[data-mode="business"] .calculator-plan-disclosure {
+  margin-top: 10px;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 980px) {
+  .financing-calculator[data-mode="business"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .financing-calculator[data-mode="business"] .plan-picker-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .financing-calculator[data-mode="business"] .plan-card {
+    grid-template-columns: minmax(0, 1fr) auto;
+    justify-items: start;
+    align-items: center;
+    text-align: left;
+  }
+
+  .financing-calculator[data-mode="business"] .plan-card-price {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    margin-top: 0;
+  }
+}
+
+/* ==========================================================================
+   Print / "Save as PDF"
+   The calculator's Save-as-PDF button hands off to the browser's own print
+   pipeline, so printing a financing page reduces it to the calculator and its
+   disclosure. Scoped to the financing pages so no other page is affected.
+   ========================================================================== */
+
+@media print {
+  body[data-financing-page] > *:not(main),
+  body[data-financing-page] main > *:not(.financing-calculator-section),
+  body[data-financing-page] .calculator-actions,
+  body[data-financing-page] .financing-promo-note,
+  body[data-financing-page] elevenlabs-convai {
+    display: none !important;
+  }
+
+  body[data-financing-page] .financing-calculator-section {
+    padding: 0;
+  }
+
+  body[data-financing-page] .financing-calculator {
+    display: block;
+    border: 0;
+    box-shadow: none;
+  }
+
+  /* The dark result panel is re-inked for paper. */
+  body[data-financing-page] .financing-result-card {
+    background: none;
+    color: #000;
+    padding: 0;
+    page-break-inside: avoid;
+  }
+
+  body[data-financing-page] .financing-result-card .eyebrow,
+  body[data-financing-page] .calculator-status,
+  body[data-financing-page] .calculator-estimate,
+  body[data-financing-page] .calculator-estimate-unit,
+  body[data-financing-page] .calculator-tile-label,
+  body[data-financing-page] .calculator-tile strong,
+  body[data-financing-page] .calculator-breakdown-title,
+  body[data-financing-page] .calculator-breakdown dt,
+  body[data-financing-page] .calculator-breakdown dd,
+  body[data-financing-page] .calculator-plan-disclosure {
+    color: #000;
+  }
+
+  body[data-financing-page] .calculator-result,
+  body[data-financing-page] .calculator-tile,
+  body[data-financing-page] .calculator-fee-box {
+    border-color: rgba(0, 0, 0, 0.3);
+    background: none;
+  }
+
+  body[data-financing-page] .calculator-breakdown > div {
+    border-bottom-color: rgba(0, 0, 0, 0.2);
   }
 }

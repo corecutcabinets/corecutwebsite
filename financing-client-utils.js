@@ -20,28 +20,56 @@ export function financedAmount(amount, downPayment) {
 }
 
 /**
- * Fixed business payment plans: a flat fee applied to the financed amount,
- * repaid in equal weekly payments. Mirrors BUSINESS_PLANS in financing.js.
+ * Fixed business payment terms: a flat service fee applied to the financed
+ * amount, repaid in equal weekly payments. Mirrors BUSINESS_PLANS in
+ * financing.js.
  */
 export const BUSINESS_PLANS = Object.freeze([
-  Object.freeze({
-    id: "accelerated",
-    label: "Accelerated",
-    weeks: 12,
-    rate: 4.99,
-  }),
-  Object.freeze({ id: "balanced", label: "Balanced", weeks: 26, rate: 7.99 }),
-  Object.freeze({ id: "extended", label: "Extended", weeks: 52, rate: 12.99 }),
+  Object.freeze({ id: "weeks-4", label: "4 weeks", weeks: 4, rate: 0 }),
+  Object.freeze({ id: "weeks-8", label: "8 weeks", weeks: 8, rate: 0.99 }),
+  Object.freeze({ id: "weeks-12", label: "12 weeks", weeks: 12, rate: 2.99 }),
+  Object.freeze({ id: "weeks-26", label: "26 weeks", weeks: 26, rate: 4.99 }),
+  Object.freeze({ id: "weeks-52", label: "52 weeks", weeks: 52, rate: 9.99 }),
 ]);
+
+export const DEFAULT_BUSINESS_PLAN_ID = "weeks-26";
+
+/**
+ * @typedef {object} BusinessBreakdown
+ * @property {number} originalPrice
+ * @property {number} serviceFee
+ * @property {number} total
+ * @property {number} weekly
+ * @property {number} weeks
+ */
+
+/**
+ * serviceFee = financed × rate / 100; total = financed + serviceFee;
+ * weekly = total / weeks. Mirrors businessPaymentBreakdown in financing.js.
+ *
+ * @param {number} financed
+ * @param {{ weeks: number; rate: number }} plan
+ * @returns {BusinessBreakdown | null}
+ */
+export function businessPaymentBreakdown(financed, plan) {
+  if (!Number.isFinite(financed) || financed <= 0 || !plan) return null;
+  const serviceFee = (financed * plan.rate) / 100;
+  const total = financed + serviceFee;
+  return {
+    originalPrice: financed,
+    serviceFee,
+    total,
+    weekly: total / plan.weeks,
+    weeks: plan.weeks,
+  };
+}
 
 /**
  * @param {number} financed
  * @param {{ weeks: number; rate: number }} plan
  */
 export function businessWeeklyPayment(financed, plan) {
-  return Number.isFinite(financed) && financed > 0
-    ? (financed * (1 + plan.rate / 100)) / plan.weeks
-    : Number.NaN;
+  return businessPaymentBreakdown(financed, plan)?.weekly ?? Number.NaN;
 }
 
 /**

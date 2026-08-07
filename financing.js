@@ -14,19 +14,36 @@ const financedAmount = (amount, downPayment) => {
   return Math.max(0, amount - downPayment);
 };
 
-// Fixed business payment plans: a flat fee applied to the financed amount,
-// repaid in equal weekly payments. The percentages drive the math only; the
-// page displays plan names, lengths, and weekly payments, never rates.
+// Fixed business payment terms: a flat service fee applied to the financed
+// amount, repaid in equal weekly payments. Keep in sync with the mirror in
+// financing-client-utils.js.
 const BUSINESS_PLANS = [
-  { id: "accelerated", label: "Accelerated", weeks: 12, rate: 4.99 },
-  { id: "balanced", label: "Balanced", weeks: 26, rate: 7.99 },
-  { id: "extended", label: "Extended", weeks: 52, rate: 12.99 },
+  { id: "weeks-4", label: "4 weeks", weeks: 4, rate: 0 },
+  { id: "weeks-8", label: "8 weeks", weeks: 8, rate: 0.99 },
+  { id: "weeks-12", label: "12 weeks", weeks: 12, rate: 2.99 },
+  { id: "weeks-26", label: "26 weeks", weeks: 26, rate: 4.99 },
+  { id: "weeks-52", label: "52 weeks", weeks: 52, rate: 9.99 },
 ];
 
+const DEFAULT_BUSINESS_PLAN_ID = "weeks-26";
+
+// serviceFee = financed × rate / 100; total = financed + serviceFee;
+// weekly = total / weeks.
+const businessPaymentBreakdown = (financed, plan) => {
+  if (!Number.isFinite(financed) || financed <= 0 || !plan) return null;
+  const serviceFee = (financed * plan.rate) / 100;
+  const total = financed + serviceFee;
+  return {
+    originalPrice: financed,
+    serviceFee,
+    total,
+    weekly: total / plan.weeks,
+    weeks: plan.weeks,
+  };
+};
+
 const businessWeeklyPayment = (financed, plan) =>
-  Number.isFinite(financed) && financed > 0
-    ? (financed * (1 + plan.rate / 100)) / plan.weeks
-    : Number.NaN;
+  businessPaymentBreakdown(financed, plan)?.weekly ?? Number.NaN;
 
 // Standard fixed-term monthly amortization. The budgeting-only weekly estimate
 // is one quarter of the monthly payment after the monthly payment is rounded
@@ -245,6 +262,15 @@ document
     const resultStatus = calculator.querySelector("[data-result-status]");
     const estimateOutput = calculator.querySelector("[data-estimate-output]");
     const planDisclosure = calculator.querySelector("[data-plan-disclosure]");
+    // The total appears twice in the Tabit-style panel (headline tile and fee
+    // breakdown row), so every hook is collected as a list.
+    const breakdownOutputs = {
+      original: calculator.querySelectorAll("[data-breakdown-original]"),
+      fee: calculator.querySelectorAll("[data-breakdown-fee]"),
+      total: calculator.querySelectorAll("[data-breakdown-total]"),
+      duration: calculator.querySelectorAll("[data-breakdown-duration]"),
+    };
+    const printButton = calculator.querySelector("[data-calculator-print]");
     const planRadios = Array.from(
       calculator.querySelectorAll("[data-plan-radio]"),
     ).filter((radio) => radio instanceof HTMLInputElement);
@@ -260,11 +286,9 @@ document
     let started = false;
     let lastTrackedPlan = "";
 
-    if (
-      !(amountInput instanceof HTMLInputElement) ||
-      !(amountRange instanceof HTMLInputElement)
-    )
-      return;
+    // The amount slider is optional: the business calculator is number-entry
+    // only, while the homeowner one still pairs an input with a range.
+    if (!(amountInput instanceof HTMLInputElement)) return;
     if (!(downPaymentInput instanceof HTMLInputElement)) return;
 
     const markStarted = () => {
@@ -286,7 +310,7 @@ document
       const checked = planRadios.find((radio) => radio.checked);
       return (
         BUSINESS_PLANS.find((plan) => plan.id === checked?.value) ||
-        BUSINESS_PLANS.find((plan) => plan.id === "balanced") ||
+        BUSINESS_PLANS.find((plan) => plan.id === DEFAULT_BUSINESS_PLAN_ID) ||
         BUSINESS_PLANS[0]
       );
     };
@@ -347,16 +371,42 @@ document
       ) {
         const plan = selectedBusinessPlan();
         inquiryPreference.value = plan
-          ? `${plan.label} · ${plan.weeks} weeks`
+          ? `${plan.weeks} weeks · ${plan.rate}% service fee`
           : "Not selected";
       }
 
       return validAmount && validDownPayment && values.financed >= minimum;
     };
 
+    const renderBreakdown = (breakdown) => {
+      const unavailable = "Unavailable";
+      const write = (nodes, value) => {
+        nodes.forEach((node) => {
+          node.textContent = value;
+        });
+      };
+      write(
+        breakdownOutputs.original,
+        breakdown ? paymentFormatter.format(breakdown.originalPrice) : unavailable,
+      );
+      write(
+        breakdownOutputs.fee,
+        breakdown ? paymentFormatter.format(breakdown.serviceFee) : unavailable,
+      );
+      write(
+        breakdownOutputs.total,
+        breakdown ? paymentFormatter.format(breakdown.total) : unavailable,
+      );
+      write(
+        breakdownOutputs.duration,
+        breakdown ? `${breakdown.weeks} weeks` : unavailable,
+      );
+    };
+
     const clearEstimate = () => {
       if (estimateOutput) estimateOutput.textContent = "";
       if (planDisclosure) planDisclosure.textContent = "";
+      renderBreakdown(null);
     };
 
     const renderInquiryOnly = (message) => {
@@ -374,6 +424,15 @@ document
     const renderBusinessEstimate = () => {
       const summaryValid = updateSummary();
       const values = currentValues();
+
+      // Selected-term styling is mirrored onto a class so the highlight does
+      // not depend on `:has()` support. CSS carries both: `.is-selected` for
+      // this path and `:has(input:checked)` so the term checked in the markup
+      // still highlights with JS disabled.
+      planRadios.forEach((radio) => {
+        const card = radio.closest(".plan-card");
+        if (card) card.classList.toggle("is-selected", radio.checked);
+      });
 
       BUSINESS_PLANS.forEach((plan) => {
         const priceOutput = calculator.querySelector(
@@ -395,22 +454,24 @@ document
       }
 
       const plan = selectedBusinessPlan();
-      const payment = businessWeeklyPayment(values.financed, plan);
-      if (!plan || !Number.isFinite(payment)) {
+      const breakdown = businessPaymentBreakdown(values.financed, plan);
+      if (!plan || !breakdown || !Number.isFinite(breakdown.weekly)) {
         renderInquiryOnly();
         return;
       }
 
       calculator.classList.remove("is-inquiry-only", "has-error");
       calculator.classList.add("has-estimate");
-      if (resultStatus)
-        resultStatus.textContent = `${plan.label} plan · estimated weekly payment`;
+      // Tabit-style headline: the label, the amount, and "per week" as static
+      // markup beneath it. The term is carried by the Duration tile.
+      if (resultStatus) resultStatus.textContent = "Weekly payment";
       if (estimateOutput) {
-        estimateOutput.textContent = `Approximately ${paymentFormatter.format(payment)} per week for ${plan.weeks} weeks`;
+        estimateOutput.textContent = paymentFormatter.format(breakdown.weekly);
       }
       if (planDisclosure) {
         planDisclosure.textContent = `Fixed weekly payments for ${plan.weeks} weeks. This estimate is for planning; final terms are confirmed with your financing agreement.`;
       }
+      renderBreakdown(breakdown);
       trackEstimateViewed(plan.id);
     };
 
@@ -488,11 +549,13 @@ document
 
     const handleValueInput = (event) => {
       markStarted();
-      if (event.currentTarget === amountRange)
-        amountInput.value = amountRange.value;
-      if (event.currentTarget === amountInput) {
-        const amount = toMoneyNumber(amountInput.value);
-        if (Number.isFinite(amount)) amountRange.value = String(amount);
+      if (amountRange instanceof HTMLInputElement) {
+        if (event.currentTarget === amountRange)
+          amountInput.value = amountRange.value;
+        if (event.currentTarget === amountInput) {
+          const amount = toMoneyNumber(amountInput.value);
+          if (Number.isFinite(amount)) amountRange.value = String(amount);
+        }
       }
       if (
         homeownerTermInput instanceof HTMLInputElement &&
@@ -526,6 +589,12 @@ document
         renderBusinessEstimate();
       }),
     );
+
+    // "Save as PDF" hands off to the browser's own print-to-PDF; a print
+    // stylesheet reduces the page to the calculator. No export library.
+    if (printButton instanceof HTMLElement) {
+      printButton.addEventListener("click", () => window.print());
+    }
 
     renderEstimateForMode();
   });

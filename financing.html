@@ -3,19 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Our Story | Corecut Cabinets</title>
+    <title>Cabinet Financing Options | Corecut Cabinets</title>
     <meta
       name="description"
-      content="Learn the story behind Corecut Cabinets, a family-owned Edmonton cabinet company built on trust, quality workmanship, and dependable service."
+      content="Explore homeowner and business payment options for residential, builder, contractor, and commercial cabinetry projects with Corecut Cabinets in Edmonton."
     />
     <link
-      rel="stylesheet"
-      href="./styles.css?v=corecut-fable-redesign-20260706-17"
+      rel="preload"
+      href="./assets/fonts/manrope-latin-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="./styles.css?v=corecut-soon-wall-20260804-1" />
+    <link
+      rel="stylesheet"
+      href="./financing.css?v=corecut-soon-wall-20260804-1"
+    />
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
   </head>
-  <body>
+  <body data-financing-page="hub">
     <header class="site-header">
       <a class="brand" href="/" aria-label="Corecut Cabinets home">
         <img
@@ -73,18 +81,20 @@
         </div>
         <a href="/contact">Contact</a>
       </nav>
-
       <div class="header-actions">
-        <a class="quote-button" href="/contact">Get Started</a>
+        <a
+          class="quote-button"
+          href="/contact"
+          data-analytics-event="financing_quote_cta_clicked"
+          >Get Started</a
+        >
         <button
           class="menu-toggle"
           aria-expanded="false"
           aria-controls="mobile-menu"
           aria-label="Open menu"
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </button>
       </div>
     </header>
@@ -113,8 +123,8 @@
           Gallery
         </button>
         <div class="mobile-submenu">
-          <a href="/gallery">Projects</a>
-          <a href="/before-after">Before &amp; After</a>
+          <a href="/gallery">Projects</a
+          ><a href="/before-after">Before &amp; After</a>
         </div>
       </div>
       <div class="mobile-nav-group" aria-label="About pages">
@@ -134,83 +144,69 @@
     </nav>
 
     <main>
-      <section class="section about-section about-page-section">
-        <div class="container about-grid">
-          <div class="about-copy">
-            <p class="eyebrow">Family-owned cabinet company</p>
-            <h1>Our Story</h1>
-            <p>
-              Corecut Cabinets is a family-owned cabinet company built on trust,
-              quality workmanship, and treating every customer with respect.
-            </p>
-            <p>
-              Our family has years of experience in the cabinet industry, and we
-              started Corecut Cabinets with a clear goal: to provide homeowners,
-              builders, and businesses with dependable cabinetry and a
-              straightforward experience from start to finish. We believe
-              customers should feel confident knowing who they are working with,
-              what they are paying for, and when their project will be
-              completed.
-            </p>
-            <p>
-              We take pride in being involved throughout the entire process,
-              from design and fabrication to delivery and installation. Every
-              project is approached with care, attention to detail, and a
-              commitment to building cabinets that are made to last.
-            </p>
-            <p>
-              As Corecut Cabinets continues to grow, our focus will remain the
-              same: building long-term relationships, earning our customers’
-              trust, and becoming a reliable name for cabinetry in Edmonton and
-              beyond.
-            </p>
-            <p class="about-tagline">
-              <strong
-                >Quality at the Core. Cut to Last.<sup class="trademark"
-                  >TM</sup
-                ></strong
-              >
-            </p>
-          </div>
-
-          <div
-            class="team-grid team-grid-single"
-            aria-label="Corecut Cabinets leadership"
-          >
-            <article class="team-card image-card">
-              <div class="media team-photo kabir-photo">
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  src="./assets/kabir-brar-textured.png"
-                  alt="Kabir Brar, Managing Director at Corecut Cabinets"
-                />
-              </div>
-              <div>
-                <span>Managing Director</span>
-                <h3>Kabir Brar, BCom</h3>
-              </div>
-            </article>
-          </div>
+      <section class="financing-hub-hero">
+        <div class="container financing-hub-intro">
+          <p class="eyebrow">Flexible payment options</p>
+          <h1>Choose the financing path that fits your cabinetry project.</h1>
+          <p>
+            Estimate a payment, then talk to us. Pick the path below that
+            matches your project.
+          </p>
         </div>
       </section>
 
-      <section class="lead-section">
-        <div class="container lead-grid lead-cta-grid">
-          <div class="lead-copy">
-            <p class="eyebrow">Ready to start?</p>
-            <h2>Tell us about your cabinetry project.</h2>
-            <p>
-              Use the contact form and we will follow up with the next steps.
-            </p>
-          </div>
+      <section
+        class="section financing-choice-section"
+        aria-labelledby="financing-choice-title"
+      >
+        <div class="container section-heading financing-choice-heading">
+          <p class="eyebrow">Start here</p>
+          <h2 id="financing-choice-title">What are you planning?</h2>
+        </div>
+        <div class="container financing-choice-grid">
+          <article class="financing-choice-card image-card">
+            <div class="media">
+              <img
+                src="./assets/gallery-luxury-kitchen.jpg"
+                alt="Warm residential kitchen with custom cabinetry"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            <div class="financing-choice-copy">
+              <p class="eyebrow">For your home</p>
+              <h3>Homeowner Financing</h3>
+              <p>
+                Plan a weekly payment for your kitchen, vanity or built-ins,
+                and see what it looks like before you apply.
+              </p>
+              <a class="button primary" href="/financing/homeowners"
+                >Explore Homeowner Financing</a
+              >
+            </div>
+          </article>
 
-          <div class="lead-cta-actions">
-            <a class="button primary" href="/contact">Contact</a>
-            <a class="button secondary" href="tel:+17802430645"
-              >Call 780-243-0645</a
-            >
-          </div>
+          <article class="financing-choice-card image-card">
+            <div class="media">
+              <img
+                src="./assets/gallery-commercial-reception.jpg"
+                alt="Commercial reception area with custom millwork"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            <div class="financing-choice-copy">
+              <p class="eyebrow">For your business</p>
+              <h3>Business Financing</h3>
+              <p>
+                Spread a commercial or builder project across 12, 26 or 52
+                weeks of fixed payments and keep working capital free.
+              </p>
+              <a class="button primary" href="/financing/businesses"
+                >Explore Business Financing</a
+              >
+            </div>
+          </article>
         </div>
       </section>
     </main>
@@ -228,21 +224,16 @@
         </div>
         <nav aria-label="Footer company links">
           <h2>Company</h2>
-          <a href="/residential">Residential</a>
-          <a href="/commercial">Commercial</a>
-          <a href="/financing">Financing</a>
-          <a href="/financing/homeowners">Homeowner Financing</a>
-          <a href="/financing/businesses">Business Financing</a>
-          <a href="/shop">Shop Ready-to-Assemble</a>
-          <a href="/gallery">Gallery</a>
-          <a href="/before-after">Before &amp; After</a>
-          <a href="/about">Our Story</a>
-          <a href="/design-consultation">Design Consultation</a>
-          <a href="/design-to-your-budget">Design to Your Budget</a>
-          <a href="/our-process">Our Process</a>
-          <a href="/installation-service">Installation &amp; Service</a>
-          <a href="/showroom">Showrooms</a>
-          <a href="/contact">Contact</a>
+          <a href="/residential">Residential</a
+          ><a href="/commercial">Commercial</a>
+          <a href="/financing">Financing</a
+          ><a href="/financing/homeowners">Homeowner Financing</a>
+          <a href="/financing/businesses">Business Financing</a
+          ><a href="/shop">Shop Ready-to-Assemble</a>
+          <a href="/gallery">Gallery</a
+          ><a href="/before-after">Before &amp; After</a>
+          <a href="/about">Our Story</a><a href="/our-process">Our Process</a
+          ><a href="/contact">Contact</a>
         </nav>
         <div>
           <h2>Contact</h2>
@@ -281,6 +272,7 @@
       async
       type="text/javascript"
     ></script>
-    <script src="./script.js?v=corecut-fable-redesign-20260706-17"></script>
+    <script src="./script.js?v=corecut-soon-wall-20260804-1"></script>
+    <script src="./financing.js?v=corecut-soon-wall-20260804-1"></script>
   </body>
 </html>

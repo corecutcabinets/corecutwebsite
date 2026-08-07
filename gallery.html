@@ -9,71 +9,128 @@
       content="View cabinetry inspiration from Corecut Cabinets, including custom cabinets, residential cabinetry, commercial millwork, and cabinet installation projects."
     />
     <link rel="preconnect" href="https://images.unsplash.com" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="./styles.css?v=corecut-fable-redesign-20260706-16"
+    />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
   <body>
     <header class="site-header">
       <a class="brand" href="/" aria-label="Corecut Cabinets home">
-        <img src="./assets/corecut-logo-transparent.png" alt="Corecut Cabinets" />
+        <img
+          src="./assets/corecut-logo-transparent.png"
+          alt="Corecut Cabinets"
+        />
       </a>
-
-            <nav class="desktop-nav" aria-label="Primary navigation">
+      <nav class="desktop-nav" aria-label="Primary navigation">
         <a href="/">Home</a>
         <a href="/residential">Residential</a>
         <a href="/commercial">Commercial</a>
+        <a href="/shop">Shop</a>
+        <div class="nav-dropdown nav-dropdown-financing">
+          <button
+            class="nav-dropdown-toggle"
+            type="button"
+            aria-expanded="false"
+          >
+            Financing
+          </button>
+          <div class="dropdown-menu">
+            <a href="/financing/homeowners">Homeowner Financing</a>
+            <a href="/financing/businesses">Business Financing</a>
+          </div>
+        </div>
         <div class="nav-dropdown">
-          <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Gallery</button>
+          <button
+            class="nav-dropdown-toggle"
+            type="button"
+            aria-expanded="false"
+          >
+            Gallery
+          </button>
           <div class="dropdown-menu">
             <a href="/gallery">Projects</a>
             <a href="/before-after">Before &amp; After</a>
           </div>
         </div>
-        <div class="nav-dropdown">
-          <button class="nav-dropdown-toggle" type="button" aria-expanded="false">How We Work</button>
+        <div class="nav-dropdown nav-dropdown-about">
+          <button
+            class="nav-dropdown-toggle"
+            type="button"
+            aria-expanded="false"
+          >
+            About
+          </button>
           <div class="dropdown-menu">
-            <a href="/our-process">Our Process</a>
-            <a href="/our-approach">Our Approach</a>
+            <a href="/design-consultation">Design Consultation</a>
+            <a href="/design-to-your-budget">Design to Your Budget</a>
+            <a href="/showroom">Showrooms</a>
             <a href="/installation-service">Installation &amp; Service</a>
-            <a href="/showroom">Showroom</a>
+            <a href="/our-process">Our Process</a>
+            <a href="/about">Our Story</a>
           </div>
         </div>
-        <a href="/about">About</a>
         <a href="/contact">Contact</a>
       </nav>
 
       <div class="header-actions">
-        <a class="quote-button" href="/contact">Free Quote</a>
-        <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <a class="quote-button" href="/contact">Get Started</a>
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Open menu"
+        >
           <span></span>
           <span></span>
           <span></span>
         </button>
       </div>
     </header>
-
-    <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation">
+    <nav
+      class="mobile-nav"
+      id="mobile-menu"
+      aria-label="Mobile navigation"
+      aria-hidden="true"
+    >
       <a href="/">Home</a>
       <a href="/residential">Residential</a>
       <a href="/commercial">Commercial</a>
+      <a href="/shop">Shop</a>
+      <div class="mobile-nav-group" aria-label="Financing pages">
+        <button class="mobile-nav-toggle" type="button" aria-expanded="false">
+          Financing
+        </button>
+        <div class="mobile-submenu">
+          <a href="/financing">Financing Overview</a>
+          <a href="/financing/homeowners">Homeowner Financing</a>
+          <a href="/financing/businesses">Business Financing</a>
+        </div>
+      </div>
       <div class="mobile-nav-group" aria-label="Gallery pages">
-        <button class="mobile-nav-toggle" type="button" aria-expanded="false">Gallery</button>
+        <button class="mobile-nav-toggle" type="button" aria-expanded="false">
+          Gallery
+        </button>
         <div class="mobile-submenu">
           <a href="/gallery">Projects</a>
           <a href="/before-after">Before &amp; After</a>
         </div>
       </div>
-      <div class="mobile-nav-group" aria-label="How We Work pages">
-        <button class="mobile-nav-toggle" type="button" aria-expanded="false">How We Work</button>
+      <div class="mobile-nav-group" aria-label="About pages">
+        <button class="mobile-nav-toggle" type="button" aria-expanded="false">
+          About
+        </button>
         <div class="mobile-submenu">
-          <a href="/our-process">Our Process</a>
-          <a href="/our-approach">Our Approach</a>
+          <a href="/design-consultation">Design Consultation</a>
+          <a href="/design-to-your-budget">Design to Your Budget</a>
+          <a href="/showroom">Showrooms</a>
           <a href="/installation-service">Installation &amp; Service</a>
-          <a href="/showroom">Showroom</a>
+          <a href="/our-process">Our Process</a>
+          <a href="/about">Our Story</a>
         </div>
       </div>
-      <a href="/about">About</a>
       <a href="/contact">Contact</a>
     </nav>
 
@@ -83,14 +140,17 @@
           <p class="eyebrow">Cabinet gallery</p>
           <h1>Warm woods, clean reveals, practical storage.</h1>
           <p class="hero-text">
-            A look at kitchen cabinetry, bathroom vanities, TV wall units, commercial millwork, and built-in storage
-            details.
+            A look at kitchen cabinetry, bathroom vanities, TV wall units,
+            commercial millwork, and built-in storage details.
           </p>
           <a class="button primary" href="/contact">Plan a Similar Build</a>
         </div>
       </section>
 
-      <section class="section gallery-section gallery-page-grid-section" id="projects">
+      <section
+        class="section gallery-section gallery-page-grid-section"
+        id="projects"
+      >
         <div class="container section-heading projects-heading">
           <p class="eyebrow">Projects</p>
           <h2>Completed cabinetry and millwork projects.</h2>
@@ -109,6 +169,8 @@
           </div>
           <div class="media image-card">
             <img
+              loading="lazy"
+              decoding="async"
               src="./assets/gallery-tv-wall-unit.jpg"
               alt="Modern living room TV wall unit with floating oak cabinets and LED lighting"
             />
@@ -119,6 +181,8 @@
           </div>
           <div class="media image-card">
             <img
+              loading="lazy"
+              decoding="async"
               src="./assets/gallery-bathroom-vanity.jpg"
               alt="Luxury bathroom with floating custom vanity and warm LED mirror lighting"
             />
@@ -132,6 +196,7 @@
               src="./assets/gallery-white-kitchen.jpg"
               alt="Bright modern white kitchen with quartz countertops and natural light"
               loading="lazy"
+              decoding="async"
             />
             <span class="gallery-overlay">
               <strong>Modern White Kitchen</strong>
@@ -143,6 +208,7 @@
               src="./assets/gallery-modern-bathroom.jpg"
               alt="Modern bathroom with floating vanity and backlit mirror"
               loading="lazy"
+              decoding="async"
             />
             <span class="gallery-overlay">
               <strong>Modern Bathroom Vanity</strong>
@@ -151,6 +217,8 @@
           </div>
           <div class="media image-card">
             <img
+              loading="lazy"
+              decoding="async"
               src="./assets/gallery-grey-cabinetry.jpg"
               alt="Modern grey custom cabinetry with dark quartz counters and display storage"
             />
@@ -161,6 +229,8 @@
           </div>
           <div class="media image-card">
             <img
+              loading="lazy"
+              decoding="async"
               src="./assets/gallery-commercial-reception.jpg"
               alt="Commercial reception area with white custom cabinetry and light oak accents"
             />
@@ -171,6 +241,8 @@
           </div>
           <div class="media image-card">
             <img
+              loading="lazy"
+              decoding="async"
               src="./assets/gallery-commercial-retail.jpg"
               alt="Boutique retail display wall with custom cabinetry and warm LED lighting"
             />
@@ -181,6 +253,8 @@
           </div>
           <div class="media image-card">
             <img
+              loading="lazy"
+              decoding="async"
               src="./assets/gallery-commercial-staff-room.jpg"
               alt="Commercial staff room with custom storage cabinetry and quartz counter"
             />
@@ -196,37 +270,69 @@
     <footer class="footer" id="journal">
       <div class="container footer-grid">
         <div>
-          <img src="./assets/corecut-logo-transparent.png" alt="Corecut Cabinets" />
+          <img
+            loading="lazy"
+            decoding="async"
+            src="./assets/corecut-logo-transparent.png"
+            alt="Corecut Cabinets"
+          />
           <p>Custom cabinetry for residential and commercial projects.</p>
         </div>
         <nav aria-label="Footer company links">
           <h2>Company</h2>
           <a href="/residential">Residential</a>
           <a href="/commercial">Commercial</a>
+          <a href="/financing">Financing</a>
+          <a href="/financing/homeowners">Homeowner Financing</a>
+          <a href="/financing/businesses">Business Financing</a>
+          <a href="/shop">Shop Ready-to-Assemble</a>
           <a href="/gallery">Gallery</a>
           <a href="/before-after">Before &amp; After</a>
+          <a href="/about">Our Story</a>
+          <a href="/design-consultation">Design Consultation</a>
+          <a href="/design-to-your-budget">Design to Your Budget</a>
           <a href="/our-process">Our Process</a>
-          <a href="/our-approach">Our Approach</a>
           <a href="/installation-service">Installation &amp; Service</a>
-          <a href="/showroom">Showroom</a>
-          <a href="/about">About</a>
+          <a href="/showroom">Showrooms</a>
           <a href="/contact">Contact</a>
         </nav>
         <div>
           <h2>Contact</h2>
           <address class="footer-contact">
             <a href="tel:+17802430645">780-243-0645</a>
-            <a href="mailto:info@corecutcabinets.com">info@corecutcabinets.com</a>
-            <span>6152 50 St NW<br />Edmonton, Alberta</span>
+            <a href="mailto:info@corecutcabinets.com"
+              >info@corecutcabinets.com</a
+            >
+            <span>4724/4726 76 Ave NW<br />Edmonton, AB</span>
             <span>Mon-Sat: 9AM - 5PM<br />Sunday: Closed</span>
-            <a href="/contact">Book a design call</a>
+            <span class="footer-social-links"
+              ><a
+                href="https://www.instagram.com/corecutcabinets/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Corecut Cabinets on Instagram"
+                >Instagram</a
+              ><a
+                href="https://www.linkedin.com/company/corecut-cabinets/about/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Corecut Cabinets on LinkedIn"
+                >LinkedIn</a
+              ></span
+            ><a href="/contact">Book a design call</a>
           </address>
         </div>
       </div>
     </footer>
 
-    <elevenlabs-convai agent-id="agent_8001krqh9m9wfn3rd86v18scbe61"></elevenlabs-convai>
-    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
-    <script src="./script.js"></script>
+    <elevenlabs-convai
+      agent-id="agent_8001krqh9m9wfn3rd86v18scbe61"
+    ></elevenlabs-convai>
+    <script
+      src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+      async
+      type="text/javascript"
+    ></script>
+    <script src="./script.js?v=corecut-fable-redesign-20260706-16"></script>
   </body>
 </html>

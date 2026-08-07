@@ -8,139 +8,508 @@
       name="description"
       content="Corecut Cabinets builds custom cabinets in Edmonton for residential cabinetry, commercial millwork, cabinet installation, and complimentary quotes."
     />
-    <link rel="preconnect" href="https://images.unsplash.com" />
-    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      (() => {
+        const introKey = "corecut-precision-intro-v1";
+        const forceIntro =
+          new URLSearchParams(window.location.search).get("intro") === "1";
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        let introSeen = false;
+
+        try {
+          introSeen = window.sessionStorage.getItem(introKey) === "seen";
+        } catch {
+          introSeen = false;
+        }
+
+        if (!reduceMotion && (forceIntro || !introSeen)) {
+          document.documentElement.classList.add("corecut-intro-pending");
+          window.__corecutIntroFailsafe = window.setTimeout(() => {
+            document.documentElement.classList.remove("corecut-intro-pending");
+          }, 6500);
+        }
+      })();
+    </script>
+    <link
+      rel="preload"
+      href="./assets/fonts/manrope-latin-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./styles.css?v=corecut-hero-layers-20260806-4" />
+    <link
+      rel="stylesheet"
+      href="./financing.css?v=corecut-hero-layers-20260806-4"
+    />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
   <body>
-    <div class="intro-overlay" aria-hidden="true">
-      <div class="intro-card" role="img" aria-label="Corecut Cabinets">
-        <div class="intro-logo-wrap">
-          <span class="intro-panel intro-panel-left"></span>
-          <span class="intro-panel intro-panel-right"></span>
-          <img src="./assets/corecut-logo-transparent.png" alt="Corecut Cabinets" />
+    <div
+      class="corecut-intro"
+      data-corecut-intro
+      aria-label="Corecut Cabinets introduction"
+    >
+      <div
+        class="corecut-intro-curtain corecut-intro-curtain-left"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="corecut-intro-curtain corecut-intro-curtain-right"
+        aria-hidden="true"
+      ></div>
+      <div class="corecut-intro-grid" aria-hidden="true"></div>
+
+      <button class="corecut-intro-skip" type="button" data-corecut-intro-skip>
+        Skip intro
+      </button>
+
+      <div class="corecut-intro-stage">
+        <p class="corecut-intro-overline" aria-hidden="true">
+          <span>Custom cabinetry</span><i></i><span>Edmonton</span>
+        </p>
+
+        <div class="corecut-intro-lockup" aria-hidden="true">
+          <div class="corecut-intro-cabinet-wrap">
+            <span class="corecut-intro-floor-shadow"></span>
+            <div class="corecut-intro-cabinet">
+              <span class="corecut-intro-piece corecut-intro-back"></span>
+              <span class="corecut-intro-piece corecut-intro-left-door">
+                <i class="corecut-intro-knob"></i>
+              </span>
+              <span class="corecut-intro-piece corecut-intro-top-door">
+                <i class="corecut-intro-pull"></i>
+              </span>
+              <span class="corecut-intro-piece corecut-intro-drawer">
+                <i class="corecut-intro-pull"></i>
+              </span>
+              <span class="corecut-intro-piece corecut-intro-right-door">
+                <i class="corecut-intro-knob"></i>
+              </span>
+              <span class="corecut-intro-cut-line"></span>
+            </div>
+          </div>
+
+          <img
+            class="corecut-intro-logo"
+            data-corecut-intro-logo
+            src="./assets/corecut-logo-transparent.png"
+            alt=""
+            decoding="async"
+          />
         </div>
-        <p class="intro-tagline">Quality at Core - Cut to Perfection</p>
+
+        <p class="corecut-intro-slogan">
+          <span>Quality at Core</span><i aria-hidden="true"></i
+          ><span>Cut to Last<sup class="trademark">TM</sup></span>
+        </p>
+        <span class="corecut-intro-rule" aria-hidden="true"><i></i></span>
       </div>
+
+      <p class="corecut-intro-status" role="status" aria-live="polite">
+        Loading Corecut Cabinets. Quality at the Core. Cut to Last. TM.
+      </p>
     </div>
 
     <header class="site-header">
       <a class="brand" href="/" aria-label="Corecut Cabinets home">
-        <img src="./assets/corecut-logo-transparent.png" alt="Corecut Cabinets" />
+        <img
+          src="./assets/corecut-logo-transparent.png"
+          alt="Corecut Cabinets"
+        />
       </a>
-
-            <nav class="desktop-nav" aria-label="Primary navigation">
+      <nav class="desktop-nav" aria-label="Primary navigation">
         <a href="/">Home</a>
         <a href="/residential">Residential</a>
         <a href="/commercial">Commercial</a>
+        <a href="/shop">Shop</a>
+        <div class="nav-dropdown nav-dropdown-financing">
+          <button
+            class="nav-dropdown-toggle"
+            type="button"
+            aria-expanded="false"
+          >
+            Financing
+          </button>
+          <div class="dropdown-menu">
+            <a href="/financing/homeowners">Homeowner Financing</a>
+            <a href="/financing/businesses">Business Financing</a>
+          </div>
+        </div>
         <div class="nav-dropdown">
-          <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Gallery</button>
+          <button
+            class="nav-dropdown-toggle"
+            type="button"
+            aria-expanded="false"
+          >
+            Gallery
+          </button>
           <div class="dropdown-menu">
             <a href="/gallery">Projects</a>
             <a href="/before-after">Before &amp; After</a>
           </div>
         </div>
-        <div class="nav-dropdown">
-          <button class="nav-dropdown-toggle" type="button" aria-expanded="false">How We Work</button>
+        <div class="nav-dropdown nav-dropdown-about">
+          <button
+            class="nav-dropdown-toggle"
+            type="button"
+            aria-expanded="false"
+          >
+            About
+          </button>
           <div class="dropdown-menu">
-            <a href="/our-process">Our Process</a>
-            <a href="/our-approach">Our Approach</a>
+            <a href="/design-consultation">Design Consultation</a>
+            <a href="/design-to-your-budget">Design to Your Budget</a>
+            <a href="/showroom">Showrooms</a>
             <a href="/installation-service">Installation &amp; Service</a>
-            <a href="/showroom">Showroom</a>
+            <a href="/our-process">Our Process</a>
+            <a href="/about">Our Story</a>
           </div>
         </div>
-        <a href="/about">About</a>
         <a href="/contact">Contact</a>
       </nav>
 
       <div class="header-actions">
-        <a class="quote-button" href="/contact">Free Quote</a>
-        <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <a class="quote-button" href="/contact">Get Started</a>
+        <button
+          class="menu-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Open menu"
+        >
           <span></span>
           <span></span>
           <span></span>
         </button>
       </div>
     </header>
-
-    <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation">
+    <nav
+      class="mobile-nav"
+      id="mobile-menu"
+      aria-label="Mobile navigation"
+      aria-hidden="true"
+    >
       <a href="/">Home</a>
       <a href="/residential">Residential</a>
       <a href="/commercial">Commercial</a>
+      <a href="/shop">Shop</a>
+      <div class="mobile-nav-group" aria-label="Financing pages">
+        <button class="mobile-nav-toggle" type="button" aria-expanded="false">
+          Financing
+        </button>
+        <div class="mobile-submenu">
+          <a href="/financing">Financing Overview</a>
+          <a href="/financing/homeowners">Homeowner Financing</a>
+          <a href="/financing/businesses">Business Financing</a>
+        </div>
+      </div>
       <div class="mobile-nav-group" aria-label="Gallery pages">
-        <button class="mobile-nav-toggle" type="button" aria-expanded="false">Gallery</button>
+        <button class="mobile-nav-toggle" type="button" aria-expanded="false">
+          Gallery
+        </button>
         <div class="mobile-submenu">
           <a href="/gallery">Projects</a>
           <a href="/before-after">Before &amp; After</a>
         </div>
       </div>
-      <div class="mobile-nav-group" aria-label="How We Work pages">
-        <button class="mobile-nav-toggle" type="button" aria-expanded="false">How We Work</button>
+      <div class="mobile-nav-group" aria-label="About pages">
+        <button class="mobile-nav-toggle" type="button" aria-expanded="false">
+          About
+        </button>
         <div class="mobile-submenu">
-          <a href="/our-process">Our Process</a>
-          <a href="/our-approach">Our Approach</a>
+          <a href="/design-consultation">Design Consultation</a>
+          <a href="/design-to-your-budget">Design to Your Budget</a>
+          <a href="/showroom">Showrooms</a>
           <a href="/installation-service">Installation &amp; Service</a>
-          <a href="/showroom">Showroom</a>
+          <a href="/our-process">Our Process</a>
+          <a href="/about">Our Story</a>
         </div>
       </div>
-      <a href="/about">About</a>
       <a href="/contact">Contact</a>
     </nav>
 
     <main>
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow">Serving Edmonton & surrounding areas</p>
-            <h1>Your <span class="keep-together">All-in-One</span> Cabinetry Solutions</h1>
-            <div class="hero-actions">
-              <a class="button primary" href="/contact">Book a Consultation</a>
-              <a class="button secondary" href="/gallery">View Projects</a>
-            </div>
+      <section
+        class="home-project-hero"
+        data-project-hero
+        aria-labelledby="home-project-hero-title"
+      >
+        <div class="home-project-hero__backdrop" aria-hidden="true">
+          <span class="home-project-hero__grid"></span>
+          <span class="home-project-hero__glow"></span>
+        </div>
+
+        <!-- Centre veil: same tones as the hero background, with soft gradient
+             edges, so cards dissolve rather than clip as they pass the copy. -->
+        <div class="home-project-hero__veil" aria-hidden="true"></div>
+
+        <div class="container home-project-hero__content">
+          <p class="home-project-hero__eyebrow">Custom cabinetry in Edmonton</p>
+          <h1 class="home-project-hero__title" id="home-project-hero-title">
+            <span class="home-project-hero__line"
+              ><span>Made to Measure.</span></span
+            >
+            <span class="home-project-hero__line"
+              ><span>Built for Life.</span></span
+            >
+          </h1>
+          <p class="home-project-hero__lede">
+            Custom kitchens, vanities, built-ins and commercial cabinetry.
+            Designed, fabricated and installed by Corecut.
+          </p>
+          <div class="home-project-hero__actions">
+            <a class="button primary" href="/contact">Get a Free Quote</a>
+            <a class="home-project-hero__link" href="/gallery"
+              >Explore Our Work <span aria-hidden="true">&rarr;</span></a
+            >
+          </div>
+          <p class="home-project-hero__credibility">
+            Designed <span aria-hidden="true">&bull;</span> Fabricated
+            <span aria-hidden="true">&bull;</span> Installed in Edmonton
+          </p>
+          <ul class="home-project-hero__proof">
+            <li>Residential</li>
+            <li>Commercial</li>
+            <li><a href="/financing">Financing available</a></li>
+          </ul>
+        </div>
+
+        <!-- Horizontal project loop, layered behind the copy on desktop and
+             stacked below it on tablet/mobile. Cards are rendered from the
+             homeProjectVideos array in script.js. -->
+        <div class="home-project-hero__stage">
+          <div
+            class="home-project-hero__viewport"
+            data-project-hero-viewport
+            role="group"
+            aria-roledescription="carousel"
+            aria-label="Corecut cabinetry projects"
+            tabindex="0"
+          >
+            <div class="home-project-hero__track" data-project-hero-track></div>
           </div>
 
-          <div class="hero-showcase image-card" aria-label="Featured Corecut kitchen cabinetry">
-            <div class="media">
-              <img
-                src="./assets/hero-white-cabinetry-kitchen.jpg"
-                alt="Bright white custom kitchen cabinetry with quartz island"
-              />
-            </div>
-            <div class="feature-card">
-              <span>Built locally</span>
-              <strong>Residential & commercial cabinetry</strong>
-              <p>Custom-fit cabinet boxes, door styles, materials, and installation planned around your space.</p>
-            </div>
-          </div>
+          <button
+            class="home-project-hero__nav home-project-hero__nav--prev"
+            type="button"
+            data-project-hero-prev
+            aria-label="Show previous projects"
+          >
+            <span aria-hidden="true">&larr;</span>
+          </button>
+          <button
+            class="home-project-hero__nav home-project-hero__nav--next"
+            type="button"
+            data-project-hero-next
+            aria-label="Show next projects"
+          >
+            <span aria-hidden="true">&rarr;</span>
+          </button>
         </div>
       </section>
 
-      <section class="value-section interactive-values-section" aria-label="Corecut Cabinets values" data-values-section style="--values-x: 0px; --values-progress: 0%;">
-        <div class="container values-sticky-shell">
-          <div class="values-heading section-heading">
-            <h2>Our Values</h2>
-            <p>The way we approach every cabinet project.</p>
+      <section
+        class="section values-section"
+        aria-label="Corecut Cabinets values"
+        data-values
+      >
+        <div class="container section-heading">
+          <p class="eyebrow">Our values</p>
+          <h2>The way we approach every cabinet project.</h2>
+        </div>
+        <div class="container values-lab">
+          <div
+            class="values-chips"
+            role="tablist"
+            aria-label="Corecut Cabinets values"
+          >
+            <button
+              class="values-chip is-active"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              id="values-chip-0"
+              aria-controls="values-view-0"
+              data-values-chip="0"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="4.5" width="16" height="15" rx="2" />
+                <line x1="4" y1="12" x2="20" y2="12" />
+                <line x1="10.5" y1="8.2" x2="13.5" y2="8.2" />
+                <line x1="10.5" y1="15.8" x2="13.5" y2="15.8" />
+              </svg>
+              <span>Quality</span>
+            </button>
+            <button
+              class="values-chip"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              tabindex="-1"
+              id="values-chip-1"
+              aria-controls="values-view-1"
+              data-values-chip="1"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M13 4.5h5a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-5" />
+                <path d="M13 21V3l-8 2v14l8 2z" />
+                <circle cx="10.8" cy="12" r="0.9" />
+              </svg>
+              <span>Transparency</span>
+            </button>
+            <button
+              class="values-chip"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              tabindex="-1"
+              id="values-chip-2"
+              aria-controls="values-view-2"
+              data-values-chip="2"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3l7 3v5c0 4.4-3 7.4-7 9-4-1.6-7-4.6-7-9V6l7-3z" />
+                <path d="M8.8 12l2.2 2.2 4.2-4.4" />
+              </svg>
+              <span>Reliability</span>
+            </button>
           </div>
 
-          <div class="values-viewport" data-values-viewport>
-            <div class="value-grid values-track" data-values-track>
-              <article class="value-card" data-value-card>
-                <h3>On Time Completion</h3>
-                <p>We keep projects organized, scheduled, and moving forward with clear communication.</p>
-              </article>
-              <article class="value-card" data-value-card>
-                <h3>Professional</h3>
-                <p>From the first conversation to installation, we aim to make the process smooth and respectful.</p>
-              </article>
-              <article class="value-card" data-value-card>
-                <h3>High Quality</h3>
-                <p>We focus on durable materials, precise workmanship, and cabinetry built to last.</p>
-              </article>
-              <article class="value-card" data-value-card>
-                <h3>Customer First</h3>
-                <p>Every project is planned around your space, needs, budget, and vision.</p>
-              </article>
+          <div class="values-views">
+            <!-- Quality: drawer cascade glides open with real 3D depth. -->
+            <div
+              class="values-view is-active"
+              role="tabpanel"
+              id="values-view-0"
+              aria-labelledby="values-chip-0"
+              data-values-view="0"
+            >
+              <div class="vstage" aria-hidden="true">
+                <div class="vrig vrig-drawers">
+                  <div class="vfloor"></div>
+                  <div class="vcab">
+                    <div class="vdrawer" style="--row: 0; --d: 0">
+                      <div class="vdrawer-cavity"></div>
+                      <div class="vdrawer-front">
+                        <span class="vpull"></span>
+                      </div>
+                    </div>
+                    <div class="vdrawer" style="--row: 1; --d: 120">
+                      <div class="vdrawer-cavity"></div>
+                      <div class="vdrawer-front">
+                        <span class="vpull"></span>
+                      </div>
+                    </div>
+                    <div class="vdrawer" style="--row: 2; --d: 240">
+                      <div class="vdrawer-cavity"></div>
+                      <div class="vdrawer-front">
+                        <span class="vpull"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="values-copy">
+                <h3>Quality</h3>
+                <p>
+                  Durable materials, precise workmanship, and cabinetry
+                  engineered to last. Every box, door, and drawer is built to a
+                  standard we would put in our own homes.
+                </p>
+                <ul class="values-points">
+                  <li>Premium plywood and hardware</li>
+                  <li>Precision-cut on modern machinery</li>
+                  <li>Finishes that hold up for years</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Transparency: glass shaker door swings open to show an honest interior. -->
+            <div
+              class="values-view"
+              role="tabpanel"
+              id="values-view-1"
+              aria-labelledby="values-chip-1"
+              data-values-view="1"
+            >
+              <div class="vstage" aria-hidden="true">
+                <div class="vrig vrig-door">
+                  <div class="vfloor"></div>
+                  <div class="vcab">
+                    <div class="vinterior">
+                      <span class="vshelf" style="--y: 36%"></span>
+                      <span class="vshelf" style="--y: 68%"></span>
+                      <span class="vitem vitem-jar" style="--i: 0"></span>
+                      <span class="vitem vitem-plates" style="--i: 1"></span>
+                      <span class="vitem vitem-bowl" style="--i: 2"></span>
+                      <span class="vglow"></span>
+                    </div>
+                    <div class="vdoor">
+                      <span class="vglass"></span><span class="vknob"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="values-copy">
+                <h3>Transparency</h3>
+                <p>
+                  Clear communication, honest recommendations, and a process you
+                  can follow from quote to installation. No surprises, no hidden
+                  costs.
+                </p>
+                <ul class="values-points">
+                  <li>Detailed, itemized quotes</li>
+                  <li>Honest guidance on materials and budget</li>
+                  <li>You approve the design before we build</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Reliability: cabinet parts fly in and lock into a solid build. -->
+            <div
+              class="values-view"
+              role="tabpanel"
+              id="values-view-2"
+              aria-labelledby="values-chip-2"
+              data-values-view="2"
+            >
+              <div class="vstage" aria-hidden="true">
+                <div class="vrig vrig-build">
+                  <div class="vfloor"></div>
+                  <div class="vasm">
+                    <div class="vpart vpart-back" style="--d: 0"></div>
+                    <div class="vpart vpart-left" style="--d: 140"></div>
+                    <div class="vpart vpart-right" style="--d: 260"></div>
+                    <div class="vpart vpart-deck" style="--d: 380"></div>
+                    <div class="vpart vpart-shelf" style="--d: 500"></div>
+                    <div class="vpart vpart-top" style="--d: 620"></div>
+                    <span
+                      class="vtick"
+                      style="--d: 800; --tx: 12%; --ty: 30%"
+                    ></span>
+                    <span
+                      class="vtick"
+                      style="--d: 900; --tx: 82%; --ty: 62%"
+                    ></span>
+                  </div>
+                </div>
+              </div>
+              <div class="values-copy">
+                <h3>Reliability</h3>
+                <p>
+                  Organized scheduling, dependable follow-through, and real
+                  support after installation. We show up, communicate, and stand
+                  behind our work.
+                </p>
+                <ul class="values-points">
+                  <li>Clear timelines you can plan around</li>
+                  <li>Dependable install and delivery</li>
+                  <li>Support after the job is done</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -153,64 +522,125 @@
               <img
                 class="custom-cabinetry-image"
                 src="./assets/gallery-bathroom-vanity.jpg"
-                alt="Floating custom bathroom vanity with warm LED lighting"
+                alt="Corecut Cabinets floating custom bathroom vanity in Edmonton with warm LED lighting"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
           <div class="split-copy">
-            <p class="eyebrow">Custom cabinetry</p>
-            <h2>From measurements to final hardware, the process stays clear.</h2>
+            <p class="eyebrow">How to get started</p>
+            <h2>From Vision to Installation</h2>
             <p>
-              Corecut pairs modern machinery and precision cutting with a warm, custom-built approach. Every reveal,
-              drawer box, panel, and installation detail is planned with residential and commercial use in mind.
+              Starting your project should feel straightforward. Tell us what
+              you need, and we will guide you through the design decisions,
+              final approval, production, and installation.
             </p>
             <ul class="service-list">
-              <li>Complimentary quotes for residential and commercial projects</li>
-              <li>3D layout review before production</li>
-              <li>Premium material and door style selection</li>
-              <li>Reliable cabinet installation</li>
+              <li>Share your space, goals, budget, and inspiration</li>
+              <li>Meet with us for a complimentary consultation</li>
+              <li>Review the design, materials, quote, and final approval</li>
+              <li>We build, install, and complete the final walkthrough</li>
             </ul>
-            <a class="button primary" href="/contact">Book a Design Consult</a>
+            <a class="button primary" href="/contact">Free Quote</a>
           </div>
         </div>
       </section>
 
       <section class="section customer-section" id="customers">
         <div class="container section-heading">
-          <p class="eyebrow">Who we service</p>
-          <h2>Built locally for residential and commercial spaces.</h2>
+          <p class="eyebrow">What we offer</p>
+          <!-- Shop restoration copy:
+          <h2>Custom cabinetry or ready-to-assemble: your choice.</h2>
+          <p class="section-lede">
+            From fully custom builds we design and install, to ready-to-assemble
+            cabinets you can put together yourself, Corecut has an option for
+            every project and budget.
+          </p>
+          -->
+          <h2>Custom cabinetry for homes and businesses.</h2>
+          <p class="section-lede">
+            From kitchens, vanities, and built-ins to commercial millwork,
+            Corecut designs, fabricates, and installs cabinetry around each
+            project.
+          </p>
         </div>
 
-        <div class="container customer-grid">
+        <div class="container customer-grid customer-grid-three">
           <a class="customer-card image-card" href="/residential">
             <div class="media">
               <img
                 src="./assets/gallery-luxury-kitchen.jpg"
-                alt="Residential kitchen with custom white oak cabinetry"
+                alt="Corecut Cabinets residential kitchen with custom white oak cabinetry"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div>
-              <span>Homes</span>
+              <span>Custom · Homes</span>
               <h3>Residential Cabinetry</h3>
-              <p>Kitchens, vanities, closets, mudrooms, built-ins, and whole-home storage.</p>
+              <p>
+                Kitchens, vanities, closets, mudrooms, and built-ins, designed,
+                built, and installed for your home.
+              </p>
+              <span class="customer-card-cta">Explore residential →</span>
             </div>
           </a>
 
           <a class="customer-card image-card" href="/commercial">
             <div class="media">
               <img
-                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85"
-                alt="Commercial millwork and cabinetry for business spaces"
+                src="./assets/gallery-commercial-reception.jpg"
+                alt="Corecut Cabinets commercial millwork reception desk in Edmonton"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div>
-              <span>Businesses</span>
-              <h3>Commercial Cabinetry</h3>
-              <p>Office storage, retail displays, reception areas, staff rooms, and custom millwork.</p>
+              <span>Custom · Business</span>
+              <h3>Commercial Millwork</h3>
+              <p>
+                Office storage, retail displays, reception areas, and staff
+                rooms, with custom millwork built to spec.
+              </p>
+              <span class="customer-card-cta">Explore commercial →</span>
+            </div>
+          </a>
+
+          <a class="customer-card image-card customer-card-shop" href="/shop">
+            <div class="media">
+              <img
+                src="./assets/corecut-ready-to-assemble-diy-cabinet-kit.jpg"
+                alt="Corecut Cabinets ready-to-assemble DIY cabinet kit with flat-pack parts and hardware"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div>
+              <span>Shop · DIY</span>
+              <h3>Ready-to-Assemble</h3>
+              <p>
+                Quality cabinets shipped flat and easy to assemble yourself.
+                Perfect for renovations, rentals, and budget-friendly projects.
+              </p>
+              <span class="customer-card-cta">Shop cabinets →</span>
             </div>
           </a>
         </div>
       </section>
+
+      <script>
+        (() => {
+          const main = document.querySelector("main");
+          const valuesSection = main?.querySelector(".values-section");
+          const offerSection = main?.querySelector(".customer-section");
+
+          if (main && valuesSection && offerSection) {
+            main.insertBefore(offerSection, valuesSection);
+            main.appendChild(valuesSection);
+          }
+        })();
+      </script>
 
       <section class="section why-section">
         <div class="container why-grid">
@@ -219,9 +649,18 @@
             <h2>Premium custom cabinetry with local service.</h2>
           </div>
           <div class="why-list">
-            <p>Custom-built cabinetry for kitchens, vanities, storage, offices, retail spaces, and commercial millwork.</p>
-            <p>Quality craftsmanship supported by modern machinery, precision cutting, and thoughtful layout planning.</p>
-            <p>Premium materials, residential and commercial experience, complimentary quotes, and design reviews.</p>
+            <p>
+              Custom-built cabinetry for kitchens, vanities, storage, offices,
+              retail spaces, and commercial millwork.
+            </p>
+            <p>
+              Quality craftsmanship supported by modern machinery, precision
+              cutting, and thoughtful layout planning.
+            </p>
+            <p>
+              Premium materials, residential and commercial experience,
+              complimentary quotes, and design reviews.
+            </p>
           </div>
         </div>
       </section>
@@ -229,10 +668,41 @@
       <section class="testimonial">
         <div class="container testimonial-inner">
           <p>
-            “The cabinets look built into the home, not added later. The drawer feel, finish, and install team were all
-            exactly what we hoped for.”
+            “We worked with them on four units, and the entire process was
+            effortless. They were transparent, responsive, and communicated
+            clearly throughout the project. After installation, a few minor
+            hardware issues arose, their team returned promptly to address
+            them. We were very pleased with the quality of their work and
+            overall service.”
           </p>
-          <span>Corecut Cabinets · Built locally</span>
+          <span>Multi-family builder · 4-plex, west Edmonton</span>
+        </div>
+      </section>
+
+      <section
+        class="section home-financing-section"
+        aria-labelledby="home-financing-title"
+      >
+        <div class="container home-financing-panel">
+          <div class="home-financing-copy">
+            <p class="eyebrow">Flexible payment options</p>
+            <h2 id="home-financing-title">
+              Flexible Ways to Fund Your Cabinetry Project
+            </h2>
+            <p>
+              Whether you are upgrading your home or managing a larger
+              commercial project, Corecut can help you explore flexible payment
+              options through independent financing providers.
+            </p>
+          </div>
+          <div class="home-financing-actions">
+            <a class="button secondary" href="/financing/homeowners"
+              >Homeowner Financing</a
+            >
+            <a class="button secondary" href="/financing/businesses"
+              >Business Financing</a
+            >
+          </div>
         </div>
       </section>
 
@@ -241,12 +711,25 @@
           <div class="lead-copy">
             <p class="eyebrow">Ready to start?</p>
             <h2>Tell us about your cabinetry project.</h2>
-            <p>Use the contact form and we will follow up with the next steps.</p>
+            <p>
+              Use the contact form and we will follow up with the next steps.
+            </p>
+            <p class="lead-financing-note">
+              Financing options are available for qualified homeowners and
+              businesses.
+            </p>
           </div>
 
           <div class="lead-cta-actions">
-            <a class="button primary" href="/contact">Contact</a>
-            <a class="button secondary" href="tel:+17802430645">Call 780-243-0645</a>
+            <a
+              class="button primary"
+              href="/contact"
+              data-analytics-event="financing_quote_cta_clicked"
+              >Contact</a
+            >
+            <a class="button secondary" href="tel:+17802430645"
+              >Call 780-243-0645</a
+            >
           </div>
         </div>
       </section>
@@ -255,37 +738,69 @@
     <footer class="footer" id="journal">
       <div class="container footer-grid">
         <div>
-          <img src="./assets/corecut-logo-transparent.png" alt="Corecut Cabinets" />
+          <img
+            loading="lazy"
+            decoding="async"
+            src="./assets/corecut-logo-transparent.png"
+            alt="Corecut Cabinets"
+          />
           <p>Custom cabinetry for residential and commercial projects.</p>
         </div>
         <nav aria-label="Footer company links">
           <h2>Company</h2>
           <a href="/residential">Residential</a>
           <a href="/commercial">Commercial</a>
+          <a href="/financing">Financing</a>
+          <a href="/financing/homeowners">Homeowner Financing</a>
+          <a href="/financing/businesses">Business Financing</a>
+          <a href="/shop">Shop Ready-to-Assemble</a>
           <a href="/gallery">Gallery</a>
           <a href="/before-after">Before &amp; After</a>
+          <a href="/about">Our Story</a>
+          <a href="/design-consultation">Design Consultation</a>
+          <a href="/design-to-your-budget">Design to Your Budget</a>
           <a href="/our-process">Our Process</a>
-          <a href="/our-approach">Our Approach</a>
           <a href="/installation-service">Installation &amp; Service</a>
-          <a href="/showroom">Showroom</a>
-          <a href="/about">About</a>
+          <a href="/showroom">Showrooms</a>
           <a href="/contact">Contact</a>
         </nav>
         <div>
           <h2>Contact</h2>
           <address class="footer-contact">
             <a href="tel:+17802430645">780-243-0645</a>
-            <a href="mailto:info@corecutcabinets.com">info@corecutcabinets.com</a>
-            <span>6152 50 St NW<br />Edmonton, Alberta</span>
+            <a href="mailto:info@corecutcabinets.com"
+              >info@corecutcabinets.com</a
+            >
+            <span>4724/4726 76 Ave NW<br />Edmonton, AB</span>
             <span>Mon-Sat: 9AM - 5PM<br />Sunday: Closed</span>
-            <a href="/contact">Book a design call</a>
+            <span class="footer-social-links"
+              ><a
+                href="https://www.instagram.com/corecutcabinets/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Corecut Cabinets on Instagram"
+                >Instagram</a
+              ><a
+                href="https://www.linkedin.com/company/corecut-cabinets/about/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Corecut Cabinets on LinkedIn"
+                >LinkedIn</a
+              ></span
+            ><a href="/contact">Book a design call</a>
           </address>
         </div>
       </div>
     </footer>
 
-    <elevenlabs-convai agent-id="agent_8001krqh9m9wfn3rd86v18scbe61"></elevenlabs-convai>
-    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
-    <script src="./script.js"></script>
+    <elevenlabs-convai
+      agent-id="agent_8001krqh9m9wfn3rd86v18scbe61"
+    ></elevenlabs-convai>
+    <script
+      src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+      async
+      type="text/javascript"
+    ></script>
+    <script src="./script.js?v=corecut-hero-layers-20260806-4"></script>
   </body>
 </html>

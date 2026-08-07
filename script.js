@@ -134,14 +134,14 @@ if (corecutIntro instanceof HTMLElement) {
       navigator.connection ||
       navigator.mozConnection ||
       navigator.webkitConnection;
-    const introLikelyLowPower =
-      Boolean(introConnection?.saveData) ||
-      (typeof navigator.deviceMemory === "number" &&
-        navigator.deviceMemory <= 4) ||
-      (typeof navigator.hardwareConcurrency === "number" &&
-        navigator.hardwareConcurrency <= 4);
-    const introMinimumDuration = introLikelyLowPower ? 900 : 2250;
-    const introMaximumDuration = introLikelyLowPower ? 1700 : 3600;
+    // Phone browsers commonly report four CPU cores or 4 GB of memory even
+    // when they can render this short CSS animation smoothly. Treating those
+    // values as a low-power signal made most mobile visitors see only the
+    // completed lockup. Use the user's explicit data-saving preference as the
+    // sole reason to skip the 3D assembly.
+    const introSaveDataEnabled = Boolean(introConnection?.saveData);
+    const introMinimumDuration = introSaveDataEnabled ? 900 : 2250;
+    const introMaximumDuration = introSaveDataEnabled ? 1700 : 3600;
     const introTimers = new Set();
     const previousAriaBusy = document.body.getAttribute("aria-busy");
     const blockedPageRegions = Array.from(
@@ -236,7 +236,7 @@ if (corecutIntro instanceof HTMLElement) {
     });
     document.body.setAttribute("aria-busy", "true");
     document.body.classList.add("corecut-intro-active");
-    corecutIntro.classList.toggle("is-lite", introLikelyLowPower);
+    corecutIntro.classList.toggle("is-lite", introSaveDataEnabled);
     introSkip?.addEventListener("click", beginIntroExit, { once: true });
     document.addEventListener("keydown", handleIntroKeydown);
     window.addEventListener("pageshow", handleIntroPageShow);

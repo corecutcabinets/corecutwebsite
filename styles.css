@@ -11125,7 +11125,7 @@ html.corecut-intro-pending .corecut-intro {
   }
 }
 
-/* Save-Data and low-power devices receive the finished lockup without 3D work. */
+/* An explicit Save-Data preference receives the finished lockup without 3D work. */
 .corecut-intro.is-lite .corecut-intro-cabinet-wrap {
   display: none;
 }

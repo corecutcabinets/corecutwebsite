@@ -1071,7 +1071,6 @@
 }
 
 @media (max-width: 900px) {
-  .financing-choice-grid,
   .financing-calculator,
   .financing-form-layout,
   .financing-faq-layout,
@@ -1120,7 +1119,6 @@
     margin-inline: 0;
   }
 
-  .financing-choice-grid,
   .financing-steps,
   .financing-form-grid,
   .home-financing-actions {
@@ -1129,6 +1127,49 @@
 
   .financing-choice-copy {
     min-height: 0;
+  }
+
+  .financing-choice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .financing-choice-card {
+    min-width: 0;
+  }
+
+  .financing-choice-card .media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .financing-choice-copy {
+    padding: 16px 14px;
+  }
+
+  .financing-choice-copy .eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+
+  .financing-choice-copy h3 {
+    margin-bottom: 10px;
+    font-size: clamp(1rem, 4.8vw, 1.35rem);
+    overflow-wrap: anywhere;
+  }
+
+  .financing-choice-copy > p:not(.eyebrow) {
+    margin-bottom: 16px;
+    font-size: clamp(0.76rem, 3.2vw, 0.9rem);
+    line-height: 1.45;
+  }
+
+  .financing-choice-copy .button {
+    min-height: 52px;
+    justify-content: center;
+    padding: 10px 8px;
+    font-size: clamp(0.64rem, 2.8vw, 0.76rem);
+    line-height: 1.2;
+    text-align: center;
   }
 
   .financing-steps li {

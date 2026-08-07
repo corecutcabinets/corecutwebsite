@@ -11125,6 +11125,118 @@ html.corecut-intro-pending .corecut-intro {
   }
 }
 
+/* Mobile uses shorter travel distances and a true container fade. This keeps
+   the assembly readable while avoiding the expensive opening 3D sweep that
+   can stutter on phone GPUs. */
+@keyframes corecut-intro-mark-morph-mobile {
+  0% {
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(var(--intro-mark-start-scale));
+  }
+  12%,
+  50% {
+    left: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(var(--intro-mark-start-scale));
+  }
+  72% {
+    left: 15.6%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  84% {
+    left: 15.6%;
+    opacity: 0.92;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    left: 15.6%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.985);
+  }
+}
+
+@keyframes corecut-intro-camera-mobile {
+  from {
+    transform: translate(-50%, -50%) rotateY(-7deg) scale(0.98);
+  }
+  to {
+    transform: translate(-50%, -50%) rotateY(0) scale(1);
+  }
+}
+
+@keyframes corecut-intro-back-in-mobile {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes corecut-intro-left-in-mobile {
+  from {
+    opacity: 0;
+    transform: translate3d(-42%, 5%, 0) rotateY(18deg);
+  }
+  72% {
+    opacity: 1;
+    transform: translate3d(3%, 0, 0) rotateY(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateY(0);
+  }
+}
+
+@keyframes corecut-intro-right-in-mobile {
+  from {
+    opacity: 0;
+    transform: translate3d(42%, -4%, 0) rotateY(-18deg);
+  }
+  72% {
+    opacity: 1;
+    transform: translate3d(-3%, 0, 0) rotateY(2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateY(0);
+  }
+}
+
+@keyframes corecut-intro-top-in-mobile {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -48%, 0) rotateX(16deg);
+  }
+  72% {
+    opacity: 1;
+    transform: translate3d(0, 3%, 0) rotateX(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateX(0);
+  }
+}
+
+@keyframes corecut-intro-drawer-in-mobile {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 52%, 0) rotateX(-14deg);
+  }
+  72% {
+    opacity: 1;
+    transform: translate3d(0, -3%, 0) rotateX(2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateX(0);
+  }
+}
+
 /* An explicit Save-Data preference receives the finished lockup without 3D work. */
 .corecut-intro.is-lite .corecut-intro-cabinet-wrap {
   display: none;
@@ -11169,6 +11281,58 @@ html.corecut-intro-pending .corecut-intro {
 
   .corecut-intro-cabinet-wrap {
     --intro-mark-start-scale: 1.52;
+  }
+
+  .corecut-intro.is-playing .corecut-intro-cabinet-wrap {
+    animation-name: corecut-intro-mark-morph-mobile;
+    animation-duration: 1640ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .corecut-intro-floor-shadow {
+    display: none;
+  }
+
+  .corecut-intro-cabinet,
+  .corecut-intro-piece {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .corecut-intro.is-playing .corecut-intro-cabinet {
+    animation-name: corecut-intro-camera-mobile;
+    animation-duration: 980ms;
+    animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .corecut-intro.is-playing .corecut-intro-back {
+    animation-name: corecut-intro-back-in-mobile;
+    animation-duration: 560ms;
+    animation-delay: 120ms;
+  }
+
+  .corecut-intro.is-playing .corecut-intro-left-door {
+    animation-name: corecut-intro-left-in-mobile;
+    animation-duration: 660ms;
+    animation-delay: 190ms;
+  }
+
+  .corecut-intro.is-playing .corecut-intro-right-door {
+    animation-name: corecut-intro-right-in-mobile;
+    animation-duration: 660ms;
+    animation-delay: 260ms;
+  }
+
+  .corecut-intro.is-playing .corecut-intro-top-door {
+    animation-name: corecut-intro-top-in-mobile;
+    animation-duration: 640ms;
+    animation-delay: 330ms;
+  }
+
+  .corecut-intro.is-playing .corecut-intro-drawer {
+    animation-name: corecut-intro-drawer-in-mobile;
+    animation-duration: 660ms;
+    animation-delay: 400ms;
   }
 
   .corecut-intro-overline {

@@ -1,7 +1,5 @@
 {
-  "buildCommand": "pnpm run build",
   "cleanUrls": true,
-  "outputDirectory": "dist",
   "redirects": [
     {
       "source": "/book-design-call",

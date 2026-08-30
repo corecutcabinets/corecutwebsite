@@ -290,6 +290,234 @@ textarea {
   display: none;
 }
 
+/* Temporary grand opening promotion.
+   Remove this block with `.grand-opening-promo` in index.html after
+   October 31, 2026 to restore the standard homepage. */
+.grand-opening-promo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(197, 160, 113, 0.5);
+  background:
+    linear-gradient(105deg, rgba(255, 255, 255, 0.055), transparent 42%),
+    linear-gradient(135deg, #24170f 0%, #4b2e19 56%, #71451f 100%);
+  color: #fff;
+}
+
+.grand-opening-promo::before,
+.grand-opening-promo::after {
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(197, 160, 113, 0.2);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.grand-opening-promo::before {
+  top: -165px;
+  right: 7%;
+  width: 300px;
+  height: 300px;
+}
+
+.grand-opening-promo::after {
+  right: 15%;
+  bottom: -215px;
+  width: 360px;
+  height: 360px;
+}
+
+.grand-opening-promo__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(24px, 5vw, 70px);
+  align-items: center;
+  min-height: 154px;
+  padding-block: clamp(24px, 3vw, 36px);
+}
+
+.grand-opening-promo__copy {
+  min-width: 0;
+}
+
+.grand-opening-promo__eyebrow {
+  margin: 0 0 6px;
+  color: #e4c79f;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.grand-opening-promo__title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 3vw, 2.55rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.grand-opening-promo__offer {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0.3em 0.72em;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: #f4ddbc;
+  color: var(--walnut);
+  box-shadow: 0 8px 22px rgba(17, 10, 5, 0.2);
+  font-size: 0.46em;
+  font-weight: 850;
+  letter-spacing: 0.065em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.grand-opening-promo__details {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(0.92rem, 1.15vw, 1.04rem);
+  line-height: 1.55;
+}
+
+.grand-opening-promo__details time {
+  color: #fff;
+  font-weight: 750;
+}
+
+.grand-opening-promo__details strong {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.45em;
+  padding: 0.18em 0.65em;
+  border: 1px solid rgba(228, 199, 159, 0.46);
+  border-radius: 999px;
+  color: #f4ddbc;
+  font-size: 0.82em;
+  font-weight: 800;
+  letter-spacing: 0.035em;
+  white-space: nowrap;
+}
+
+.grand-opening-promo__terms {
+  margin: 7px 0 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.025em;
+  line-height: 1.45;
+}
+
+.grand-opening-promo__actions {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+.grand-opening-promo__cta {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 14px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: #fdfcfa;
+  color: var(--walnut);
+  box-shadow: 0 14px 34px rgba(17, 10, 5, 0.24);
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition:
+    background 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.grand-opening-promo__cta span {
+  color: #a06b35;
+  font-size: 1.15em;
+  transition: transform 180ms ease;
+}
+
+.grand-opening-promo__cta:hover {
+  background: #f4ddbc;
+  box-shadow: 0 18px 40px rgba(17, 10, 5, 0.32);
+  transform: translateY(-2px);
+}
+
+.grand-opening-promo__cta:hover span {
+  transform: translateX(3px);
+}
+
+.grand-opening-promo__cta:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.grand-opening-promo__direct {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.grand-opening-promo__direct a {
+  border-bottom: 1px solid rgba(228, 199, 159, 0.56);
+  color: #fff;
+  font-weight: 800;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.grand-opening-promo__direct a:hover {
+  border-color: #f4ddbc;
+  color: #f4ddbc;
+}
+
+.grand-opening-promo__direct a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .grand-opening-promo__inner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-block: 26px 30px;
+  }
+
+  .grand-opening-promo__details strong {
+    display: table;
+    margin: 10px 0 0;
+  }
+
+  .grand-opening-promo__cta {
+    width: 100%;
+  }
+
+  .grand-opening-promo__actions {
+    width: 100%;
+  }
+}
+
 .hero {
   overflow: hidden;
   padding: clamp(64px, 8vw, 112px) 0 clamp(52px, 7vw, 96px);
@@ -12284,5 +12512,234 @@ html.corecut-intro-pending .corecut-intro {
   /* Hands hold at the current time instead of sweeping. */
   .soon-wall__hand {
     animation-play-state: paused;
+  }
+}
+
+
+/* Temporary grand opening promotion.
+   Remove this block with `.grand-opening-promo` in index.html after
+   October 31, 2026 to restore the standard homepage. */
+.grand-opening-promo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(197, 160, 113, 0.5);
+  background:
+    linear-gradient(105deg, rgba(255, 255, 255, 0.055), transparent 42%),
+    linear-gradient(135deg, #24170f 0%, #4b2e19 56%, #71451f 100%);
+  color: #fff;
+}
+
+.grand-opening-promo::before,
+.grand-opening-promo::after {
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(197, 160, 113, 0.2);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.grand-opening-promo::before {
+  top: -165px;
+  right: 7%;
+  width: 300px;
+  height: 300px;
+}
+
+.grand-opening-promo::after {
+  right: 15%;
+  bottom: -215px;
+  width: 360px;
+  height: 360px;
+}
+
+.grand-opening-promo__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(24px, 5vw, 70px);
+  align-items: center;
+  min-height: 154px;
+  padding-block: clamp(24px, 3vw, 36px);
+}
+
+.grand-opening-promo__copy {
+  min-width: 0;
+}
+
+.grand-opening-promo__eyebrow {
+  margin: 0 0 6px;
+  color: #e4c79f;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.grand-opening-promo__title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 3vw, 2.55rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.grand-opening-promo__offer {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0.3em 0.72em;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: #f4ddbc;
+  color: var(--walnut);
+  box-shadow: 0 8px 22px rgba(17, 10, 5, 0.2);
+  font-size: 0.46em;
+  font-weight: 850;
+  letter-spacing: 0.065em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.grand-opening-promo__details {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(0.92rem, 1.15vw, 1.04rem);
+  line-height: 1.55;
+}
+
+.grand-opening-promo__details time {
+  color: #fff;
+  font-weight: 750;
+}
+
+.grand-opening-promo__details strong {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.45em;
+  padding: 0.18em 0.65em;
+  border: 1px solid rgba(228, 199, 159, 0.46);
+  border-radius: 999px;
+  color: #f4ddbc;
+  font-size: 0.82em;
+  font-weight: 800;
+  letter-spacing: 0.035em;
+  white-space: nowrap;
+}
+
+.grand-opening-promo__terms {
+  margin: 7px 0 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.025em;
+  line-height: 1.45;
+}
+
+.grand-opening-promo__actions {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+.grand-opening-promo__cta {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 14px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: #fdfcfa;
+  color: var(--walnut);
+  box-shadow: 0 14px 34px rgba(17, 10, 5, 0.24);
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition:
+    background 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.grand-opening-promo__cta span {
+  color: #a06b35;
+  font-size: 1.15em;
+  transition: transform 180ms ease;
+}
+
+.grand-opening-promo__cta:hover {
+  background: #f4ddbc;
+  box-shadow: 0 18px 40px rgba(17, 10, 5, 0.32);
+  transform: translateY(-2px);
+}
+
+.grand-opening-promo__cta:hover span {
+  transform: translateX(3px);
+}
+
+.grand-opening-promo__cta:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.grand-opening-promo__direct {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.grand-opening-promo__direct a {
+  border-bottom: 1px solid rgba(228, 199, 159, 0.56);
+  color: #fff;
+  font-weight: 800;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.grand-opening-promo__direct a:hover {
+  border-color: #f4ddbc;
+  color: #f4ddbc;
+}
+
+.grand-opening-promo__direct a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .grand-opening-promo__inner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-block: 26px 30px;
+  }
+
+  .grand-opening-promo__details strong {
+    display: table;
+    margin: 10px 0 0;
+  }
+
+  .grand-opening-promo__cta {
+    width: 100%;
+  }
+
+  .grand-opening-promo__actions {
+    width: 100%;
   }
 }

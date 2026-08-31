@@ -8,8 +8,10 @@
       name="description"
       content="Corecut Cabinets designs, fabricates, and installs custom kitchens, vanities, built-ins, and commercial cabinetry in Edmonton. Request a free quote."
     />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://www.corecutcabinets.com/" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Corecut Cabinets" />
     <meta
       property="og:title"
       content="Custom Cabinets Edmonton | Corecut Cabinets"
@@ -102,17 +104,32 @@
             "alternateName": "Corecut",
             "publisher": {
               "@id": "https://www.corecutcabinets.com/#business"
-            }
+            },
+            "hasPart": [
+              {
+                "@id": "https://www.corecutcabinets.com/design-consultation#webpage"
+              },
+              { "@id": "https://www.corecutcabinets.com/residential#webpage" },
+              { "@id": "https://www.corecutcabinets.com/commercial#webpage" },
+              {
+                "@id": "https://www.corecutcabinets.com/financing/businesses#webpage"
+              },
+              {
+                "@id": "https://www.corecutcabinets.com/financing/homeowners#webpage"
+              },
+              { "@id": "https://www.corecutcabinets.com/contact#webpage" }
+            ]
           },
           {
             "@type": "SiteNavigationElement",
+            "@id": "https://www.corecutcabinets.com/#site-navigation",
             "name": [
-              "Cabinet Design Consultation Edmonton",
-              "Residential Kitchen Cabinets & Closets Edmonton",
-              "Commercial Millwork Edmonton",
+              "Design Consultation",
+              "Residential Cabinetry",
+              "Commercial Millwork",
               "Business Financing",
               "Homeowner Financing",
-              "Get a Cabinet Quote"
+              "Contact Corecut Cabinets"
             ],
             "url": [
               "https://www.corecutcabinets.com/design-consultation",
@@ -121,6 +138,50 @@
               "https://www.corecutcabinets.com/financing/businesses",
               "https://www.corecutcabinets.com/financing/homeowners",
               "https://www.corecutcabinets.com/contact"
+            ]
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://www.corecutcabinets.com/#primary-navigation",
+            "name": "Corecut Cabinets main pages",
+            "numberOfItems": 6,
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Design Consultation",
+                "url": "https://www.corecutcabinets.com/design-consultation"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Residential Cabinetry",
+                "url": "https://www.corecutcabinets.com/residential"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Commercial Millwork",
+                "url": "https://www.corecutcabinets.com/commercial"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "Business Financing",
+                "url": "https://www.corecutcabinets.com/financing/businesses"
+              },
+              {
+                "@type": "ListItem",
+                "position": 5,
+                "name": "Homeowner Financing",
+                "url": "https://www.corecutcabinets.com/financing/homeowners"
+              },
+              {
+                "@type": "ListItem",
+                "position": 6,
+                "name": "Contact Corecut Cabinets",
+                "url": "https://www.corecutcabinets.com/contact"
+              }
             ]
           }
         ]
@@ -269,7 +330,7 @@
             Gallery
           </button>
           <div class="dropdown-menu">
-            <a href="/gallery">Projects</a>
+            <a href="/gallery">Designs</a>
             <a href="/before-after">Before &amp; After</a>
           </div>
         </div>
@@ -332,7 +393,7 @@
           Gallery
         </button>
         <div class="mobile-submenu">
-          <a href="/gallery">Projects</a>
+          <a href="/gallery">Designs</a>
           <a href="/before-after">Before &amp; After</a>
         </div>
       </div>
@@ -353,37 +414,34 @@
     </nav>
 
     <main>
-      <!-- TEMPORARY GRAND OPENING PROMOTION
-           Promotion ends October 31, 2026. Remove this entire aside and the
-           matching "Temporary grand opening promotion" block in styles.css
-           when restoring the standard homepage. -->
+      <!-- TEMPORARY SEASON END SALE
+           Remove this aside and the matching promotional styles when the
+           sale ends. -->
       <aside
         class="grand-opening-promo"
-        aria-label="Grand opening promotional pricing"
-        data-promotion-ends="2026-10-31"
+        aria-label="Season end sale"
       >
         <div class="container grand-opening-promo__inner">
           <div class="grand-opening-promo__copy">
             <p class="grand-opening-promo__eyebrow">
-              Limited-time grand opening offer
+              Limited-time offer
             </p>
             <p class="grand-opening-promo__title">
-              Grand Opening Promotional Pricing
-              <span class="grand-opening-promo__offer">10% Off</span>
+              Season End Sale
+              <span class="grand-opening-promo__offer"
+                >10% Off Select Finishes</span
+              >
             </p>
             <p class="grand-opening-promo__details">
-              Promotion ends
-              <time datetime="2026-10-31">October 31, 2026</time>. Lock in your
-              pricing now!
-              <strong>Best pricing guaranteed.</strong>
+              Save on select finishes for your custom cabinetry project.
             </p>
             <p class="grand-opening-promo__terms">
-              Terms and conditions apply.
+              Select finishes only. Terms and conditions apply.
             </p>
           </div>
           <div class="grand-opening-promo__actions">
             <a class="grand-opening-promo__cta" href="/contact">
-              Lock In Your Pricing
+              Explore Select Finishes
               <span aria-hidden="true">&rarr;</span>
             </a>
             <p class="grand-opening-promo__direct">
@@ -751,7 +809,9 @@
                 Kitchens, vanities, closets, mudrooms, and built-ins, designed,
                 built, and installed for your home.
               </p>
-              <span class="customer-card-cta">Explore kitchens &amp; closets →</span>
+              <span class="customer-card-cta"
+                >Explore kitchens &amp; closets →</span
+              >
             </div>
           </a>
 
@@ -774,7 +834,6 @@
               <span class="customer-card-cta">Explore commercial →</span>
             </div>
           </a>
-
         </div>
       </section>
 

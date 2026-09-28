@@ -10,7 +10,7 @@
   padding: clamp(48px, 7vw, 86px) 0 clamp(38px, 5vw, 62px);
   background:
     linear-gradient(90deg, rgba(253, 252, 250, 0.98), rgba(253, 252, 250, 0.8)),
-    url("./assets/gallery-grey-cabinetry.jpg") center 58% / cover;
+    url("./assets/photographs/charcoal-wood-kitchen.jpg") center 58% / cover;
 }
 
 .financing-hub-intro {

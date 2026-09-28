@@ -926,8 +926,8 @@ if (
     poster.className = "home-project-hero__poster";
     poster.src = project.poster;
     poster.alt = "";
-    poster.width = 720;
-    poster.height = 900;
+    poster.width = project.title === "Built-In Media Wall" ? 1170 : 1448;
+    poster.height = project.title === "Built-In Media Wall" ? 854 : 1086;
     poster.decoding = "async";
     poster.loading = copyIndex === 0 ? "eager" : "lazy";
 

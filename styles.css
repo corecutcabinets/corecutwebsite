@@ -11799,7 +11799,7 @@ html.corecut-intro-pending .corecut-intro {
   position: relative;
   width: 100%;
   /* Reserved height prevents any shift while the strip builds. */
-  height: calc(var(--hph-card-w) / (4 / 5) + 12px);
+  height: calc(var(--hph-card-w) / (4 / 3) + 12px);
   overflow: hidden;
   perspective: 1200px;
   cursor: grab;
@@ -11830,7 +11830,7 @@ html.corecut-intro-pending .corecut-intro {
 .home-project-hero__card {
   flex: 0 0 var(--hph-card-w);
   width: var(--hph-card-w);
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 3;
   will-change: transform, opacity;
 }
 
@@ -11865,7 +11865,7 @@ html.corecut-intro-pending .corecut-intro {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .home-project-hero__video {
@@ -12181,5 +12181,48 @@ html.corecut-intro-pending .corecut-intro {
 
   .home-project-hero__nav:hover {
     transform: none;
+  }
+}
+
+/* Preserve the framing of the supplied photographs and their cabinetry details. */
+.media:has(> img[src*="/photographs/"]) {
+  aspect-ratio: auto;
+  height: auto;
+}
+
+.media > img[src*="/photographs/"] {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.image-card:hover > img[src*="/photographs/"] {
+  transform: none;
+}
+
+.gallery-page-grid-section .gallery-grid {
+  display: block;
+  columns: 3;
+  column-gap: 20px;
+}
+
+.gallery-page-grid-section .gallery-grid .media {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 20px;
+  break-inside: avoid;
+}
+
+@media (max-width: 1024px) {
+  .gallery-page-grid-section .gallery-grid {
+    columns: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .gallery-page-grid-section .gallery-grid {
+    columns: 1;
   }
 }

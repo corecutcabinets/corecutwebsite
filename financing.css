@@ -1642,7 +1642,7 @@
 .finance-hero-cabinet-door {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   border: 1px solid rgba(75, 46, 25, 0.16);
   border-radius: calc(var(--radius) + 4px);
   background: var(--sand);

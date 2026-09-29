@@ -32,7 +32,7 @@
             "name": "Corecut Cabinets",
             "url": "https://www.corecutcabinets.com/",
             "logo": "https://www.corecutcabinets.com/assets/corecut-logo-transparent.png",
-            "image": "https://www.corecutcabinets.com/assets/photographs/white-wood-kitchen.jpg",
+            "image": "https://www.corecutcabinets.com/assets/hero-white-cabinetry-kitchen.jpg",
             "description": "Family-owned Edmonton cabinet company designing, fabricating, and installing custom kitchens, vanities, built-ins, storage, and commercial millwork.",
             "telephone": "+1-780-243-0645",
             "email": "info@corecutcabinets.com",
@@ -220,11 +220,11 @@
     />
     <link
       rel="stylesheet"
-      href="./styles.css?v=corecut-photographs-20260928-2"
+      href="./styles.css?v=corecut-mobile-intro-smooth-20260807-1"
     />
     <link
       rel="stylesheet"
-      href="./financing.css?v=corecut-photographs-20260928-2"
+      href="./financing.css?v=corecut-hero-layers-20260806-6"
     />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -330,7 +330,7 @@
             Gallery
           </button>
           <div class="dropdown-menu">
-            <a href="/gallery">Our Work</a>
+            <a href="/gallery">Designs</a>
             <a href="/before-after">Before &amp; After</a>
           </div>
         </div>
@@ -393,7 +393,7 @@
           Gallery
         </button>
         <div class="mobile-submenu">
-          <a href="/gallery">Our Work</a>
+          <a href="/gallery">Designs</a>
           <a href="/before-after">Before &amp; After</a>
         </div>
       </div>
@@ -414,6 +414,49 @@
     </nav>
 
     <main>
+      <!-- TEMPORARY SEASON END SALE
+           Remove this aside and the matching promotional styles when the
+           sale ends. -->
+      <aside
+        class="grand-opening-promo"
+        aria-label="Season end sale"
+      >
+        <div class="container grand-opening-promo__inner">
+          <div class="grand-opening-promo__copy">
+            <p class="grand-opening-promo__eyebrow">
+              Limited-time offer
+            </p>
+            <p class="grand-opening-promo__title">
+              Season End Sale
+              <span class="grand-opening-promo__offer"
+                >10% Off Select Finishes</span
+              >
+            </p>
+            <p class="grand-opening-promo__details">
+              Save on select finishes for your custom cabinetry project.
+            </p>
+            <p class="grand-opening-promo__terms">
+              Select finishes only. Terms and conditions apply.
+            </p>
+          </div>
+          <div class="grand-opening-promo__actions">
+            <a class="grand-opening-promo__cta" href="/contact">
+              Explore Select Finishes
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+            <p class="grand-opening-promo__direct">
+              Prefer to talk?
+              <a href="tel:+17802430645" aria-label="Call Corecut Cabinets"
+                >Call</a
+              >
+              <span aria-hidden="true">&bull;</span>
+              <a href="sms:+17802430645" aria-label="Text Corecut Cabinets"
+                >Text</a
+              >
+            </p>
+          </div>
+        </div>
+      </aside>
 
       <section
         class="home-project-hero"
@@ -699,7 +742,18 @@
       </section>
 
       <section class="split-section" id="services">
-        <div class="container">
+        <div class="container split-grid">
+          <div class="split-image image-card">
+            <div class="media">
+              <img
+                class="custom-cabinetry-image"
+                src="./assets/gallery-bathroom-vanity.jpg"
+                alt="Corecut Cabinets floating custom bathroom vanity in Edmonton with warm LED lighting"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
           <div class="split-copy">
             <p class="eyebrow">How to get started</p>
             <h2>From Vision to Installation</h2>
@@ -742,8 +796,8 @@
           <a class="customer-card image-card" href="/residential">
             <div class="media">
               <img
-                src="./assets/photographs/white-wood-kitchen.jpg"
-                alt="White and wood-grain kitchen cabinetry with an island and open bottle storage"
+                src="./assets/gallery-luxury-kitchen.jpg"
+                alt="Corecut Cabinets residential kitchen with custom white oak cabinetry"
                 loading="lazy"
                 decoding="async"
               />
@@ -764,8 +818,8 @@
           <a class="customer-card image-card" href="/commercial">
             <div class="media">
               <img
-                src="./assets/photographs/wood-feature-partition.jpg"
-                alt="Wood-grain feature partition with a stone-look inset and recessed lighting"
+                src="./assets/gallery-commercial-reception.jpg"
+                alt="Corecut Cabinets commercial millwork reception desk in Edmonton"
                 loading="lazy"
                 decoding="async"
               />
@@ -948,6 +1002,6 @@
       async
       type="text/javascript"
     ></script>
-    <script src="./script.js?v=corecut-photographs-20260928-2"></script>
+    <script src="./script.js?v=corecut-mobile-intro-20260806-1"></script>
   </body>
 </html>

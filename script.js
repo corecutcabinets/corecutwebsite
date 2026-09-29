@@ -836,40 +836,54 @@ document.documentElement.classList.toggle(
  */
 const homeProjectVideos = [
   {
-    "title": "White & Wood Kitchen",
-    "category": "Custom Kitchen",
-    "location": "Corecut Cabinets",
-    "poster": "./assets/photographs/white-wood-kitchen.jpg",
-    "href": "/gallery"
+    title: "Natural Oak Kitchen",
+    category: "Custom Kitchen",
+    location: "Edmonton, Alberta",
+    video: "./assets/hero-kitchen-light.mp4",
+    poster: "./assets/hero-kitchen-light-poster.jpg",
+    href: "/gallery",
   },
   {
-    "title": "Charcoal & Wood Kitchen",
-    "category": "Custom Kitchen",
-    "location": "Corecut Cabinets",
-    "poster": "./assets/photographs/charcoal-wood-kitchen.jpg",
-    "href": "/gallery"
+    title: "Walnut Galley Kitchen",
+    category: "Custom Kitchen",
+    location: "Edmonton, Alberta",
+    video: "./assets/hero-kitchen-dark.mp4",
+    poster: "./assets/hero-kitchen-dark-poster.jpg",
+    href: "/gallery",
   },
   {
-    "title": "Waterfall Island Kitchen",
-    "category": "Custom Kitchen",
-    "location": "Corecut Cabinets",
-    "poster": "./assets/photographs/waterfall-island-kitchen.jpg",
-    "href": "/gallery"
+    title: "Open-Concept Cabinetry",
+    category: "Kitchen & Living",
+    location: "Edmonton, Alberta",
+    video: "./assets/hero-open-concept.mp4",
+    poster: "./assets/hero-open-concept-poster.jpg",
+    href: "/gallery",
   },
   {
-    "title": "Built-In Media Wall",
-    "category": "Built-In Millwork",
-    "location": "Corecut Cabinets",
-    "poster": "./assets/photographs/built-in-media-wall.jpg",
-    "href": "/gallery"
+    title: "Media Wall Built-In",
+    category: "Built-In Millwork",
+    location: "Edmonton, Alberta",
+    video: "./assets/hero-tv-wall-unit.mp4",
+    poster: "./assets/hero-tv-wall-unit-poster.jpg",
+    href: "/gallery",
   },
   {
-    "title": "Illuminated Beverage Station",
-    "category": "Storage & Shelving",
-    "location": "Corecut Cabinets",
-    "poster": "./assets/photographs/illuminated-beverage-station.jpg",
-    "href": "/gallery"
-  }
+    title: "Walk-In Wardrobe",
+    category: "Storage & Closets",
+    location: "Edmonton, Alberta",
+    video: "./assets/hero-walk-in-closet.mp4",
+    poster: "./assets/hero-walk-in-closet-poster.jpg",
+    href: "/gallery",
+  },
+  // Videos 06-10 go here. Same shape, nothing else to change:
+  // {
+  //   title: "Quartz Island Kitchen",
+  //   category: "Custom Kitchen",
+  //   location: "Sherwood Park, Alberta",
+  //   video: "./assets/hero-project-06.mp4",
+  //   poster: "./assets/hero-project-06-poster.jpg",
+  //   href: "/gallery",
+  // },
 ];
 
 const projectHero = document.querySelector("[data-project-hero]");
@@ -926,8 +940,8 @@ if (
     poster.className = "home-project-hero__poster";
     poster.src = project.poster;
     poster.alt = "";
-    poster.width = project.title === "Built-In Media Wall" ? 1170 : 1448;
-    poster.height = project.title === "Built-In Media Wall" ? 854 : 1086;
+    poster.width = 720;
+    poster.height = 900;
     poster.decoding = "async";
     poster.loading = copyIndex === 0 ? "eager" : "lazy";
 
@@ -1003,7 +1017,7 @@ if (
   };
 
   const ensureSource = (entry) => {
-    if (!entry.project.video || entry.sourced || entry.failed) return;
+    if (entry.sourced || entry.failed) return;
     entry.sourced = true;
     const source = document.createElement("source");
     source.src = entry.project.video;

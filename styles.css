@@ -12183,3 +12183,218 @@ html.corecut-intro-pending .corecut-intro {
     transform: none;
   }
 }
+
+/* Homepage workshop proof */
+.precision-workshop-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(118deg, rgba(28, 25, 22, 0.98), rgba(46, 39, 33, 0.96)),
+    #1c1916;
+  color: #f8f4ee;
+}
+
+.precision-workshop-section::before {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(197, 160, 113, 0.06) 1px, transparent 1px),
+    linear-gradient(rgba(197, 160, 113, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  content: "";
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+.precision-workshop-heading,
+.precision-workshop-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.precision-workshop-heading {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: end;
+  gap: 18px;
+  margin-bottom: clamp(34px, 5vw, 58px);
+}
+
+.precision-workshop-heading .eyebrow {
+  margin-bottom: 0;
+  color: var(--tan);
+}
+
+.precision-workshop-heading h2 {
+  max-width: 13ch;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.precision-workshop-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(330px, 0.65fr);
+  align-items: stretch;
+  gap: clamp(24px, 4vw, 54px);
+}
+
+.precision-workshop-media {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 4px;
+  background: #ded8cf;
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.3);
+}
+
+.precision-workshop-media::after {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  content: "";
+  pointer-events: none;
+}
+
+.precision-workshop-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.precision-workshop-media figcaption {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+  left: 18px;
+  width: fit-content;
+  padding: 8px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(25, 22, 19, 0.82);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+
+.precision-workshop-points {
+  display: grid;
+  align-content: center;
+}
+
+.precision-workshop-points article {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 18px;
+  padding: 26px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.precision-workshop-points article > span {
+  color: var(--tan);
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.precision-workshop-points h3 {
+  margin: -4px 0 8px;
+  color: #fff;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+}
+
+.precision-workshop-points p {
+  margin: 0;
+  color: rgba(248, 244, 238, 0.66);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.precision-workshop-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  margin-top: 12px;
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.precision-workshop-link span {
+  color: var(--tan);
+  font-size: 1.15rem;
+  transition: transform 180ms ease;
+}
+
+.precision-workshop-link:hover span,
+.precision-workshop-link:focus-visible span {
+  transform: translateX(5px);
+}
+
+@media (max-width: 900px) {
+  .precision-workshop-heading,
+  .precision-workshop-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .precision-workshop-heading .eyebrow {
+    margin-bottom: 0;
+  }
+
+  .precision-workshop-heading h2 {
+    max-width: 15ch;
+  }
+
+  .precision-workshop-media img {
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 560px) {
+  .precision-workshop-heading {
+    gap: 16px;
+  }
+
+  .precision-workshop-heading h2 {
+    font-size: clamp(2.05rem, 11vw, 3rem);
+  }
+
+  .precision-workshop-media img {
+    aspect-ratio: 4 / 3;
+    object-position: 42% center;
+  }
+
+  .precision-workshop-media figcaption {
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    font-size: 0.62rem;
+  }
+
+  .precision-workshop-points article {
+    grid-template-columns: 32px 1fr;
+    gap: 12px;
+    padding: 22px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .precision-workshop-link span {
+    transition: none;
+  }
+}

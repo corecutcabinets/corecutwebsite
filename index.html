@@ -496,8 +496,8 @@
 
       <section
         class="section values-section"
+        hidden
         aria-label="Corecut Cabinets values"
-        data-values
       >
         <div class="container section-heading">
           <p class="eyebrow">Our values</p>
@@ -698,34 +698,63 @@
         </div>
       </section>
 
-      <section class="split-section" id="services">
-        <div class="container split-grid">
-          <div class="split-image image-card">
-            <div class="media">
-              <img
-                class="custom-cabinetry-image"
-                src="./assets/gallery-bathroom-vanity.jpg"
-                alt="Corecut Cabinets floating custom bathroom vanity in Edmonton with warm LED lighting"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </div>
-          <div class="split-copy">
-            <p class="eyebrow">How to get started</p>
-            <h2>From Vision to Installation</h2>
-            <p>
-              Starting your project should feel straightforward. Tell us what
-              you need, and we will guide you through the design decisions,
-              final approval, production, and installation.
-            </p>
-            <ul class="service-list">
-              <li>Share your space, goals, budget, and inspiration</li>
-              <li>Meet with us for a complimentary consultation</li>
-              <li>Review the design, materials, quote, and final approval</li>
-              <li>We build, install, and complete the final walkthrough</li>
-            </ul>
-            <a class="button primary" href="/contact">Free Quote</a>
+      <section
+        id="precision-workshop"
+        class="section precision-workshop-section"
+        aria-labelledby="precision-workshop-title"
+      >
+        <div class="container precision-workshop-heading">
+          <p class="eyebrow">Precision &amp; quality</p>
+          <h2 id="precision-workshop-title">
+            Precision built into every cabinet.
+          </h2>
+        </div>
+
+        <div class="container precision-workshop-grid">
+          <figure class="precision-workshop-media">
+            <img
+              src="./assets/corecut-cnc-workshop.jpg"
+              alt="Corecut Cabinets CNC machine in the Edmonton workshop"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Our CNC production equipment in Edmonton</figcaption>
+          </figure>
+
+          <div class="precision-workshop-points">
+            <article>
+              <span>01</span>
+              <div>
+                <h3>Advanced Equipment</h3>
+                <p>
+                  Modern CNC technology helps us produce detailed, repeatable
+                  components for residential and commercial cabinetry.
+                </p>
+              </div>
+            </article>
+            <article>
+              <span>02</span>
+              <div>
+                <h3>Maintained for Accuracy</h3>
+                <p>
+                  Regular maintenance keeps our machines operating precisely
+                  and consistently from one production run to the next.
+                </p>
+              </div>
+            </article>
+            <article>
+              <span>03</span>
+              <div>
+                <h3>Quality From the Start</h3>
+                <p>
+                  Accurate production creates cleaner components, tighter fits,
+                  and a smoother installation on site.
+                </p>
+              </div>
+            </article>
+            <a class="precision-workshop-link" href="/our-process">
+              See how we build <span aria-hidden="true">&rarr;</span>
+            </a>
           </div>
         </div>
       </section>
@@ -794,19 +823,6 @@
         </div>
       </section>
 
-      <script>
-        (() => {
-          const main = document.querySelector("main");
-          const valuesSection = main?.querySelector(".values-section");
-          const offerSection = main?.querySelector(".customer-section");
-
-          if (main && valuesSection && offerSection) {
-            main.insertBefore(offerSection, valuesSection);
-            main.appendChild(valuesSection);
-          }
-        })();
-      </script>
-
       <section class="section why-section">
         <div class="container why-grid">
           <div>
@@ -826,6 +842,38 @@
               Premium materials, residential and commercial experience,
               complimentary quotes, and design reviews.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="split-section" id="services">
+        <div class="container split-grid">
+          <div class="split-image image-card">
+            <div class="media">
+              <img
+                class="custom-cabinetry-image"
+                src="./assets/gallery-bathroom-vanity.jpg"
+                alt="Corecut Cabinets floating custom bathroom vanity in Edmonton with warm LED lighting"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+          <div class="split-copy">
+            <p class="eyebrow">How to get started</p>
+            <h2>From Vision to Installation</h2>
+            <p>
+              Starting your project should feel straightforward. Tell us what
+              you need, and we will guide you through the design decisions,
+              final approval, production, and installation.
+            </p>
+            <ul class="service-list">
+              <li>Share your space, goals, budget, and inspiration</li>
+              <li>Meet with us for a complimentary consultation</li>
+              <li>Review the design, materials, quote, and final approval</li>
+              <li>We build, install, and complete the final walkthrough</li>
+            </ul>
+            <a class="button primary" href="/contact">Free Quote</a>
           </div>
         </div>
       </section>

@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Corecut Cabinets - Precision &amp; Quality</title>
+    <style>
+      @font-face {
+        font-family: "Manrope";
+        src: url("../assets/fonts/manrope-latin-var.woff2") format("woff2");
+        font-style: normal;
+        font-weight: 200 800;
+        font-display: swap;
+      }
+
+      :root {
+        --charcoal: #1c1916;
+        --charcoal-soft: #29231e;
+        --warm-white: #f8f4ee;
+        --muted: rgba(248, 244, 238, 0.7);
+        --bronze: #c5a071;
+        --walnut: #5a3820;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        background: #0d0c0b;
+        font-family: "Manrope", Arial, sans-serif;
+      }
+
+      html {
+        scrollbar-width: none;
+      }
+
+      html::-webkit-scrollbar {
+        display: none;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+      }
+
+      .export-tools {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        z-index: 20;
+        display: grid;
+        justify-items: end;
+        gap: 9px;
+        font-family: "Manrope", Arial, sans-serif;
+      }
+
+      .export-button {
+        padding: 14px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 999px;
+        background: rgba(18, 16, 14, 0.94);
+        color: #fff;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
+        cursor: pointer;
+        backdrop-filter: blur(12px);
+      }
+
+      .export-button:hover,
+      .export-button:focus-visible {
+        border-color: var(--bronze);
+        outline: none;
+      }
+
+      .export-button:disabled {
+        cursor: wait;
+        opacity: 0.68;
+      }
+
+      .export-status {
+        margin: 0 8px 0 0;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 12px;
+      }
+
+      .story {
+        position: relative;
+        display: grid;
+        grid-template-rows: auto auto auto 1fr auto;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        padding: 180px 76px 210px;
+        background:
+          linear-gradient(118deg, rgba(28, 25, 22, 0.98), rgba(46, 39, 33, 0.97)),
+          var(--charcoal);
+        color: var(--warm-white);
+        font-family: "Manrope", Arial, sans-serif;
+      }
+
+      .story::before {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(197, 160, 113, 0.065) 1px, transparent 1px),
+          linear-gradient(rgba(197, 160, 113, 0.065) 1px, transparent 1px);
+        background-size: 58px 58px;
+        content: "";
+        pointer-events: none;
+        mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%);
+      }
+
+      .story > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 80px;
+      }
+
+      .brand-logo {
+        display: grid;
+        place-items: center;
+        width: 366px;
+        height: 104px;
+        padding: 17px 22px;
+        border-radius: 4px;
+        background: var(--warm-white);
+      }
+
+      .brand-logo img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .brand-mark {
+        color: var(--bronze);
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+      }
+
+      .intro {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: end;
+        gap: 0;
+        margin-bottom: 58px;
+      }
+
+      .eyebrow {
+        margin: 0 0 24px;
+        color: var(--bronze);
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 570px;
+        margin: 0;
+        color: #fff;
+        font-size: 76px;
+        font-weight: 760;
+        line-height: 0.99;
+        letter-spacing: -0.055em;
+      }
+
+      .machine {
+        position: relative;
+        height: 560px;
+        margin: 0 0 58px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 5px;
+        background: #ded8cf;
+        box-shadow: 0 32px 85px rgba(0, 0, 0, 0.34);
+      }
+
+      .machine::after {
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        content: "";
+        pointer-events: none;
+      }
+
+      .machine img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .machine figcaption {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+        padding: 11px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(25, 22, 19, 0.84);
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        backdrop-filter: blur(8px);
+      }
+
+      .proofs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+        align-self: start;
+      }
+
+      .proof {
+        padding-top: 28px;
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+      }
+
+      .proof-number {
+        display: block;
+        margin-bottom: 16px;
+        color: var(--bronze);
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+      }
+
+      .proof h2 {
+        margin: 0 0 10px;
+        color: #fff;
+        font-size: 24px;
+        line-height: 1.14;
+        letter-spacing: -0.025em;
+      }
+
+      .proof p {
+        margin: 0;
+        color: rgba(248, 244, 238, 0.61);
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        align-self: end;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .tagline,
+      .website {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .tagline {
+        color: var(--bronze);
+      }
+
+      .website {
+        color: rgba(255, 255, 255, 0.84);
+      }
+    </style>
+  </head>
+  <body>
+    <aside class="export-tools" aria-label="Story export controls">
+      <button class="export-button" id="download-story" type="button">
+        Download 1080 × 1920 PNG
+      </button>
+      <p class="export-status" id="export-status" aria-live="polite">
+        The controls will not appear in the saved image.
+      </p>
+    </aside>
+
+    <main class="story" aria-label="Corecut Cabinets Instagram Story">
+      <header class="brand">
+        <div class="brand-logo">
+          <img src="../assets/corecut-logo-transparent.png" alt="Corecut Cabinets" />
+        </div>
+        <span class="brand-mark">Edmonton</span>
+      </header>
+
+      <section class="intro">
+        <div>
+          <p class="eyebrow">Precision &amp; quality</p>
+          <h1>Precision built into every cabinet.</h1>
+        </div>
+      </section>
+
+      <figure class="machine">
+        <img
+          src="../assets/corecut-cnc-workshop.jpg"
+          alt="Corecut Cabinets CNC machine in the Edmonton workshop"
+        />
+        <figcaption>Our CNC production equipment in Edmonton</figcaption>
+      </figure>
+
+      <section class="proofs" aria-label="Corecut production standards">
+        <article class="proof">
+          <span class="proof-number">01</span>
+          <h2>Advanced Equipment</h2>
+          <p>Modern CNC technology for detailed, repeatable components.</p>
+        </article>
+        <article class="proof">
+          <span class="proof-number">02</span>
+          <h2>Maintained for Accuracy</h2>
+          <p>Regular maintenance keeps every production run consistent.</p>
+        </article>
+        <article class="proof">
+          <span class="proof-number">03</span>
+          <h2>Quality From the Start</h2>
+          <p>Cleaner components, tighter fits, and smoother installations.</p>
+        </article>
+      </section>
+
+      <footer class="footer" id="story-footer">
+        <p class="tagline">Quality at Core - Cut to Last</p>
+        <p class="website">corecutcabinets.com</p>
+      </footer>
+    </main>
+
+    <script>
+      (() => {
+        const button = document.querySelector("#download-story");
+        const status = document.querySelector("#export-status");
+        const story = document.querySelector(".story");
+
+        const blobToDataUrl = (blob) =>
+          new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          });
+
+        const urlToDataUrl = async (url) => {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`Could not load ${url}`);
+          }
+          return blobToDataUrl(await response.blob());
+        };
+
+        const imageToDataUrl = async (image) => {
+          try {
+            return await urlToDataUrl(image.currentSrc || image.src);
+          } catch {
+            const canvas = document.createElement("canvas");
+            canvas.width = image.naturalWidth;
+            canvas.height = image.naturalHeight;
+            canvas.getContext("2d").drawImage(image, 0, 0);
+            return canvas.toDataURL("image/png");
+          }
+        };
+
+        const collectCss = () =>
+          Array.from(document.styleSheets)
+            .flatMap((sheet) => Array.from(sheet.cssRules || []))
+            .map((rule) => rule.cssText)
+            .join("\n");
+
+        const downloadStory = async () => {
+          button.disabled = true;
+          button.textContent = "Preparing image…";
+          status.textContent = "Rendering the full-resolution Story.";
+
+          try {
+            await document.fonts.ready;
+
+            const clone = story.cloneNode(true);
+            const sourceImages = Array.from(story.querySelectorAll("img"));
+            const clonedImages = Array.from(clone.querySelectorAll("img"));
+
+            await Promise.all(
+              sourceImages.map(async (image, index) => {
+                clonedImages[index].src = await imageToDataUrl(image);
+              }),
+            );
+
+            let css = collectCss();
+            try {
+              const fontUrl = new URL(
+                "../assets/fonts/manrope-latin-var.woff2",
+                window.location.href,
+              );
+              const embeddedFont = await urlToDataUrl(fontUrl);
+              css = css.replace(
+                /url\(["']?\.\.\/assets\/fonts\/manrope-latin-var\.woff2["']?\)/g,
+                `url("${embeddedFont}")`,
+              );
+            } catch {
+              // The system font fallback still produces a usable export.
+            }
+
+            clone.setAttribute("xmlns", "http://www.w3.org/1999/xhtml");
+            const serializedStory = new XMLSerializer().serializeToString(clone);
+            const markup = `
+              <div xmlns="http://www.w3.org/1999/xhtml">
+                <style><![CDATA[${css}]]></style>
+                ${serializedStory}
+              </div>
+            `;
+            const svgMarkup = [
+              `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920">`,
+              `<foreignObject width="1080" height="1920">${markup}</foreignObject>`,
+              `</svg>`,
+            ].join("");
+            const svgUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgMarkup)}`;
+            const rendered = new Image();
+
+            await new Promise((resolve, reject) => {
+              rendered.onload = resolve;
+              rendered.onerror = reject;
+              rendered.src = svgUrl;
+            });
+
+            const canvas = document.createElement("canvas");
+            canvas.width = 1080;
+            canvas.height = 1920;
+            canvas.getContext("2d").drawImage(rendered, 0, 0);
+
+            const png = await new Promise((resolve, reject) => {
+              canvas.toBlob(
+                (blob) =>
+                  blob ? resolve(blob) : reject(new Error("PNG export failed")),
+                "image/png",
+              );
+            });
+            const pngUrl = URL.createObjectURL(png);
+            const link = document.createElement("a");
+            link.href = pngUrl;
+            link.download = "corecut-cnc-instagram-story.png";
+            link.click();
+            setTimeout(() => URL.revokeObjectURL(pngUrl), 1000);
+
+            status.textContent = "Saved as a full-resolution PNG.";
+          } catch (error) {
+            console.error(error);
+            status.textContent =
+              "Export failed. Open this file through the local preview and try again.";
+          } finally {
+            button.disabled = false;
+            button.textContent = "Download 1080 × 1920 PNG";
+          }
+        };
+
+        button.addEventListener("click", downloadStory);
+      })();
+    </script>
+  </body>
+</html>

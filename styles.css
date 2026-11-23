@@ -10552,1638 +10552,6 @@ body.page-transition-out main {
   }
 }
 
-/* Corecut Precision Assembly: first-visit homepage intro */
-html.corecut-intro-pending,
-html.corecut-intro-pending body {
-  overflow: hidden;
-  overscroll-behavior: none;
-}
-
-.corecut-intro {
-  position: fixed;
-  inset: 0;
-  z-index: 2147483000;
-  display: none;
-  place-items: center;
-  overflow: hidden;
-  isolation: isolate;
-  color: var(--walnut);
-  font-family: var(--font-display);
-}
-
-html.corecut-intro-pending .corecut-intro {
-  display: grid;
-}
-
-.corecut-intro-curtain {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 0;
-  width: calc(50% + 1px);
-  background:
-    radial-gradient(
-      circle at 50% 44%,
-      rgba(197, 160, 113, 0.12),
-      transparent 38%
-    ),
-    linear-gradient(135deg, #fff 0%, var(--cream) 58%, #f6f0e8 100%);
-  will-change: transform;
-}
-
-.corecut-intro-curtain::after {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
-  content: "";
-  mix-blend-mode: multiply;
-  opacity: 0.05;
-  pointer-events: none;
-}
-
-.corecut-intro-curtain-left {
-  left: 0;
-  border-right: 1px solid rgba(111, 66, 27, 0.08);
-}
-
-.corecut-intro-curtain-right {
-  right: 0;
-  border-left: 1px solid rgba(111, 66, 27, 0.08);
-}
-
-.corecut-intro-grid {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background-image:
-    linear-gradient(rgba(111, 66, 27, 0.065) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(111, 66, 27, 0.065) 1px, transparent 1px),
-    linear-gradient(rgba(111, 66, 27, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(111, 66, 27, 0.035) 1px, transparent 1px);
-  background-position: center;
-  background-size:
-    80px 80px,
-    80px 80px,
-    16px 16px,
-    16px 16px;
-  -webkit-mask-image: radial-gradient(
-    ellipse 58% 50% at 50% 50%,
-    #000 0%,
-    transparent 74%
-  );
-  mask-image: radial-gradient(
-    ellipse 58% 50% at 50% 50%,
-    #000 0%,
-    transparent 74%
-  );
-  opacity: 0;
-  pointer-events: none;
-}
-
-.corecut-intro.is-playing .corecut-intro-grid {
-  animation: corecut-intro-grid-in 700ms ease 100ms both;
-}
-
-.corecut-intro-skip {
-  position: absolute;
-  top: max(22px, env(safe-area-inset-top));
-  right: max(24px, env(safe-area-inset-right));
-  z-index: 5;
-  padding: 8px 0;
-  border: 0;
-  border-bottom: 1px solid rgba(75, 46, 25, 0.28);
-  border-radius: 0;
-  background: transparent;
-  color: rgba(75, 46, 25, 0.66);
-  cursor: pointer;
-  font-size: 0.7rem;
-  font-weight: 750;
-  letter-spacing: 0.14em;
-  line-height: 1;
-  text-transform: uppercase;
-  opacity: 0;
-  transition:
-    border-color 180ms ease,
-    color 180ms ease;
-}
-
-.corecut-intro.is-playing .corecut-intro-skip {
-  animation: corecut-intro-soft-in 420ms ease 650ms both;
-}
-
-.corecut-intro-skip:hover {
-  border-color: var(--coffee);
-  color: var(--coffee);
-}
-
-.corecut-intro-skip:focus-visible {
-  outline: 2px solid rgba(138, 90, 44, 0.72);
-  outline-offset: 6px;
-}
-
-.corecut-intro-stage {
-  position: relative;
-  z-index: 3;
-  display: grid;
-  width: min(84vw, 760px);
-  place-items: center;
-  text-align: center;
-}
-
-.corecut-intro-overline {
-  display: flex;
-  gap: 13px;
-  align-items: center;
-  justify-content: center;
-  margin: 0 0 clamp(22px, 3.5vh, 38px);
-  color: rgba(75, 46, 25, 0.54);
-  font-size: clamp(0.58rem, 1vw, 0.68rem);
-  font-weight: 750;
-  letter-spacing: 0.2em;
-  line-height: 1;
-  text-transform: uppercase;
-  opacity: 0;
-  transform: translateY(8px);
-}
-
-.corecut-intro-overline i {
-  width: 3px;
-  height: 3px;
-  border-radius: 999px;
-  background: var(--tan);
-  box-shadow: 0 0 0 4px rgba(197, 160, 113, 0.12);
-}
-
-.corecut-intro.is-playing .corecut-intro-overline {
-  animation: corecut-intro-soft-in 500ms ease 100ms both;
-}
-
-.corecut-intro-lockup {
-  position: relative;
-  width: min(82vw, 720px);
-  aspect-ratio: 1060 / 230;
-}
-
-.corecut-intro-logo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0;
-  clip-path: inset(0 100% 0 0);
-  filter: drop-shadow(0 12px 26px rgba(75, 46, 25, 0.06));
-}
-
-.corecut-intro.is-playing .corecut-intro-logo {
-  animation: corecut-intro-logo-reveal 560ms cubic-bezier(0.22, 0.61, 0.36, 1)
-    1010ms both;
-}
-
-.corecut-intro-cabinet-wrap {
-  --intro-mark-start-scale: 1.16;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 31.5%;
-  height: 100%;
-  perspective: 900px;
-  perspective-origin: 50% 42%;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(var(--intro-mark-start-scale));
-  transform-style: preserve-3d;
-  will-change: left, opacity, transform;
-}
-
-.corecut-intro.is-playing .corecut-intro-cabinet-wrap {
-  animation: corecut-intro-mark-morph 1540ms cubic-bezier(0.65, 0, 0.15, 1) 60ms
-    both;
-}
-
-.corecut-intro-floor-shadow {
-  position: absolute;
-  top: 84%;
-  left: 50%;
-  width: 90%;
-  height: 16%;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse,
-    rgba(75, 46, 25, 0.28),
-    rgba(75, 46, 25, 0) 70%
-  );
-  filter: blur(6px);
-  opacity: 0;
-  transform: translateX(-50%) rotateX(68deg) scale(0.5);
-}
-
-.corecut-intro.is-playing .corecut-intro-floor-shadow {
-  animation: corecut-intro-shadow 820ms ease 230ms both;
-}
-
-.corecut-intro-cabinet {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 94%;
-  height: 82%;
-  transform: translate(-50%, -50%) rotateX(-7deg) rotateY(-22deg) rotateZ(-1deg);
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-.corecut-intro.is-playing .corecut-intro-cabinet {
-  animation: corecut-intro-camera 1080ms cubic-bezier(0.22, 0.61, 0.36, 1) 80ms
-    both;
-}
-
-.corecut-intro-piece {
-  --piece-front: #93633f;
-  --piece-top: #b4855f;
-  --piece-side: #704326;
-  --piece-depth: 8px;
-  position: absolute;
-  display: block;
-  border: 1px solid rgba(75, 46, 25, 0.1);
-  border-radius: 2px;
-  background: var(--piece-front);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -1px 0 rgba(75, 46, 25, 0.12),
-    0 9px 16px rgba(75, 46, 25, 0.16);
-  opacity: 0;
-  transform-style: preserve-3d;
-  will-change: opacity, transform;
-}
-
-.corecut-intro-piece::before,
-.corecut-intro-piece::after {
-  position: absolute;
-  display: block;
-  content: "";
-  pointer-events: none;
-}
-
-.corecut-intro-piece::before {
-  right: -1px;
-  bottom: 100%;
-  left: -1px;
-  height: var(--piece-depth);
-  border-radius: 2px 2px 0 0;
-  background: var(--piece-top);
-  transform: rotateX(90deg);
-  transform-origin: bottom;
-}
-
-.corecut-intro-piece::after {
-  top: -1px;
-  bottom: -1px;
-  left: 100%;
-  width: var(--piece-depth);
-  border-radius: 0 2px 2px 0;
-  background: var(--piece-side);
-  transform: rotateY(90deg);
-  transform-origin: left;
-}
-
-.corecut-intro-back {
-  --piece-front: #3f291b;
-  --piece-top: #60412d;
-  --piece-side: #2f1d13;
-  inset: 1% 1.5%;
-  border-color: rgba(44, 26, 14, 0.22);
-  box-shadow: inset 0 0 18px rgba(24, 13, 7, 0.42);
-}
-
-.corecut-intro-left-door {
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 27.5%;
-}
-
-.corecut-intro-right-door {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 24.5%;
-}
-
-.corecut-intro-top-door {
-  --piece-front: #c7a070;
-  --piece-top: #dfc59f;
-  --piece-side: #9d754e;
-  top: 0;
-  left: 31%;
-  width: 41%;
-  height: 43.5%;
-}
-
-.corecut-intro-drawer {
-  --piece-front: #6b3e17;
-  --piece-top: #946538;
-  --piece-side: #4c2b13;
-  bottom: 0;
-  left: 31%;
-  width: 41%;
-  height: 51.5%;
-}
-
-.corecut-intro-knob,
-.corecut-intro-pull {
-  position: absolute;
-  z-index: 2;
-  display: block;
-  background: linear-gradient(180deg, #fffdf8, #e8ddcd);
-  box-shadow:
-    0 2px 4px rgba(51, 41, 31, 0.26),
-    inset 0 1px 0 #fff;
-  opacity: 0;
-  transform: translateZ(10px) scale(0);
-}
-
-.corecut-intro-knob {
-  top: 8%;
-  width: clamp(4px, 4.5%, 8px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-}
-
-.corecut-intro-left-door .corecut-intro-knob {
-  right: 10%;
-}
-
-.corecut-intro-right-door .corecut-intro-knob {
-  left: 11%;
-}
-
-.corecut-intro-pull {
-  top: 27%;
-  left: 50%;
-  width: 36%;
-  height: clamp(3px, 8%, 7px);
-  border-radius: 999px;
-  transform: translate3d(-50%, 0, 10px) scaleX(0);
-}
-
-.corecut-intro.is-playing .corecut-intro-back {
-  animation: corecut-intro-back-in 460ms cubic-bezier(0.16, 1, 0.3, 1) 100ms
-    both;
-}
-
-.corecut-intro.is-playing .corecut-intro-left-door {
-  animation: corecut-intro-left-in 620ms cubic-bezier(0.16, 1, 0.3, 1) 160ms
-    both;
-}
-
-.corecut-intro.is-playing .corecut-intro-right-door {
-  animation: corecut-intro-right-in 620ms cubic-bezier(0.16, 1, 0.3, 1) 220ms
-    both;
-}
-
-.corecut-intro.is-playing .corecut-intro-top-door {
-  animation: corecut-intro-top-in 590ms cubic-bezier(0.16, 1, 0.3, 1) 290ms both;
-}
-
-.corecut-intro.is-playing .corecut-intro-drawer {
-  animation: corecut-intro-drawer-in 650ms cubic-bezier(0.16, 1, 0.3, 1) 350ms
-    both;
-}
-
-.corecut-intro.is-playing .corecut-intro-knob,
-.corecut-intro.is-playing .corecut-intro-pull {
-  animation: corecut-intro-hardware-in 330ms cubic-bezier(0.34, 1.75, 0.64, 1)
-    780ms both;
-}
-
-.corecut-intro.is-playing .corecut-intro-pull {
-  animation-name: corecut-intro-pull-in;
-}
-
-.corecut-intro-cut-line {
-  position: absolute;
-  top: -9%;
-  bottom: -9%;
-  left: -15%;
-  z-index: 4;
-  width: 1px;
-  background: linear-gradient(
-    180deg,
-    transparent,
-    rgba(197, 160, 113, 0.95) 22%,
-    #fff 50%,
-    rgba(197, 160, 113, 0.95) 78%,
-    transparent
-  );
-  box-shadow: 0 0 12px rgba(197, 160, 113, 0.8);
-  opacity: 0;
-  transform: translateX(0) skewX(-8deg);
-  pointer-events: none;
-}
-
-.corecut-intro.is-playing .corecut-intro-cut-line {
-  animation: corecut-intro-cut-scan 430ms ease-in-out 760ms both;
-}
-
-.corecut-intro-slogan {
-  display: flex;
-  gap: clamp(10px, 2vw, 20px);
-  align-items: center;
-  justify-content: center;
-  margin: clamp(25px, 4vh, 42px) 0 0;
-  color: rgba(75, 46, 25, 0.8);
-  font-size: clamp(0.7rem, 1.35vw, 0.88rem);
-  font-weight: 760;
-  letter-spacing: clamp(0.1em, 0.35vw, 0.19em);
-  line-height: 1.3;
-  text-transform: uppercase;
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.corecut-intro-slogan i {
-  width: clamp(30px, 5vw, 58px);
-  height: 1px;
-  overflow: hidden;
-  background: linear-gradient(
-    90deg,
-    rgba(197, 160, 113, 0.15),
-    var(--tan),
-    rgba(197, 160, 113, 0.15)
-  );
-  transform: scaleX(0);
-}
-
-.corecut-intro.is-playing .corecut-intro-slogan {
-  animation: corecut-intro-slogan-in 520ms cubic-bezier(0.22, 0.61, 0.36, 1)
-    1280ms both;
-}
-
-.corecut-intro.is-playing .corecut-intro-slogan i {
-  animation: corecut-intro-rule-in 520ms ease 1500ms both;
-}
-
-.corecut-intro-rule {
-  position: relative;
-  display: block;
-  width: min(170px, 36vw);
-  height: 1px;
-  margin-top: clamp(22px, 4vh, 38px);
-  overflow: hidden;
-  background: rgba(75, 46, 25, 0.12);
-  opacity: 0;
-}
-
-.corecut-intro-rule i {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, var(--tan), var(--coffee));
-  transform: translateX(-102%);
-}
-
-.corecut-intro.is-playing .corecut-intro-rule {
-  animation: corecut-intro-soft-in 260ms ease 1380ms both;
-}
-
-.corecut-intro.is-playing .corecut-intro-rule i {
-  animation: corecut-intro-progress 760ms cubic-bezier(0.22, 0.61, 0.36, 1)
-    1400ms both;
-}
-
-.corecut-intro-status {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-.corecut-intro.is-leaving .corecut-intro-stage,
-.corecut-intro.is-leaving .corecut-intro-skip {
-  animation: corecut-intro-content-out 280ms ease both;
-  pointer-events: none;
-}
-
-.corecut-intro.is-leaving .corecut-intro-grid {
-  animation: corecut-intro-grid-out 220ms ease both;
-}
-
-.corecut-intro.is-leaving .corecut-intro-curtain-left {
-  animation: corecut-intro-curtain-left-out 760ms cubic-bezier(0.76, 0, 0.24, 1)
-    120ms both;
-}
-
-.corecut-intro.is-leaving .corecut-intro-curtain-right {
-  animation: corecut-intro-curtain-right-out 760ms
-    cubic-bezier(0.76, 0, 0.24, 1) 120ms both;
-}
-
-@keyframes corecut-intro-grid-in {
-  from {
-    opacity: 0;
-    transform: scale(1.05);
-  }
-  to {
-    opacity: 0.78;
-    transform: scale(1);
-  }
-}
-
-@keyframes corecut-intro-grid-out {
-  to {
-    opacity: 0;
-    transform: scale(1.03);
-  }
-}
-
-@keyframes corecut-intro-soft-in {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes corecut-intro-logo-reveal {
-  0% {
-    opacity: 0;
-    clip-path: inset(0 100% 0 0);
-    transform: translateX(-8px);
-  }
-  22% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-    clip-path: inset(0 0 0 0);
-    transform: translateX(0);
-  }
-}
-
-@keyframes corecut-intro-mark-morph {
-  0% {
-    left: 50%;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(var(--intro-mark-start-scale));
-  }
-  48% {
-    left: 50%;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(var(--intro-mark-start-scale));
-  }
-  70% {
-    left: 15.6%;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  83% {
-    left: 15.6%;
-    opacity: 0.92;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    left: 15.6%;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.985);
-  }
-}
-
-@keyframes corecut-intro-shadow {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) rotateX(68deg) scale(0.45);
-  }
-  65%,
-  100% {
-    opacity: 0.7;
-    transform: translateX(-50%) rotateX(68deg) scale(1);
-  }
-}
-
-@keyframes corecut-intro-camera {
-  0% {
-    transform: translate(-50%, -50%) rotateX(-7deg) rotateY(-24deg)
-      rotateZ(-1.5deg);
-  }
-  62% {
-    transform: translate(-50%, -50%) rotateX(-4deg) rotateY(10deg)
-      rotateZ(0.5deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-  }
-}
-
-@keyframes corecut-intro-back-in {
-  0% {
-    opacity: 0;
-    transform: translateZ(-130px) scale(0.72);
-  }
-  100% {
-    opacity: 1;
-    transform: translateZ(-12px) scale(1);
-  }
-}
-
-@keyframes corecut-intro-left-in {
-  0% {
-    opacity: 0;
-    transform: translate3d(-145%, 14%, 110px) rotateY(76deg) rotateZ(-7deg);
-  }
-  74% {
-    opacity: 1;
-    transform: translate3d(5%, 0, 20px) rotateY(-5deg) rotateZ(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 12px) rotateY(0) rotateZ(0);
-  }
-}
-
-@keyframes corecut-intro-right-in {
-  0% {
-    opacity: 0;
-    transform: translate3d(155%, -10%, 120px) rotateY(-78deg) rotateZ(7deg);
-  }
-  74% {
-    opacity: 1;
-    transform: translate3d(-5%, 0, 20px) rotateY(5deg) rotateZ(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 12px) rotateY(0) rotateZ(0);
-  }
-}
-
-@keyframes corecut-intro-top-in {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, -145%, 135px) rotateX(76deg);
-  }
-  74% {
-    opacity: 1;
-    transform: translate3d(0, 5%, 26px) rotateX(-5deg);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 16px) rotateX(0);
-  }
-}
-
-@keyframes corecut-intro-drawer-in {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 150%, 150px) rotateX(-52deg);
-  }
-  68% {
-    opacity: 1;
-    transform: translate3d(0, -3%, 46px) rotateX(3deg);
-  }
-  84% {
-    opacity: 1;
-    transform: translate3d(0, 0, 30px) rotateX(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 18px) rotateX(0);
-  }
-}
-
-@keyframes corecut-intro-hardware-in {
-  to {
-    opacity: 1;
-    transform: translateZ(10px) scale(1);
-  }
-}
-
-@keyframes corecut-intro-pull-in {
-  to {
-    opacity: 1;
-    transform: translate3d(-50%, 0, 10px) scaleX(1);
-  }
-}
-
-@keyframes corecut-intro-cut-scan {
-  0% {
-    opacity: 0;
-    transform: translateX(0) skewX(-8deg);
-  }
-  18%,
-  78% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(1450%) skewX(-8deg);
-  }
-}
-
-@keyframes corecut-intro-slogan-in {
-  from {
-    opacity: 0;
-    letter-spacing: 0.28em;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes corecut-intro-rule-in {
-  to {
-    transform: scaleX(1);
-  }
-}
-
-@keyframes corecut-intro-progress {
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes corecut-intro-content-out {
-  to {
-    opacity: 0;
-    filter: blur(2px);
-    transform: scale(0.985);
-  }
-}
-
-@keyframes corecut-intro-curtain-left-out {
-  to {
-    transform: translateX(-101%);
-  }
-}
-
-@keyframes corecut-intro-curtain-right-out {
-  to {
-    transform: translateX(101%);
-  }
-}
-
-/* Mobile uses shorter travel distances and a true container fade. This keeps
-   the assembly readable while avoiding the expensive opening 3D sweep that
-   can stutter on phone GPUs. */
-@keyframes corecut-intro-mark-morph-mobile {
-  0% {
-    left: 50%;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(var(--intro-mark-start-scale));
-  }
-  12%,
-  50% {
-    left: 50%;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(var(--intro-mark-start-scale));
-  }
-  72% {
-    left: 15.6%;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  84% {
-    left: 15.6%;
-    opacity: 0.92;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  100% {
-    left: 15.6%;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.985);
-  }
-}
-
-@keyframes corecut-intro-camera-mobile {
-  from {
-    transform: translate(-50%, -50%) rotateY(-7deg) scale(0.98);
-  }
-  to {
-    transform: translate(-50%, -50%) rotateY(0) scale(1);
-  }
-}
-
-@keyframes corecut-intro-back-in-mobile {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 8px, 0) scale(0.94);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
-@keyframes corecut-intro-left-in-mobile {
-  from {
-    opacity: 0;
-    transform: translate3d(-42%, 5%, 0) rotateY(18deg);
-  }
-  72% {
-    opacity: 1;
-    transform: translate3d(3%, 0, 0) rotateY(-2deg);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) rotateY(0);
-  }
-}
-
-@keyframes corecut-intro-right-in-mobile {
-  from {
-    opacity: 0;
-    transform: translate3d(42%, -4%, 0) rotateY(-18deg);
-  }
-  72% {
-    opacity: 1;
-    transform: translate3d(-3%, 0, 0) rotateY(2deg);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) rotateY(0);
-  }
-}
-
-@keyframes corecut-intro-top-in-mobile {
-  from {
-    opacity: 0;
-    transform: translate3d(0, -48%, 0) rotateX(16deg);
-  }
-  72% {
-    opacity: 1;
-    transform: translate3d(0, 3%, 0) rotateX(-2deg);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) rotateX(0);
-  }
-}
-
-@keyframes corecut-intro-drawer-in-mobile {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 52%, 0) rotateX(-14deg);
-  }
-  72% {
-    opacity: 1;
-    transform: translate3d(0, -3%, 0) rotateX(2deg);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) rotateX(0);
-  }
-}
-
-/* An explicit Save-Data preference receives the finished lockup without 3D work. */
-.corecut-intro.is-lite .corecut-intro-cabinet-wrap {
-  display: none;
-}
-
-.corecut-intro.is-lite .corecut-intro-logo,
-.corecut-intro.is-lite .corecut-intro-overline,
-.corecut-intro.is-lite .corecut-intro-slogan,
-.corecut-intro.is-lite .corecut-intro-rule,
-.corecut-intro.is-lite .corecut-intro-skip {
-  animation: none;
-  opacity: 1;
-  clip-path: none;
-  transform: none;
-}
-
-.corecut-intro.is-lite .corecut-intro-slogan i,
-.corecut-intro.is-lite .corecut-intro-rule i {
-  animation: none;
-  transform: none;
-}
-
-@supports not (transform-style: preserve-3d) {
-  .corecut-intro-cabinet-wrap {
-    display: none;
-  }
-
-  .corecut-intro-logo {
-    opacity: 1;
-    clip-path: none;
-  }
-}
-
-@media (max-width: 640px) {
-  .corecut-intro-stage {
-    width: min(90vw, 520px);
-  }
-
-  .corecut-intro-lockup {
-    width: min(90vw, 520px);
-  }
-
-  .corecut-intro-cabinet-wrap {
-    --intro-mark-start-scale: 1.52;
-  }
-
-  .corecut-intro.is-playing .corecut-intro-cabinet-wrap {
-    animation-name: corecut-intro-mark-morph-mobile;
-    animation-duration: 1640ms;
-    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .corecut-intro-floor-shadow {
-    display: none;
-  }
-
-  .corecut-intro-cabinet,
-  .corecut-intro-piece {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-
-  .corecut-intro.is-playing .corecut-intro-cabinet {
-    animation-name: corecut-intro-camera-mobile;
-    animation-duration: 980ms;
-    animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
-  }
-
-  .corecut-intro.is-playing .corecut-intro-back {
-    animation-name: corecut-intro-back-in-mobile;
-    animation-duration: 560ms;
-    animation-delay: 120ms;
-  }
-
-  .corecut-intro.is-playing .corecut-intro-left-door {
-    animation-name: corecut-intro-left-in-mobile;
-    animation-duration: 660ms;
-    animation-delay: 190ms;
-  }
-
-  .corecut-intro.is-playing .corecut-intro-right-door {
-    animation-name: corecut-intro-right-in-mobile;
-    animation-duration: 660ms;
-    animation-delay: 260ms;
-  }
-
-  .corecut-intro.is-playing .corecut-intro-top-door {
-    animation-name: corecut-intro-top-in-mobile;
-    animation-duration: 640ms;
-    animation-delay: 330ms;
-  }
-
-  .corecut-intro.is-playing .corecut-intro-drawer {
-    animation-name: corecut-intro-drawer-in-mobile;
-    animation-duration: 660ms;
-    animation-delay: 400ms;
-  }
-
-  .corecut-intro-overline {
-    gap: 10px;
-    margin-bottom: clamp(26px, 6vh, 42px);
-    letter-spacing: 0.16em;
-  }
-
-  .corecut-intro-slogan {
-    gap: 10px;
-    margin-top: clamp(30px, 6vh, 48px);
-    font-size: clamp(0.62rem, 2.6vw, 0.74rem);
-    letter-spacing: 0.1em;
-  }
-
-  .corecut-intro-slogan i {
-    width: clamp(18px, 7vw, 34px);
-  }
-
-  .corecut-intro-skip {
-    right: max(20px, env(safe-area-inset-right));
-  }
-}
-
-@media (max-height: 520px) and (orientation: landscape) {
-  .corecut-intro-overline {
-    margin-bottom: 14px;
-  }
-
-  .corecut-intro-lockup {
-    width: min(60vw, 560px);
-  }
-
-  .corecut-intro-slogan {
-    margin-top: 16px;
-  }
-
-  .corecut-intro-rule {
-    margin-top: 14px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html.corecut-intro-pending,
-  html.corecut-intro-pending body {
-    overflow: auto;
-  }
-
-  html.corecut-intro-pending .corecut-intro {
-    display: none;
-  }
-
-  .corecut-intro *,
-  .corecut-intro *::before,
-  .corecut-intro *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* ==========================================================================
-   Homepage project hero (`home-project-hero__*`)
-   A flat horizontal marquee of cabinetry films: the track is one long strip of
-   repeated cards translated on X only. Depth comes from each card's distance
-   to screen centre (script.js writes scale / rotateY / translateZ / opacity),
-   so the row always reads as a straight line, never a ring.
-
-   Three stacked layers share one grid cell on desktop:
-     0  __backdrop  grid + glow            (decorative, pointer-events: none)
-     1  __stage     the travelling strip   (interactive: drag, links, nav)
-     2  __veil      centre wash            (decorative, pointer-events: none)
-     3  __content   headline, CTAs, proof  (always on top)
-   The strip is masked out through the middle of the screen, so cards fade
-   away as they pass behind the copy and reappear on the far side. Below
-   1025px the two layers un-stack into rows: copy first, strip beneath it.
-   ========================================================================== */
-
-.home-project-hero {
-  --hph-card-w: clamp(324px, min(29.25vw, 51svh), 450px);
-  --hph-gap: clamp(14px, 1.6vw, 26px);
-  /* Half-width of the fully cleared centre, plus its soft edge. */
-  --hph-clear: clamp(220px, 20vw, 330px);
-  --hph-fade: clamp(110px, 12vw, 210px);
-  --hph-mask: linear-gradient(
-    90deg,
-    #000 0,
-    #000 calc(50% - var(--hph-clear) - var(--hph-fade)),
-    rgba(0, 0, 0, 0) calc(50% - var(--hph-clear)),
-    rgba(0, 0, 0, 0) calc(50% + var(--hph-clear)),
-    #000 calc(50% + var(--hph-clear) + var(--hph-fade)),
-    #000 100%
-  );
-  --hph-header: 78px;
-  position: relative;
-  display: grid;
-  grid-template-areas: "hph";
-  grid-template-columns: minmax(0, 1fr);
-  align-items: center;
-  justify-items: center;
-  min-height: min(calc(100svh - var(--hph-header)), 880px);
-  overflow: hidden;
-  isolation: isolate;
-  padding-block: clamp(56px, 9svh, 128px) clamp(48px, 7svh, 104px);
-  background:
-    radial-gradient(
-      ellipse 58% 44% at 50% 26%,
-      rgba(197, 160, 113, 0.17),
-      transparent 66%
-    ),
-    linear-gradient(180deg, var(--sand) 0%, #fff 46%, var(--cream) 100%);
-}
-
-.home-project-hero__backdrop {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.home-project-hero__grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(111, 66, 27, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(111, 66, 27, 0.05) 1px, transparent 1px);
-  background-size: 80px 80px;
-  background-position: center;
-  -webkit-mask-image: radial-gradient(
-    ellipse 70% 60% at 50% 34%,
-    #000 20%,
-    transparent 76%
-  );
-  mask-image: radial-gradient(
-    ellipse 70% 60% at 50% 34%,
-    #000 20%,
-    transparent 76%
-  );
-}
-
-.home-project-hero__glow {
-  position: absolute;
-  top: 62%;
-  left: 50%;
-  width: min(88vw, 1180px);
-  height: 46%;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse,
-    rgba(197, 160, 113, 0.24),
-    transparent 70%
-  );
-  transform: translate(-50%, -50%);
-  filter: blur(8px);
-}
-
-/* Centre wash: picks up the near-white of the hero background at mid height
-   and fades to nothing well before the edges, so the copy sits on a calm pool
-   while the strip stays fully visible left and right. Sits above the strip,
-   below the copy. */
-.home-project-hero__veil {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse calc(var(--hph-clear) + var(--hph-fade)) 74% at 50% 50%,
-    rgba(255, 255, 255, 0.92) 0%,
-    rgba(255, 255, 255, 0.78) 48%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-/* ---- Copy block ---- */
-
-.home-project-hero__content {
-  position: relative;
-  grid-area: hph;
-  z-index: 3;
-  display: grid;
-  justify-items: center;
-  align-content: center;
-  max-width: 780px;
-  text-align: center;
-}
-
-.home-project-hero__eyebrow {
-  margin: 0 0 clamp(16px, 2.4svh, 30px);
-  color: var(--coffee);
-  font-size: clamp(0.66rem, 0.95vw, 0.76rem);
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.home-project-hero__title {
-  max-width: 16ch;
-  margin: 0;
-  color: var(--walnut);
-  font-size: clamp(2rem, min(4.9vw, 7svh), 4rem);
-  font-weight: 800;
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-  text-wrap: balance;
-}
-
-.home-project-hero__line {
-  display: block;
-  overflow: hidden;
-  padding-bottom: 0.12em;
-  margin-bottom: -0.12em;
-}
-
-.home-project-hero__line > span {
-  display: block;
-}
-
-.home-project-hero__lede {
-  max-width: 52ch;
-  margin: clamp(18px, 2.6svh, 30px) 0 0;
-  color: var(--ink-soft);
-  font-size: clamp(0.96rem, 1.2vw, 1.1rem);
-}
-
-.home-project-hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px 26px;
-  align-items: center;
-  justify-content: center;
-  margin-top: clamp(24px, 3.6svh, 42px);
-}
-
-.home-project-hero__link {
-  color: var(--walnut);
-  font-weight: 800;
-  text-decoration: underline;
-  text-decoration-color: rgba(197, 160, 113, 0.7);
-  text-underline-offset: 5px;
-}
-
-.home-project-hero__link:hover {
-  color: var(--coffee);
-  text-decoration-color: var(--coffee);
-}
-
-.home-project-hero__link:focus-visible {
-  outline: 2px solid var(--coffee);
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-
-.home-project-hero__credibility {
-  margin: clamp(30px, 4.4svh, 52px) 0 0;
-  color: var(--coffee);
-  font-size: 0.74rem;
-  font-weight: 750;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-/* ---- Marquee ---- */
-
-.home-project-hero__viewport {
-  position: relative;
-  width: 100%;
-  /* Reserved height prevents any shift while the strip builds. */
-  height: calc(var(--hph-card-w) / (4 / 5) + 12px);
-  overflow: hidden;
-  perspective: 1200px;
-  cursor: grab;
-  touch-action: pan-y;
-  /* Cards dissolve into the centre instead of being clipped by it. */
-  -webkit-mask-image: var(--hph-mask);
-  mask-image: var(--hph-mask);
-}
-
-.home-project-hero__viewport:focus-visible {
-  outline: 2px solid var(--coffee);
-  outline-offset: 4px;
-}
-
-.home-project-hero__viewport.is-dragging {
-  cursor: grabbing;
-}
-
-.home-project-hero__track {
-  display: flex;
-  gap: var(--hph-gap);
-  align-items: center;
-  height: 100%;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-.home-project-hero__card {
-  flex: 0 0 var(--hph-card-w);
-  width: var(--hph-card-w);
-  aspect-ratio: 4 / 5;
-  will-change: transform, opacity;
-}
-
-.home-project-hero__card-link {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 22px;
-  text-decoration: none;
-  outline-offset: 4px;
-}
-
-.home-project-hero__card-link:focus-visible {
-  outline: 2px solid var(--coffee);
-}
-
-.home-project-hero__media {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 22px;
-  background: var(--sand);
-  box-shadow: 0 22px 46px -26px rgba(43, 26, 15, 0.5);
-}
-
-.home-project-hero__poster,
-.home-project-hero__video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.home-project-hero__video {
-  opacity: 0;
-  transition: opacity 400ms ease;
-}
-
-.home-project-hero__card.has-video .home-project-hero__video {
-  opacity: 1;
-}
-
-.home-project-hero__caption {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: grid;
-  gap: 2px;
-  padding: 34px 16px 14px;
-  background: linear-gradient(180deg, transparent, rgba(24, 14, 6, 0.72));
-  color: #fff;
-  opacity: 0.78;
-  transition: opacity 340ms ease;
-}
-
-/* script.js flags whichever cards are sitting in clear air — the centre card
-   when the strip is stacked, the side cards when it runs behind the copy. */
-.home-project-hero__card.is-focus .home-project-hero__caption {
-  opacity: 1;
-}
-
-.home-project-hero__caption-title {
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-}
-
-.home-project-hero__caption-meta {
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 0.74rem;
-  font-weight: 650;
-}
-
-/* ---- Stage: the moving layer, centred on the same row as the copy ---- */
-
-.home-project-hero__stage {
-  position: relative;
-  grid-area: hph;
-  z-index: 1;
-  justify-self: stretch;
-  align-self: center;
-  width: 100%;
-}
-
-.home-project-hero__nav {
-  position: absolute;
-  top: 50%;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  transform: translateY(-50%);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.86);
-  color: var(--walnut);
-  font-size: 1rem;
-  cursor: pointer;
-  transition:
-    background 180ms ease,
-    border-color 180ms ease,
-    transform 180ms ease;
-}
-
-.home-project-hero__nav--prev {
-  left: clamp(10px, 2vw, 28px);
-}
-
-/* The floating chat launcher lives in the bottom-right and is inset ~60px
-   from the edge, so the next control is pushed outboard of it. */
-.home-project-hero__nav--next {
-  right: 8px;
-}
-
-.home-project-hero__nav:hover {
-  border-color: var(--tan);
-  background: #fff;
-}
-
-.home-project-hero__nav:focus-visible {
-  outline: 2px solid var(--coffee);
-  outline-offset: 3px;
-}
-
-.home-project-hero__proof {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 20px;
-  justify-content: center;
-  margin: clamp(12px, 1.8svh, 20px) 0 0;
-  padding: 0;
-  list-style: none;
-  color: var(--ink-soft);
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
-.home-project-hero__proof li {
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.home-project-hero__proof li::before {
-  width: 4px;
-  height: 4px;
-  border-radius: 999px;
-  background: var(--tan);
-  content: "";
-}
-
-.home-project-hero__proof a {
-  color: inherit;
-  text-decoration: underline;
-  text-decoration-color: rgba(197, 160, 113, 0.65);
-  text-underline-offset: 4px;
-}
-
-.home-project-hero__proof a:hover {
-  color: var(--coffee);
-}
-
-/* ---- Entrance (under 1.2s, transform + opacity only) ---- */
-
-.home-project-hero__eyebrow,
-.home-project-hero__line > span,
-.home-project-hero__lede,
-.home-project-hero__actions,
-.home-project-hero__credibility,
-.home-project-hero__proof,
-.home-project-hero__viewport {
-  animation: hph-rise 600ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
-}
-
-.home-project-hero__eyebrow {
-  animation-delay: 60ms;
-}
-.home-project-hero__line:first-child > span {
-  animation: hph-line 660ms cubic-bezier(0.22, 0.61, 0.36, 1) 130ms both;
-}
-.home-project-hero__line:last-child > span {
-  animation: hph-line 660ms cubic-bezier(0.22, 0.61, 0.36, 1) 220ms both;
-}
-.home-project-hero__lede {
-  animation-delay: 340ms;
-}
-.home-project-hero__actions {
-  animation-delay: 430ms;
-}
-.home-project-hero__credibility {
-  animation-delay: 500ms;
-}
-.home-project-hero__proof {
-  animation-delay: 560ms;
-}
-.home-project-hero__viewport {
-  animation: hph-strip 720ms cubic-bezier(0.22, 0.61, 0.36, 1) 380ms both;
-}
-
-@keyframes hph-rise {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 15px, 0);
-  }
-}
-
-@keyframes hph-line {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 104%, 0);
-  }
-}
-
-@keyframes hph-strip {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 28px, 0);
-  }
-}
-
-/* ---- Responsive ---- */
-
-/* Below desktop there is not enough width either side of the copy for the
-   strip to read, so the layers un-stack into two rows: copy, then strip.
-   Nothing overlaps, the mask and the centre wash are switched off, and the
-   marquee keeps travelling exactly as before. */
-@media (max-width: 1024px) {
-  .home-project-hero {
-    --hph-card-w: clamp(300px, 45vw, 390px);
-    --hph-mask: none;
-    grid-template-areas:
-      "hph"
-      "hph-stage";
-    align-content: center;
-    row-gap: clamp(26px, 5vw, 44px);
-    min-height: 0;
-    padding-block: clamp(48px, 8svh, 88px) clamp(34px, 5svh, 60px);
-  }
-
-  .home-project-hero__stage {
-    grid-area: hph-stage;
-  }
-
-  .home-project-hero__veil {
-    display: none;
-  }
-
-  .home-project-hero__title {
-    font-size: clamp(2rem, 5.6vw, 3.05rem);
-  }
-
-  .home-project-hero__lede {
-    max-width: 48ch;
-  }
-
-  .home-project-hero__credibility {
-    margin-top: clamp(22px, 3.4svh, 34px);
-  }
-}
-
-@media (max-width: 720px) {
-  .home-project-hero {
-    --hph-card-w: min(69vw, 300px);
-    --hph-gap: 12px;
-    row-gap: 26px;
-    padding-block: 44px 26px;
-  }
-
-  .home-project-hero__title {
-    max-width: 13ch;
-    font-size: clamp(1.85rem, 8vw, 2.35rem);
-  }
-
-  .home-project-hero__lede {
-    max-width: 36ch;
-    font-size: 0.94rem;
-  }
-
-  .home-project-hero__actions {
-    gap: 12px;
-    width: 100%;
-    margin-top: clamp(20px, 3svh, 30px);
-  }
-
-  .home-project-hero__actions .button {
-    width: 100%;
-  }
-
-  .home-project-hero__credibility {
-    margin-top: clamp(20px, 3svh, 30px);
-  }
-
-  .home-project-hero__viewport {
-    perspective: 900px;
-  }
-
-  .home-project-hero__caption {
-    padding: 26px 12px 11px;
-  }
-
-  .home-project-hero__caption-title {
-    font-size: 0.86rem;
-  }
-
-  .home-project-hero__caption-meta {
-    font-size: 0.68rem;
-  }
-
-  .home-project-hero__credibility {
-    font-size: 0.66rem;
-    letter-spacing: 0.08em;
-  }
-
-  .home-project-hero__nav {
-    width: 38px;
-    height: 38px;
-  }
-
-  .home-project-hero__proof {
-    gap: 6px 16px;
-    font-size: 0.78rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .home-project-hero__eyebrow,
-  .home-project-hero__line > span,
-  .home-project-hero__lede,
-  .home-project-hero__actions,
-  .home-project-hero__credibility,
-  .home-project-hero__proof,
-  .home-project-hero__viewport {
-    animation: none;
-  }
-
-  .home-project-hero__video,
-  .home-project-hero__caption,
-  .home-project-hero__nav {
-    transition: none;
-  }
-
-  .home-project-hero__nav:hover {
-    transform: none;
-  }
-}
-
 /* Homepage workshop proof */
 .precision-workshop-section {
   position: relative;
@@ -12396,5 +10764,1377 @@ html.corecut-intro-pending .corecut-intro {
 @media (prefers-reduced-motion: reduce) {
   .precision-workshop-link span {
     transition: none;
+  }
+}
+
+/* ==========================================================================
+   Homepage hero + cabinet loop (`home-project-hero__*`, `hero-cab__*`)
+   Replaces the first-visit intro splash and the project video marquee.
+
+   Layout: copy on the left and a decorative cabinet on the right from 900px
+   up; below that the copy stacks first and the cabinet sits under it at a
+   reduced size, so the h1 and "Get a Free Quote" stay above the fold.
+
+   The cabinet is a pure CSS 3D rig (inline elements, no images, no canvas)
+   that animates transform and opacity only, on one shared 10s timeline:
+      3-27%  back, sides, bottom, rail, shelf and top slide in and lock
+     26-37%  doors, drawer front and caramel pulls arrive
+     38-56%  a CNC beam traces the seams, then the cut lines fade
+     54-82%  doors swing open on their hinges, the drawer glides out and
+             back, and the rig turns slightly to show its depth
+     85-95%  everything eases back apart; 95-103% is the same empty frame
+             the loop starts from, so the restart has no visible jump
+   Every animated element runs on the same duration with no delay, so the
+   parts can never drift out of sync. It is not scroll-linked: it simply keeps
+   playing, and script.js pauses it (.is-paused) while the hero is off screen.
+   prefers-reduced-motion shows a static assembled cabinet; html.low-power-mode
+   runs a slower loop that only opens the doors and drawer.
+   ========================================================================== */
+
+.home-project-hero {
+  --hph-header: 77px;
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: min(calc(100svh - var(--hph-header)), 860px);
+  overflow: hidden;
+  isolation: isolate;
+  padding-block: clamp(36px, 6svh, 88px) clamp(32px, 5svh, 72px);
+  background:
+    radial-gradient(
+      ellipse 58% 44% at 50% 26%,
+      rgba(197, 160, 113, 0.17),
+      transparent 66%
+    ),
+    linear-gradient(180deg, var(--sand) 0%, #fff 46%, var(--cream) 100%);
+}
+
+.home-project-hero__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.home-project-hero__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(111, 66, 27, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(111, 66, 27, 0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+  background-position: center;
+  -webkit-mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 34%,
+    #000 20%,
+    transparent 76%
+  );
+  mask-image: radial-gradient(
+    ellipse 70% 60% at 50% 34%,
+    #000 20%,
+    transparent 76%
+  );
+}
+
+.home-project-hero__glow {
+  position: absolute;
+  top: 74%;
+  left: 50%;
+  width: min(92vw, 760px);
+  height: 40%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(197, 160, 113, 0.22),
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+}
+
+.home-project-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(8px, 3vw, 28px);
+}
+
+/* ---- Copy block ---- */
+
+.home-project-hero__content {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.home-project-hero__eyebrow {
+  margin: 0 0 clamp(14px, 2.2svh, 26px);
+  color: var(--coffee);
+  font-size: clamp(0.66rem, 0.95vw, 0.76rem);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.home-project-hero__title {
+  max-width: 16ch;
+  margin: 0;
+  color: var(--walnut);
+  font-family: var(--font-display);
+  font-size: clamp(2rem, min(4.9vw, 7svh), 4rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.home-project-hero__line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.home-project-hero__line > span {
+  display: block;
+}
+
+.home-project-hero__lede {
+  max-width: 50ch;
+  margin: clamp(16px, 2.4svh, 28px) 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(0.96rem, 1.2vw, 1.1rem);
+}
+
+.home-project-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 26px;
+  align-items: center;
+  justify-content: center;
+  margin-top: clamp(22px, 3.4svh, 40px);
+}
+
+.home-project-hero__link {
+  color: var(--walnut);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: rgba(197, 160, 113, 0.7);
+  text-underline-offset: 5px;
+}
+
+.home-project-hero__link:hover {
+  color: var(--coffee);
+  text-decoration-color: var(--coffee);
+}
+
+.home-project-hero__link:focus-visible {
+  outline: 2px solid var(--coffee);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.home-project-hero__credibility {
+  margin: clamp(26px, 4svh, 46px) 0 0;
+  color: var(--coffee);
+  font-size: 0.74rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.home-project-hero__proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  justify-content: center;
+  margin: clamp(12px, 1.8svh, 20px) 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.home-project-hero__proof li {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.home-project-hero__proof li::before {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--tan);
+  content: "";
+}
+
+.home-project-hero__proof a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(197, 160, 113, 0.65);
+  text-underline-offset: 4px;
+}
+
+.home-project-hero__proof a:hover {
+  color: var(--coffee);
+}
+
+/* Copy entrance on load (under 1.2s, transform + opacity only). */
+.home-project-hero__eyebrow,
+.home-project-hero__line > span,
+.home-project-hero__lede,
+.home-project-hero__actions,
+.home-project-hero__credibility,
+.home-project-hero__proof {
+  animation: hph-rise 600ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.home-project-hero__eyebrow {
+  animation-delay: 60ms;
+}
+.home-project-hero__line:first-child > span {
+  animation: hph-line 660ms cubic-bezier(0.22, 0.61, 0.36, 1) 130ms both;
+}
+.home-project-hero__line:last-child > span {
+  animation: hph-line 660ms cubic-bezier(0.22, 0.61, 0.36, 1) 220ms both;
+}
+.home-project-hero__lede {
+  animation-delay: 340ms;
+}
+.home-project-hero__actions {
+  animation-delay: 430ms;
+}
+.home-project-hero__credibility {
+  animation-delay: 500ms;
+}
+.home-project-hero__proof {
+  animation-delay: 560ms;
+}
+
+@keyframes hph-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 15px, 0);
+  }
+}
+
+@keyframes hph-line {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 104%, 0);
+  }
+}
+
+/* ---- Cabinet rig ---- */
+
+.hero-cab {
+  /* Cabinet size: width drives height, depth and the door/drawer split. */
+  --w: clamp(180px, min(21vw, 31svh), 292px);
+  --h: calc(var(--w) * 1.2);
+  --d: calc(var(--w) * 0.56);
+  --top-h: calc(var(--h) * 0.68);
+  --drw-h: calc(var(--h) - var(--top-h));
+  --hc-dur: 10s;
+  --hc-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --hc-oak: #d3ab72;
+  --hc-oak-light: #e6cb9f;
+  --hc-oak-dark: #b07e45;
+  --hc-walnut: #5f3a1f;
+  --hc-walnut-frame: #7a4d2b;
+  --hc-caramel: linear-gradient(135deg, #8a5a2c 0%, #b3853f 100%);
+  --hc-grain: repeating-linear-gradient(
+    96deg,
+    rgba(255, 255, 255, 0.07) 0 2px,
+    transparent 2px 7px,
+    rgba(75, 46, 25, 0.05) 7px 8px,
+    transparent 8px 13px
+  );
+  --hc-grain-walnut: repeating-linear-gradient(
+    94deg,
+    rgba(255, 255, 255, 0.035) 0 1px,
+    transparent 1px 6px,
+    rgba(0, 0, 0, 0.05) 6px 7px,
+    transparent 7px 15px
+  );
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  pointer-events: none;
+}
+
+.hero-cab__scene {
+  position: relative;
+  width: 100%;
+  height: calc(var(--h) * 1.55);
+  perspective: calc(var(--w) * 4.6);
+  perspective-origin: 50% 32%;
+}
+
+.hero-cab__shadow {
+  position: absolute;
+  top: calc(46% + var(--h) * 0.47);
+  left: 50%;
+  width: calc(var(--w) * 1.9);
+  height: calc(var(--w) * 0.3);
+  margin-left: calc(var(--w) * -0.95);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(75, 46, 25, 0.3) 0%,
+    rgba(75, 46, 25, 0.12) 42%,
+    rgba(75, 46, 25, 0) 70%
+  );
+  animation: hc-shadow var(--hc-dur) var(--hc-ease) infinite both;
+}
+
+.hero-cab__rig {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  width: var(--w);
+  height: var(--h);
+  margin-top: calc(var(--h) / -2);
+  margin-left: calc(var(--w) / -2);
+  transform-origin: 50% 50% calc(var(--d) * -0.5);
+  transform-style: preserve-3d;
+  transform: translate3d(0, 0, 0) rotateX(-11deg) rotateY(-30deg);
+  animation: hc-rig var(--hc-dur) var(--hc-ease) infinite both;
+}
+
+.hero-cab__rig > *,
+.hero-cab__drawer > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+/* Carcass panels. Each one sits in place through --hc-base; the keyframes
+   prepend a translate3d so it can slide in and out along world axes. */
+.hero-cab__panel {
+  --hc-base: translateZ(0);
+  border: 1px solid rgba(75, 46, 25, 0.16);
+  border-radius: 2px;
+  background-color: var(--hc-oak);
+  background-image: var(--hc-grain);
+  transform: translate3d(0, 0, 0) var(--hc-base);
+}
+
+.hero-cab__back {
+  --hc-base: translateZ(calc(var(--d) * -1));
+  width: var(--w);
+  height: var(--h);
+  background-color: var(--hc-oak-light);
+  background-image:
+    radial-gradient(
+      ellipse 80% 60% at 50% 30%,
+      rgba(255, 255, 255, 0.22),
+      transparent 70%
+    ),
+    var(--hc-grain);
+  animation: hc-back var(--hc-dur) var(--hc-ease) infinite both;
+}
+
+.hero-cab__side {
+  --hc-base: rotateY(90deg);
+  width: var(--d);
+  height: var(--h);
+  transform-origin: 0 50%;
+}
+
+.hero-cab__side--left {
+  background-color: #dcb987;
+  animation: hc-side-left var(--hc-dur) var(--hc-ease) infinite both;
+}
+
+.hero-cab__side--right {
+  left: 100%;
+  background-color: var(--hc-oak-dark);
+  animation: hc-side-right var(--hc-dur) var(--hc-ease) infinite both;
+}
+
+.hero-cab__deck {
+  --hc-base: rotateX(-90deg);
+  width: var(--w);
+  height: var(--d);
+  transform-origin: 50% 0;
+}
+
+.hero-cab__deck--bottom {
+  top: var(--h);
+  background-color: #c79c63;
+  animation: hc-bottom var(--hc-dur) var(--hc-ease) infinite both;
+}
+
+.hero-cab__deck--rail {
+  top: var(--top-h);
+  background-color: #dcbc8c;
+  animation: hc-rail var(--hc-dur) var(--hc-ease) infinite both;
+}
+
+.hero-cab__deck--shelf {
+  top: calc(var(--top-h) * 0.5);
+  background-color: #e2c495;
+  animation: hc-shelf var(--hc-dur) var(--hc-ease) infinite both;
+}
+
+.hero-cab__deck--top {
+  background-color: #e0bb85;
+  animation: hc-top var(--hc-dur) var(--hc-ease) infinite both;
+}
+
+/* Interior: a warm wash on the back panel plus a few flat props. */
+.hero-cab__glow {
+  width: var(--w);
+  height: var(--top-h);
+  background: radial-gradient(
+    ellipse 70% 62% at 50% 38%,
+    rgba(255, 236, 196, 0.95),
+    rgba(255, 220, 160, 0.35) 55%,
+    rgba(255, 220, 160, 0) 78%
+  );
+  opacity: 0.35;
+  transform: translateZ(calc(var(--d) * -1 + 2px));
+  animation: hc-glow var(--hc-dur) ease-in-out infinite both;
+}
+
+.hero-cab__item {
+  transform: translateZ(calc(var(--d) * -0.55));
+  animation: hc-items var(--hc-dur) ease-out infinite both;
+}
+
+.hero-cab__item--jar {
+  top: calc(var(--top-h) * 0.2);
+  left: 15%;
+  width: 15%;
+  height: calc(var(--top-h) * 0.3);
+  border-radius: 6px 6px 4px 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.85),
+    rgba(244, 233, 214, 0.9) 40%,
+    rgba(222, 204, 176, 0.95)
+  );
+  box-shadow: inset 0 calc(var(--w) * 0.03) 0 #b3853f;
+}
+
+.hero-cab__item--bowls {
+  top: calc(var(--top-h) * 0.38);
+  left: 50%;
+  width: 32%;
+  height: calc(var(--top-h) * 0.12);
+  border-radius: 2px 2px 999px 999px / 2px 2px 100% 100%;
+  background: linear-gradient(180deg, #fffdf8, #e9dcc7);
+  box-shadow:
+    0 calc(var(--top-h) * -0.07) 0 -2px #f6eee1,
+    0 1px 2px rgba(75, 46, 25, 0.18);
+}
+
+.hero-cab__item--plates {
+  top: calc(var(--top-h) * 0.7);
+  left: 18%;
+  width: 52%;
+  height: calc(var(--top-h) * 0.3);
+  border-radius: 999px 999px 2px 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    #fdfaf4 0 5px,
+    #e6d8c2 5px 7px
+  );
+  box-shadow: 0 1px 2px rgba(75, 46, 25, 0.18);
+}
+
+/* Drawer: a real box that slides out along Z. Only its parts fade, so the
+   box itself never loses its 3D context. */
+.hero-cab__drawer {
+  top: var(--top-h);
+  width: var(--w);
+  height: var(--drw-h);
+  transform-style: preserve-3d;
+  transform: translate3d(0, 0, 0);
+  animation: hc-drawer var(--hc-dur) var(--hc-ease) infinite both;
+}
+
+.hero-cab__drawer-part {
+  animation: hc-fronts-fade var(--hc-dur) var(--hc-ease) infinite both;
+}
+
+.hero-cab__drawer-back,
+.hero-cab__drawer-bottom,
+.hero-cab__drawer-side {
+  /* The box is only shown while the drawer is out; closed, it would sit
+     right behind the front and can bleed through it at the edges. */
+  opacity: 0;
+  animation: hc-drawer-box var(--hc-dur) ease-in-out infinite both;
+}
+
+.hero-cab__drawer-back {
+  top: 22%;
+  left: 5%;
+  width: 90%;
+  height: 62%;
+  background: #d6b98a;
+  transform: translateZ(calc(var(--d) * -0.86));
+}
+
+.hero-cab__drawer-bottom {
+  top: 84%;
+  left: 5%;
+  width: 90%;
+  height: calc(var(--d) * 0.86);
+  background-color: #cfae7c;
+  background-image: var(--hc-grain);
+  transform-origin: 50% 0;
+  transform: translateZ(-12px) rotateX(-90deg);
+}
+
+.hero-cab__drawer-side {
+  top: 22%;
+  width: calc(var(--d) * 0.86);
+  height: 62%;
+  border-top: 2px solid #ecd6b0;
+  background-color: #dcbf92;
+  background-image: var(--hc-grain);
+  transform-origin: 0 50%;
+  /* Set back from the drawer front so its edge never shows through it. */
+  transform: translateZ(-12px) rotateY(90deg);
+}
+
+.hero-cab__drawer-side--left {
+  left: 5%;
+}
+
+.hero-cab__drawer-side--right {
+  left: 95%;
+}
+
+/* Doors and drawer front: walnut shaker panels with caramel bar pulls. */
+.hero-cab__door,
+.hero-cab__drawer-front {
+  border-radius: 3px;
+  background-color: var(--hc-walnut);
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(0, 0, 0, 0.08)
+    ),
+    var(--hc-grain-walnut);
+  box-shadow:
+    inset 0 0 0 calc(var(--w) * 0.034) var(--hc-walnut-frame),
+    inset 0 0 0 calc(var(--w) * 0.034 + 1px) rgba(30, 16, 8, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 1px 2px rgba(30, 16, 8, 0.3);
+}
+
+.hero-cab__door {
+  width: calc(50% - 1.5px);
+  height: calc(var(--top-h) - 2px);
+}
+
+.hero-cab__door--left {
+  transform-origin: 0 50%;
+  transform: translate3d(0, 0, 1px) rotateY(0deg);
+  animation: hc-door-left var(--hc-dur) var(--hc-ease) infinite both;
+}
+
+.hero-cab__door--right {
+  left: calc(50% + 1.5px);
+  transform-origin: 100% 50%;
+  transform: translate3d(0, 0, 1px) rotateY(0deg);
+  animation: hc-door-right var(--hc-dur) var(--hc-ease) infinite both;
+}
+
+.hero-cab__drawer-front {
+  top: 2px;
+  width: 100%;
+  height: calc(100% - 2px);
+  transform: translateZ(1px);
+}
+
+.hero-cab__pull {
+  position: absolute;
+  display: block;
+  border-radius: 999px;
+  background: var(--hc-caramel);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 236, 200, 0.6),
+    0 1px 2px rgba(30, 16, 8, 0.5);
+  animation: hc-pull var(--hc-dur) var(--hc-ease) infinite both;
+}
+
+.hero-cab__door .hero-cab__pull {
+  top: 58%;
+  width: calc(var(--w) * 0.024);
+  height: 24%;
+}
+
+.hero-cab__door--left .hero-cab__pull {
+  right: 13%;
+}
+
+.hero-cab__door--right .hero-cab__pull {
+  left: 13%;
+}
+
+.hero-cab__drawer-front .hero-cab__pull {
+  top: calc(50% - var(--w) * 0.012);
+  left: 34%;
+  width: 32%;
+  height: calc(var(--w) * 0.024);
+}
+
+/* CNC pass: a beam sweeps left to right while the seam cuts draw behind it. */
+.hero-cab__blueprint {
+  width: var(--w);
+  height: var(--h);
+  border: 1.5px dashed rgba(138, 90, 44, 0.55);
+  border-radius: 3px;
+  opacity: 0;
+  transform: translateZ(0);
+  animation: hc-blueprint var(--hc-dur) ease-in-out infinite both;
+}
+
+.hero-cab__blueprint::before,
+.hero-cab__blueprint::after {
+  position: absolute;
+  content: "";
+}
+
+.hero-cab__blueprint::before {
+  top: calc(var(--top-h) - 1px);
+  right: 0;
+  left: 0;
+  border-top: 1.5px dashed rgba(138, 90, 44, 0.45);
+}
+
+.hero-cab__blueprint::after {
+  top: 0;
+  left: calc(50% - 1px);
+  height: var(--top-h);
+  border-left: 1.5px dashed rgba(138, 90, 44, 0.45);
+}
+
+.hero-cab__cut,
+.hero-cab__beam {
+  background: linear-gradient(90deg, #b3853f, #ffe2ad, #b3853f);
+  box-shadow:
+    0 0 6px 1px rgba(255, 205, 130, 0.9),
+    0 0 16px 3px rgba(255, 190, 100, 0.45);
+  opacity: 0;
+}
+
+.hero-cab__cut--h {
+  top: calc(var(--top-h) - 1px);
+  width: var(--w);
+  height: 2px;
+  transform-origin: 0 50%;
+  transform: translate3d(0, 0, 3px) scale3d(1, 1, 1);
+  animation: hc-cut-h var(--hc-dur) linear infinite both;
+}
+
+.hero-cab__cut--v {
+  left: calc(50% - 1px);
+  width: 2px;
+  height: var(--top-h);
+  transform-origin: 50% 0;
+  transform: translate3d(0, 0, 3px) scale3d(1, 1, 1);
+  animation: hc-cut-v var(--hc-dur) linear infinite both;
+}
+
+.hero-cab__beam {
+  top: -8%;
+  left: -1px;
+  width: 2px;
+  height: 116%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 214, 150, 0),
+    rgba(255, 226, 173, 0.95) 18%,
+    rgba(255, 226, 173, 0.95) 82%,
+    rgba(255, 214, 150, 0)
+  );
+  transform: translate3d(0, 0, 4px);
+  animation: hc-beam var(--hc-dur) linear infinite both;
+}
+
+.hero-cab__bit {
+  top: calc(var(--top-h) - 9px);
+  left: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #fffaf0 0%,
+    #ffd58f 38%,
+    rgba(240, 184, 96, 0) 70%
+  );
+  opacity: 0;
+  transform: translate3d(0, 0, 5px);
+  animation: hc-beam var(--hc-dur) linear infinite both;
+}
+
+/* ---- Cabinet timeline (all 10s, shared clock) ---- */
+
+@keyframes hc-rig {
+  0%,
+  24% {
+    transform: translate3d(0, 0, 0) rotateX(-11deg) rotateY(-30deg);
+  }
+  27% {
+    transform: translate3d(0, -4px, 0) rotateX(-11deg) rotateY(-30deg);
+  }
+  30%,
+  54% {
+    transform: translate3d(0, 0, 0) rotateX(-11deg) rotateY(-30deg);
+  }
+  68%,
+  78% {
+    transform: translate3d(0, 0, 0) rotateX(-8deg) rotateY(-19deg);
+  }
+  90%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateX(-11deg) rotateY(-30deg);
+  }
+}
+
+@keyframes hc-shadow {
+  0%,
+  4% {
+    opacity: 0;
+    transform: scale3d(0.5, 1, 1);
+  }
+  24%,
+  86% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+  95%,
+  100% {
+    opacity: 0;
+    transform: scale3d(0.5, 1, 1);
+  }
+}
+
+@keyframes hc-blueprint {
+  0%,
+  8% {
+    opacity: 0.7;
+  }
+  28%,
+  88% {
+    opacity: 0;
+  }
+  97%,
+  100% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes hc-back {
+  0%,
+  3% {
+    opacity: 0;
+    transform: translate3d(0, 0, -80px) var(--hc-base);
+  }
+  12%,
+  88% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) var(--hc-base);
+  }
+  95%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, -80px) var(--hc-base);
+  }
+}
+
+@keyframes hc-side-left {
+  0%,
+  7% {
+    opacity: 0;
+    transform: translate3d(-90px, 0, 0) var(--hc-base);
+  }
+  16%,
+  87% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) var(--hc-base);
+  }
+  94%,
+  100% {
+    opacity: 0;
+    transform: translate3d(-90px, 0, 0) var(--hc-base);
+  }
+}
+
+@keyframes hc-side-right {
+  0%,
+  10% {
+    opacity: 0;
+    transform: translate3d(90px, 0, 0) var(--hc-base);
+  }
+  19%,
+  87% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) var(--hc-base);
+  }
+  94%,
+  100% {
+    opacity: 0;
+    transform: translate3d(90px, 0, 0) var(--hc-base);
+  }
+}
+
+@keyframes hc-bottom {
+  0%,
+  13% {
+    opacity: 0;
+    transform: translate3d(0, 70px, 0) var(--hc-base);
+  }
+  21%,
+  87% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) var(--hc-base);
+  }
+  94%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 70px, 0) var(--hc-base);
+  }
+}
+
+@keyframes hc-rail {
+  0%,
+  15% {
+    opacity: 0;
+    transform: translate3d(0, 0, 110px) var(--hc-base);
+  }
+  23%,
+  86% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) var(--hc-base);
+  }
+  93%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 110px) var(--hc-base);
+  }
+}
+
+@keyframes hc-shelf {
+  0%,
+  17% {
+    opacity: 0;
+    transform: translate3d(0, 0, 110px) var(--hc-base);
+  }
+  25%,
+  86% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) var(--hc-base);
+  }
+  93%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 110px) var(--hc-base);
+  }
+}
+
+@keyframes hc-top {
+  0%,
+  19% {
+    opacity: 0;
+    transform: translate3d(0, -90px, 0) var(--hc-base);
+  }
+  27%,
+  85% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) var(--hc-base);
+  }
+  92%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -90px, 0) var(--hc-base);
+  }
+}
+
+@keyframes hc-items {
+  0%,
+  21% {
+    opacity: 0;
+  }
+  27%,
+  85% {
+    opacity: 1;
+  }
+  90%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hc-glow {
+  0%,
+  22% {
+    opacity: 0;
+  }
+  28%,
+  54% {
+    opacity: 0.35;
+  }
+  60%,
+  74% {
+    opacity: 1;
+  }
+  81%,
+  85% {
+    opacity: 0.35;
+  }
+  90%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hc-fronts-fade {
+  0%,
+  26% {
+    opacity: 0;
+  }
+  34%,
+  86% {
+    opacity: 1;
+  }
+  93%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hc-drawer-box {
+  0%,
+  59% {
+    opacity: 0;
+  }
+  61%,
+  77% {
+    opacity: 1;
+  }
+  79%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hc-door-left {
+  0%,
+  26% {
+    opacity: 0;
+    transform: translate3d(0, 0, 80px) rotateY(0deg);
+  }
+  34%,
+  54% {
+    opacity: 1;
+    transform: translate3d(0, 0, 1px) rotateY(0deg);
+  }
+  62%,
+  73% {
+    opacity: 1;
+    transform: translate3d(0, 0, 1px) rotateY(-108deg);
+  }
+  81%,
+  86% {
+    opacity: 1;
+    transform: translate3d(0, 0, 1px) rotateY(0deg);
+  }
+  93%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 80px) rotateY(0deg);
+  }
+}
+
+@keyframes hc-door-right {
+  0%,
+  26% {
+    opacity: 0;
+    transform: translate3d(0, 0, 80px) rotateY(0deg);
+  }
+  34%,
+  56% {
+    opacity: 1;
+    transform: translate3d(0, 0, 1px) rotateY(0deg);
+  }
+  64%,
+  74% {
+    opacity: 1;
+    transform: translate3d(0, 0, 1px) rotateY(108deg);
+  }
+  82%,
+  86% {
+    opacity: 1;
+    transform: translate3d(0, 0, 1px) rotateY(0deg);
+  }
+  93%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 80px) rotateY(0deg);
+  }
+}
+
+@keyframes hc-drawer {
+  0%,
+  26% {
+    transform: translate3d(0, 0, 80px);
+  }
+  34%,
+  61% {
+    transform: translate3d(0, 0, 0);
+  }
+  67%,
+  71% {
+    transform: translate3d(0, 0, calc(var(--d) * 0.58));
+  }
+  77%,
+  86% {
+    transform: translate3d(0, 0, 0);
+  }
+  93%,
+  100% {
+    transform: translate3d(0, 0, 80px);
+  }
+}
+
+@keyframes hc-pull {
+  0%,
+  32% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  37%,
+  85% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  89%,
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+@keyframes hc-beam {
+  0%,
+  37% {
+    opacity: 0;
+    transform: translate3d(0, 0, 5px);
+  }
+  38% {
+    opacity: 1;
+    transform: translate3d(0, 0, 5px);
+  }
+  48% {
+    opacity: 1;
+    transform: translate3d(var(--w), 0, 5px);
+  }
+  50%,
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--w), 0, 5px);
+  }
+}
+
+@keyframes hc-cut-h {
+  0%,
+  37% {
+    opacity: 0;
+    transform: translate3d(0, 0, 3px) scale3d(0, 1, 1);
+  }
+  38% {
+    opacity: 1;
+    transform: translate3d(0, 0, 3px) scale3d(0, 1, 1);
+  }
+  48%,
+  52% {
+    opacity: 1;
+    transform: translate3d(0, 0, 3px) scale3d(1, 1, 1);
+  }
+  56%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 3px) scale3d(1, 1, 1);
+  }
+}
+
+@keyframes hc-cut-v {
+  0%,
+  42.5% {
+    opacity: 0;
+    transform: translate3d(0, 0, 3px) scale3d(1, 0, 1);
+  }
+  43% {
+    opacity: 1;
+    transform: translate3d(0, 0, 3px) scale3d(1, 0, 1);
+  }
+  46%,
+  52% {
+    opacity: 1;
+    transform: translate3d(0, 0, 3px) scale3d(1, 1, 1);
+  }
+  56%,
+  100% {
+    opacity: 0;
+    transform: translate3d(0, 0, 3px) scale3d(1, 1, 1);
+  }
+}
+
+/* ---- Low-power devices: slower, simpler loop ----
+   The cabinet stays assembled; only the doors, drawer and interior glow move,
+   on a 16s cycle with no CNC pass. */
+.low-power-mode .hero-cab {
+  --hc-dur: 16s;
+}
+
+.low-power-mode .hero-cab__rig,
+.low-power-mode .hero-cab__shadow,
+.low-power-mode .hero-cab__blueprint,
+.low-power-mode .hero-cab__panel,
+.low-power-mode .hero-cab__item,
+.low-power-mode .hero-cab__drawer-part,
+.low-power-mode .hero-cab__pull,
+.low-power-mode .hero-cab__cut,
+.low-power-mode .hero-cab__beam,
+.low-power-mode .hero-cab__bit {
+  animation: none;
+}
+
+.low-power-mode .hero-cab__door--left {
+  animation: hc-lite-door-left var(--hc-dur) ease-in-out infinite both;
+}
+
+.low-power-mode .hero-cab__door--right {
+  animation: hc-lite-door-right var(--hc-dur) ease-in-out infinite both;
+}
+
+.low-power-mode .hero-cab__drawer {
+  animation: hc-lite-drawer var(--hc-dur) ease-in-out infinite both;
+}
+
+.low-power-mode .hero-cab__glow {
+  animation: hc-lite-glow var(--hc-dur) ease-in-out infinite both;
+}
+
+.low-power-mode .hero-cab__drawer-back,
+.low-power-mode .hero-cab__drawer-bottom,
+.low-power-mode .hero-cab__drawer-side {
+  animation: hc-lite-drawer-box var(--hc-dur) ease-in-out infinite both;
+}
+
+@keyframes hc-lite-door-left {
+  0%,
+  20% {
+    transform: translate3d(0, 0, 1px) rotateY(0deg);
+  }
+  32%,
+  58% {
+    transform: translate3d(0, 0, 1px) rotateY(-100deg);
+  }
+  70%,
+  100% {
+    transform: translate3d(0, 0, 1px) rotateY(0deg);
+  }
+}
+
+@keyframes hc-lite-door-right {
+  0%,
+  20% {
+    transform: translate3d(0, 0, 1px) rotateY(0deg);
+  }
+  32%,
+  58% {
+    transform: translate3d(0, 0, 1px) rotateY(100deg);
+  }
+  70%,
+  100% {
+    transform: translate3d(0, 0, 1px) rotateY(0deg);
+  }
+}
+
+@keyframes hc-lite-drawer {
+  0%,
+  32% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%,
+  52% {
+    transform: translate3d(0, 0, calc(var(--d) * 0.5));
+  }
+  60%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hc-lite-drawer-box {
+  0%,
+  32% {
+    opacity: 0;
+  }
+  34%,
+  58% {
+    opacity: 1;
+  }
+  60%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hc-lite-glow {
+  0%,
+  20% {
+    opacity: 0.35;
+  }
+  32%,
+  58% {
+    opacity: 1;
+  }
+  70%,
+  100% {
+    opacity: 0.35;
+  }
+}
+
+/* Off screen: script.js adds .is-paused via IntersectionObserver. Kept after
+   the low-power rules so it wins over their animation shorthands. */
+.hero-cab.is-paused,
+.hero-cab.is-paused * {
+  animation-play-state: paused;
+}
+
+/* ---- Responsive ---- */
+
+@media (min-width: 900px) {
+  .home-project-hero__inner {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: clamp(24px, 4vw, 64px);
+  }
+
+  .home-project-hero__content {
+    justify-items: start;
+    max-width: none;
+    margin-inline: 0;
+    text-align: left;
+  }
+
+  .home-project-hero__title {
+    font-size: clamp(2.3rem, min(4.2vw, 7svh), 4rem);
+  }
+
+  .home-project-hero__actions,
+  .home-project-hero__proof {
+    justify-content: flex-start;
+  }
+
+  .home-project-hero__glow {
+    top: 62%;
+    left: 74%;
+    width: min(54vw, 720px);
+    height: 64%;
+  }
+}
+
+@media (max-width: 899px) {
+  .home-project-hero {
+    min-height: 0;
+    padding-block: clamp(40px, 7svh, 72px) clamp(20px, 4svh, 40px);
+  }
+
+  .hero-cab {
+    --w: clamp(150px, 30vw, 220px);
+  }
+
+  .hero-cab__scene {
+    height: calc(var(--h) * 1.5);
+  }
+
+  .home-project-hero__title {
+    font-size: clamp(2rem, 5.6vw, 3.05rem);
+  }
+
+  .home-project-hero__lede {
+    max-width: 48ch;
+  }
+
+  .home-project-hero__credibility {
+    margin-top: clamp(22px, 3.4svh, 34px);
+  }
+}
+
+@media (max-width: 720px) {
+  .home-project-hero {
+    padding-block: 40px 12px;
+  }
+
+  .hero-cab {
+    --w: clamp(124px, 37vw, 164px);
+  }
+
+  .hero-cab__scene {
+    height: calc(var(--h) * 1.45);
+  }
+
+  .home-project-hero__title {
+    max-width: 13ch;
+    font-size: clamp(1.85rem, 8vw, 2.35rem);
+  }
+
+  .home-project-hero__lede {
+    max-width: 36ch;
+    font-size: 0.94rem;
+  }
+
+  .home-project-hero__actions {
+    gap: 12px;
+    width: 100%;
+    margin-top: clamp(20px, 3svh, 30px);
+  }
+
+  .home-project-hero__actions .button {
+    width: 100%;
+  }
+
+  .home-project-hero__credibility {
+    margin-top: clamp(20px, 3svh, 30px);
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+  }
+
+  .home-project-hero__proof {
+    gap: 6px 16px;
+    font-size: 0.78rem;
+  }
+}
+
+/* Reduced motion: a static, fully assembled cabinet with the doors closed,
+   and no copy entrance. Cut lines, beam and blueprint stay hidden. */
+@media (prefers-reduced-motion: reduce) {
+  .home-project-hero__eyebrow,
+  .home-project-hero__line > span,
+  .home-project-hero__lede,
+  .home-project-hero__actions,
+  .home-project-hero__credibility,
+  .home-project-hero__proof,
+  .hero-cab,
+  .hero-cab *,
+  .low-power-mode .hero-cab * {
+    animation: none;
   }
 }

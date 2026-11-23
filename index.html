@@ -187,30 +187,6 @@
         ]
       }
     </script>
-    <script>
-      (() => {
-        const introKey = "corecut-precision-intro-v1";
-        const forceIntro =
-          new URLSearchParams(window.location.search).get("intro") === "1";
-        const reduceMotion = window.matchMedia(
-          "(prefers-reduced-motion: reduce)",
-        ).matches;
-        let introSeen = false;
-
-        try {
-          introSeen = window.sessionStorage.getItem(introKey) === "seen";
-        } catch {
-          introSeen = false;
-        }
-
-        if (!reduceMotion && (forceIntro || !introSeen)) {
-          document.documentElement.classList.add("corecut-intro-pending");
-          window.__corecutIntroFailsafe = window.setTimeout(() => {
-            document.documentElement.classList.remove("corecut-intro-pending");
-          }, 6500);
-        }
-      })();
-    </script>
     <link
       rel="preload"
       href="./assets/fonts/manrope-latin-var.woff2"
@@ -220,7 +196,7 @@
     />
     <link
       rel="stylesheet"
-      href="./styles.css?v=corecut-mobile-intro-smooth-20260807-1"
+      href="./styles.css?v=corecut-hero-cabinet-20261123-1"
     />
     <link
       rel="stylesheet"
@@ -230,72 +206,6 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   </head>
   <body>
-    <div
-      class="corecut-intro"
-      data-corecut-intro
-      aria-label="Corecut Cabinets introduction"
-    >
-      <div
-        class="corecut-intro-curtain corecut-intro-curtain-left"
-        aria-hidden="true"
-      ></div>
-      <div
-        class="corecut-intro-curtain corecut-intro-curtain-right"
-        aria-hidden="true"
-      ></div>
-      <div class="corecut-intro-grid" aria-hidden="true"></div>
-
-      <button class="corecut-intro-skip" type="button" data-corecut-intro-skip>
-        Skip intro
-      </button>
-
-      <div class="corecut-intro-stage">
-        <p class="corecut-intro-overline" aria-hidden="true">
-          <span>Custom cabinetry</span><i></i><span>Edmonton</span>
-        </p>
-
-        <div class="corecut-intro-lockup" aria-hidden="true">
-          <div class="corecut-intro-cabinet-wrap">
-            <span class="corecut-intro-floor-shadow"></span>
-            <div class="corecut-intro-cabinet">
-              <span class="corecut-intro-piece corecut-intro-back"></span>
-              <span class="corecut-intro-piece corecut-intro-left-door">
-                <i class="corecut-intro-knob"></i>
-              </span>
-              <span class="corecut-intro-piece corecut-intro-top-door">
-                <i class="corecut-intro-pull"></i>
-              </span>
-              <span class="corecut-intro-piece corecut-intro-drawer">
-                <i class="corecut-intro-pull"></i>
-              </span>
-              <span class="corecut-intro-piece corecut-intro-right-door">
-                <i class="corecut-intro-knob"></i>
-              </span>
-              <span class="corecut-intro-cut-line"></span>
-            </div>
-          </div>
-
-          <img
-            class="corecut-intro-logo"
-            data-corecut-intro-logo
-            src="./assets/corecut-logo-transparent.png"
-            alt=""
-            decoding="async"
-          />
-        </div>
-
-        <p class="corecut-intro-slogan">
-          <span>Quality at Core</span><i aria-hidden="true"></i
-          ><span>Cut to Last<sup class="trademark">TM</sup></span>
-        </p>
-        <span class="corecut-intro-rule" aria-hidden="true"><i></i></span>
-      </div>
-
-      <p class="corecut-intro-status" role="status" aria-live="polite">
-        Loading Corecut Cabinets. Quality at the Core. Cut to Last. TM.
-      </p>
-    </div>
-
     <header class="site-header">
       <a class="brand" href="/" aria-label="Corecut Cabinets home">
         <img
@@ -425,72 +335,80 @@
           <span class="home-project-hero__glow"></span>
         </div>
 
-        <!-- Centre veil: same tones as the hero background, with soft gradient
-             edges, so cards dissolve rather than clip as they pass the copy. -->
-        <div class="home-project-hero__veil" aria-hidden="true"></div>
-
-        <div class="container home-project-hero__content">
-          <p class="home-project-hero__eyebrow">Custom cabinetry in Edmonton</p>
-          <h1 class="home-project-hero__title" id="home-project-hero-title">
-            <span class="home-project-hero__line"
-              ><span>All Projects</span></span
-            >
-            <span class="home-project-hero__line"
-              ><span>Made to Measure.</span></span
-            >
-          </h1>
-          <p class="home-project-hero__lede">
-            Custom kitchens, vanities, built-ins and commercial cabinetry.
-            Designed, fabricated and installed by Corecut.
-          </p>
-          <div class="home-project-hero__actions">
-            <a class="button primary" href="/contact">Get a Free Quote</a>
-            <a class="home-project-hero__link" href="/gallery"
-              >Explore Our Work <span aria-hidden="true">&rarr;</span></a
-            >
-          </div>
-          <p class="home-project-hero__credibility">
-            Designed <span aria-hidden="true">&bull;</span> Fabricated
-            <span aria-hidden="true">&bull;</span> Installed in Edmonton
-          </p>
-          <ul class="home-project-hero__proof">
-            <li>Residential</li>
-            <li>Commercial</li>
-            <li><a href="/financing">Financing available</a></li>
-          </ul>
-        </div>
-
-        <!-- Horizontal project loop, layered behind the copy on desktop and
-             stacked below it on tablet/mobile. Cards are rendered from the
-             homeProjectVideos array in script.js. -->
-        <div class="home-project-hero__stage">
-          <div
-            class="home-project-hero__viewport"
-            data-project-hero-viewport
-            role="group"
-            aria-roledescription="carousel"
-            aria-label="Corecut cabinetry projects"
-            tabindex="0"
-          >
-            <div class="home-project-hero__track" data-project-hero-track></div>
+        <div class="container home-project-hero__inner">
+          <div class="home-project-hero__content">
+            <p class="home-project-hero__eyebrow">Custom cabinetry in Edmonton</p>
+            <h1 class="home-project-hero__title" id="home-project-hero-title">
+              <span class="home-project-hero__line"
+                ><span>All Projects</span></span
+              >
+              <span class="home-project-hero__line"
+                ><span>Made to Measure.</span></span
+              >
+            </h1>
+            <p class="home-project-hero__lede">
+              Custom kitchens, vanities, built-ins and commercial cabinetry.
+              Designed, fabricated and installed by Corecut.
+            </p>
+            <div class="home-project-hero__actions">
+              <a class="button primary" href="/contact">Get a Free Quote</a>
+              <a class="home-project-hero__link" href="/gallery"
+                >Explore Our Work <span aria-hidden="true">&rarr;</span></a
+              >
+            </div>
+            <p class="home-project-hero__credibility">
+              Designed <span aria-hidden="true">&bull;</span> Fabricated
+              <span aria-hidden="true">&bull;</span> Installed in Edmonton
+            </p>
+            <ul class="home-project-hero__proof">
+              <li>Residential</li>
+              <li>Commercial</li>
+              <li><a href="/financing">Financing available</a></li>
+            </ul>
           </div>
 
-          <button
-            class="home-project-hero__nav home-project-hero__nav--prev"
-            type="button"
-            data-project-hero-prev
-            aria-label="Show previous projects"
-          >
-            <span aria-hidden="true">&larr;</span>
-          </button>
-          <button
-            class="home-project-hero__nav home-project-hero__nav--next"
-            type="button"
-            data-project-hero-next
-            aria-label="Show next projects"
-          >
-            <span aria-hidden="true">&rarr;</span>
-          </button>
+          <!-- Decorative cabinet loop (pure CSS 3D, transform + opacity only).
+               Panels assemble, a CNC line cuts the seams, the doors and drawer
+               open and close, then it all eases apart and repeats every 10s.
+               script.js only pauses it while the hero is off screen. -->
+          <div class="hero-cab" data-hero-cabinet aria-hidden="true">
+            <div class="hero-cab__scene">
+              <span class="hero-cab__shadow"></span>
+              <div class="hero-cab__rig">
+                <span class="hero-cab__blueprint"></span>
+                <span class="hero-cab__panel hero-cab__back"></span>
+                <span class="hero-cab__panel hero-cab__side hero-cab__side--left"></span>
+                <span class="hero-cab__panel hero-cab__side hero-cab__side--right"></span>
+                <span class="hero-cab__panel hero-cab__deck hero-cab__deck--bottom"></span>
+                <span class="hero-cab__panel hero-cab__deck hero-cab__deck--rail"></span>
+                <span class="hero-cab__panel hero-cab__deck hero-cab__deck--shelf"></span>
+                <span class="hero-cab__panel hero-cab__deck hero-cab__deck--top"></span>
+                <span class="hero-cab__glow"></span>
+                <span class="hero-cab__item hero-cab__item--jar"></span>
+                <span class="hero-cab__item hero-cab__item--bowls"></span>
+                <span class="hero-cab__item hero-cab__item--plates"></span>
+                <div class="hero-cab__drawer">
+                  <span class="hero-cab__drawer-part hero-cab__drawer-back"></span>
+                  <span class="hero-cab__drawer-part hero-cab__drawer-bottom"></span>
+                  <span class="hero-cab__drawer-part hero-cab__drawer-side hero-cab__drawer-side--left"></span>
+                  <span class="hero-cab__drawer-part hero-cab__drawer-side hero-cab__drawer-side--right"></span>
+                  <span class="hero-cab__drawer-part hero-cab__drawer-front"
+                    ><i class="hero-cab__pull"></i
+                  ></span>
+                </div>
+                <span class="hero-cab__door hero-cab__door--left"
+                  ><i class="hero-cab__pull"></i
+                ></span>
+                <span class="hero-cab__door hero-cab__door--right"
+                  ><i class="hero-cab__pull"></i
+                ></span>
+                <span class="hero-cab__cut hero-cab__cut--h"></span>
+                <span class="hero-cab__cut hero-cab__cut--v"></span>
+                <span class="hero-cab__beam"></span>
+                <span class="hero-cab__bit"></span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -984,6 +902,6 @@
       async
       type="text/javascript"
     ></script>
-    <script src="./script.js?v=corecut-mobile-intro-20260806-1"></script>
+    <script src="./script.js?v=corecut-hero-cabinet-20261123-1"></script>
   </body>
 </html>

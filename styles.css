@@ -12398,3 +12398,504 @@ html.corecut-intro-pending .corecut-intro {
     transition: none;
   }
 }
+
+/* ==========================================================================
+   Trade doors page (`/wholesale-doors`, `trade-*`)
+   MDF doors for cabinet shops. Door illustrations are pure CSS: a painted
+   shaker look and a raw-MDF look, so the page needs no product photos.
+   ========================================================================== */
+
+.trade-doors-hero .service-page-copy h1 {
+  max-width: 13ch;
+}
+
+.trade-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.trade-facts li {
+  display: grid;
+  min-width: 128px;
+  padding: 12px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.trade-facts strong {
+  color: var(--walnut);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.trade-facts span {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+/* ---- Door illustrations ---- */
+
+.trade-door {
+  --trade-face: #f3eee6;
+  --trade-frame-shadow: rgba(75, 46, 25, 0.16);
+  position: relative;
+  border-radius: 3px;
+  background: var(--trade-face);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 18px 34px -18px rgba(43, 26, 15, 0.45),
+    0 2px 6px rgba(43, 26, 15, 0.12);
+}
+
+.trade-door--raw {
+  --trade-face: #c7a57c;
+  --trade-frame-shadow: rgba(75, 46, 25, 0.28);
+  background-image: radial-gradient(
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(180deg, #ccab83, #c09c72);
+  background-size:
+    5px 5px,
+    100% 100%;
+}
+
+.trade-door__panel {
+  position: absolute;
+  inset: 16%;
+  border-radius: 2px;
+  box-shadow:
+    inset 2px 2px 0 var(--trade-frame-shadow),
+    inset -2px -2px 0 rgba(255, 255, 255, 0.55),
+    0 0 0 2px var(--trade-frame-shadow);
+}
+
+.trade-door--shaker .trade-door__panel {
+  inset: 11% 15%;
+}
+
+.trade-door--drawer .trade-door__panel {
+  inset: 22% 7%;
+}
+
+
+
+
+
+
+
+/* ---- Range cards and finishes ---- */
+
+.trade-range-card .trade-swatch {
+  display: grid;
+  place-items: center;
+  height: 168px;
+  margin-bottom: 18px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(180deg, #fbf8f3, var(--sand));
+}
+
+.trade-swatch .trade-door--shaker,
+.trade-swatch .trade-door--slab {
+  width: 64px;
+  aspect-ratio: 1 / 2;
+}
+
+.trade-swatch .trade-door--drawer {
+  width: 128px;
+  aspect-ratio: 2.3 / 1;
+}
+
+.trade-finishes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.trade-finishes article {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.trade-finishes h3 {
+  margin: 0 0 4px;
+  font-size: 1.08rem;
+}
+
+.trade-finishes p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.trade-finish-chip {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px rgba(75, 46, 25, 0.16);
+}
+
+.trade-finish-chip--raw {
+  background: linear-gradient(135deg, #ccab83, #b8936a);
+}
+
+.trade-finish-chip--painted {
+  background: linear-gradient(135deg, #fbf8f3, #ebe3d6);
+}
+
+/* ---- Ordering steps ---- */
+
+.trade-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.trade-steps li {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.trade-steps span {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #8a5a2c 0%, #b3853f 100%);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+.trade-steps h3 {
+  margin: 0 0 6px;
+  font-size: 1.08rem;
+}
+
+.trade-steps p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+/* ---- Pricing form ---- */
+
+.trade-form-section {
+  background: linear-gradient(180deg, #fff, var(--sand));
+  scroll-margin-top: 80px;
+}
+
+#trade-order {
+  scroll-margin-top: 80px;
+}
+
+.trade-form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+}
+
+.trade-form-copy h2 {
+  margin-bottom: 14px;
+}
+
+.trade-form-copy > p:not(.eyebrow) {
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+
+.trade-form-points {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.trade-form-points li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--ink);
+}
+
+.trade-form-points li::before {
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--tan);
+  content: "";
+}
+
+.trade-form-points a {
+  color: var(--coffee);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.trade-pricing-form .checkbox-label {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .trade-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .trade-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 640px) {
+  .trade-finishes,
+  .trade-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .trade-pricing-form .lead-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .trade-facts li {
+    min-width: 0;
+    flex: 1 1 0;
+    padding: 10px 12px;
+  }
+}
+
+.trade-doors-callout {
+  margin-top: 10px;
+  font-size: 0.98rem;
+}
+
+.trade-doors-callout a {
+  color: var(--coffee);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: rgba(197, 160, 113, 0.7);
+  text-underline-offset: 4px;
+}
+
+/* ---- Trade doors: hero photo and door profiles ---- */
+
+.trade-hero-photo {
+  margin: 0;
+}
+
+.trade-hero-photo img {
+  width: 100%;
+  aspect-ratio: 1500 / 1388;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.profiles-section {
+  background: linear-gradient(180deg, #fff, var(--sand));
+}
+
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.profile-card {
+  display: grid;
+  gap: 22px;
+  padding: clamp(20px, 3vw, 30px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.profile-visuals {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  padding: clamp(16px, 2.4vw, 24px);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(180deg, #fbf8f3, var(--sand));
+}
+
+.profile-face {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 14px 18px rgba(43, 26, 15, 0.22));
+}
+
+.pf-frame {
+  fill: #b5a68c;
+  stroke: rgba(75, 46, 25, 0.25);
+}
+.pf-panel {
+  fill: #ab9c81;
+}
+.pf-bevel-top {
+  fill: #8c7e66;
+}
+.pf-bevel-left {
+  fill: #9b8c73;
+}
+.pf-bevel-right {
+  fill: #c5b69b;
+}
+.pf-bevel-bottom {
+  fill: #cdbfa4;
+}
+.pf-wall-shadow {
+  fill: #7c6f58;
+}
+.pf-wall-light {
+  fill: #d8cbb2;
+}
+
+.profile-section {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.ps-body {
+  fill: #c9b99c;
+  stroke: var(--walnut);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
+.ps-ext {
+  stroke: rgba(111, 66, 27, 0.45);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.ps-dim {
+  stroke: var(--coffee);
+  stroke-width: 1.4;
+}
+
+.ps-arrowhead {
+  fill: var(--coffee);
+}
+
+.ps-angle {
+  fill: none;
+  stroke: #b3853f;
+  stroke-width: 1.6;
+}
+
+.ps-label,
+.ps-caption {
+  font-family: var(--font-body);
+}
+
+.ps-label {
+  fill: var(--walnut);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.ps-label--dim {
+  fill: var(--coffee);
+}
+
+.ps-caption {
+  fill: var(--ink-soft);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.profile-tag {
+  color: var(--coffee);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.profile-copy h3 {
+  margin: 6px 0 8px;
+  font-size: 1.45rem;
+}
+
+.profile-copy p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.profile-specs {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0 0;
+}
+
+.profile-specs div {
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--cream);
+}
+
+.profile-specs dt {
+  color: var(--ink-soft);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.profile-specs dd {
+  margin: 0;
+  color: var(--walnut);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
+  .profiles-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .profile-visuals {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-face {
+    max-width: 150px;
+    justify-self: center;
+  }
+}

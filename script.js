@@ -34,6 +34,7 @@ const localPageLinks = {
   "/showrooms": "showroom.html",
   "/about": "about.html",
   "/contact": "contact.html",
+  "/wholesale-doors": "wholesale-doors.html",
   "/financing": "financing.html",
   "/financing/homeowners": "financing/homeowners.html",
   "/financing/businesses": "financing/businesses.html",

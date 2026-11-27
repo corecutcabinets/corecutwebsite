@@ -12899,3 +12899,33 @@ html.corecut-intro-pending .corecut-intro {
     justify-self: center;
   }
 }
+
+/* Three profile cards: stack each card's drawings on wide screens. */
+@media (min-width: 1100px) {
+  .profiles-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .profiles-grid .profile-visuals {
+    grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1099px) {
+  .profiles-grid .profile-card:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+.pf-panel--slim {
+  fill: #b0a186;
+}
+
+.profile-specs {
+  flex-wrap: wrap;
+}
+
+.profile-card {
+  align-content: start;
+}

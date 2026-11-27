@@ -12514,14 +12514,10 @@ html.corecut-intro-pending .corecut-intro {
 /* ---- Profiles ---- */
 
 .profiles-same-price {
-  display: inline-flex;
-  margin: 10px 0 0;
-  padding: 8px 16px;
-  border: 1px solid rgba(197, 160, 113, 0.55);
-  border-radius: var(--radius);
-  background: #fff;
-  color: var(--coffee);
-  font-weight: 800;
+  margin: 6px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.86rem;
+  font-weight: 500;
 }
 
 .profiles-grid {

@@ -12896,3 +12896,20 @@ html.corecut-intro-pending .corecut-intro {
 .trade-doors-hero ~ .section {
   padding-block: clamp(40px, 5vw, 68px);
 }
+
+/* Main menu: keep every item on one line now that it has eight entries. */
+.desktop-nav > a,
+.desktop-nav .nav-dropdown-toggle {
+  white-space: nowrap;
+}
+
+.desktop-nav {
+  gap: clamp(14px, 1.7vw, 34px);
+}
+
+@media (max-width: 1320px) {
+  .desktop-nav {
+    gap: 14px;
+    font-size: 0.88rem;
+  }
+}

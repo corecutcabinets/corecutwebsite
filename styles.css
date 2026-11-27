@@ -12400,40 +12400,57 @@ html.corecut-intro-pending .corecut-intro {
 }
 
 /* ==========================================================================
-   Trade doors page (`/wholesale-doors`, `trade-*`)
-   MDF doors for cabinet shops. Door illustrations are pure CSS: a painted
-   shaker look and a raw-MDF look, so the page needs no product photos.
+   Trade doors page (`/wholesale-doors`, `trade-*`, `profile-*`)
+   Short, scannable page for cabinet shops: hero, jump bar, three profiles,
+   finishes with paint colours, three ordering steps and a pricing form.
    ========================================================================== */
 
-.trade-doors-hero .service-page-copy h1 {
-  max-width: 13ch;
+.trade-doors-hero {
+  padding-block: clamp(56px, 8vw, 104px) clamp(40px, 6vw, 72px);
+  text-align: center;
+}
+
+.trade-hero-inner {
+  display: grid;
+  justify-items: center;
+}
+
+.trade-doors-hero h1 {
+  max-width: 14ch;
+  margin-bottom: 14px;
+}
+
+.trade-hero-lede {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1.1rem;
 }
 
 .trade-facts {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
-  margin: 28px 0 0;
+  margin: 28px 0;
   padding: 0;
   list-style: none;
 }
 
 .trade-facts li {
   display: grid;
-  min-width: 128px;
+  min-width: 130px;
   padding: 12px 18px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.72);
+  background: #fff;
 }
 
 .trade-facts strong {
   color: var(--walnut);
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .trade-facts span {
@@ -12442,297 +12459,82 @@ html.corecut-intro-pending .corecut-intro {
   font-weight: 650;
 }
 
-/* ---- Door illustrations ---- */
-
-.trade-door {
-  --trade-face: #f3eee6;
-  --trade-frame-shadow: rgba(75, 46, 25, 0.16);
-  position: relative;
-  border-radius: 3px;
-  background: var(--trade-face);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.6) inset,
-    0 18px 34px -18px rgba(43, 26, 15, 0.45),
-    0 2px 6px rgba(43, 26, 15, 0.12);
+/* Jump bar: sticks under the site header so every section is one tap away. */
+.trade-jump {
+  position: sticky;
+  top: 76px;
+  z-index: 15;
+  border-block: 1px solid var(--line);
+  background: rgba(253, 252, 250, 0.94);
+  backdrop-filter: blur(12px);
 }
 
-.trade-door--raw {
-  --trade-face: #c7a57c;
-  --trade-frame-shadow: rgba(75, 46, 25, 0.28);
-  background-image: radial-gradient(
-      rgba(255, 255, 255, 0.08) 1px,
-      transparent 1px
-    ),
-    linear-gradient(180deg, #ccab83, #c09c72);
-  background-size:
-    5px 5px,
-    100% 100%;
-}
-
-.trade-door__panel {
-  position: absolute;
-  inset: 16%;
-  border-radius: 2px;
-  box-shadow:
-    inset 2px 2px 0 var(--trade-frame-shadow),
-    inset -2px -2px 0 rgba(255, 255, 255, 0.55),
-    0 0 0 2px var(--trade-frame-shadow);
-}
-
-.trade-door--shaker .trade-door__panel {
-  inset: 11% 15%;
-}
-
-.trade-door--drawer .trade-door__panel {
-  inset: 22% 7%;
-}
-
-
-
-
-
-
-
-/* ---- Range cards and finishes ---- */
-
-.trade-range-card .trade-swatch {
-  display: grid;
-  place-items: center;
-  height: 168px;
-  margin-bottom: 18px;
-  border-radius: var(--radius-sm);
-  background: linear-gradient(180deg, #fbf8f3, var(--sand));
-}
-
-.trade-swatch .trade-door--shaker,
-.trade-swatch .trade-door--slab {
-  width: 64px;
-  aspect-ratio: 1 / 2;
-}
-
-.trade-swatch .trade-door--drawer {
-  width: 128px;
-  aspect-ratio: 2.3 / 1;
-}
-
-.trade-finishes {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
-  margin-top: 22px;
-}
-
-.trade-finishes article {
+.trade-jump-inner {
   display: flex;
-  gap: 16px;
+  gap: 6px;
   align-items: center;
-  padding: 20px 22px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: #fff;
+  justify-content: center;
+  padding-block: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
-.trade-finishes h3 {
-  margin: 0 0 4px;
-  font-size: 1.08rem;
-}
-
-.trade-finishes p {
-  margin: 0;
-  color: var(--ink-soft);
-}
-
-.trade-finish-chip {
+.trade-jump a {
   flex: 0 0 auto;
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  box-shadow: inset 0 0 0 1px rgba(75, 46, 25, 0.16);
-}
-
-.trade-finish-chip--raw {
-  background: linear-gradient(135deg, #ccab83, #b8936a);
-}
-
-.trade-finish-chip--painted {
-  background: linear-gradient(135deg, #fbf8f3, #ebe3d6);
-}
-
-/* ---- Ordering steps ---- */
-
-.trade-steps {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 22px;
-  padding: 0;
-  list-style: none;
-}
-
-.trade-steps li {
-  padding: 24px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: #fff;
-}
-
-.trade-steps span {
-  display: inline-grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  margin-bottom: 14px;
+  padding: 8px 14px;
   border-radius: 999px;
+  color: var(--walnut);
+  font-size: 0.9rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.trade-jump a:hover {
+  background: var(--sand);
+}
+
+.trade-jump a.trade-jump-cta {
   background: linear-gradient(135deg, #8a5a2c 0%, #b3853f 100%);
   color: #fff;
-  font-family: var(--font-display);
-  font-weight: 800;
 }
 
-.trade-steps h3 {
-  margin: 0 0 6px;
-  font-size: 1.08rem;
+#door-profiles,
+#trade-finish,
+#trade-order,
+#trade-pricing {
+  scroll-margin-top: 140px;
 }
 
-.trade-steps p {
-  margin: 0;
-  color: var(--ink-soft);
-}
-
-/* ---- Pricing form ---- */
-
-.trade-form-section {
-  background: linear-gradient(180deg, #fff, var(--sand));
-  scroll-margin-top: 80px;
-}
-
+.trade-doors-hero + .trade-jump + .section,
+.trade-finish-section,
 #trade-order {
-  scroll-margin-top: 80px;
+  padding-block: clamp(48px, 6vw, 80px);
 }
 
-.trade-form-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: clamp(28px, 5vw, 64px);
-  align-items: start;
-}
+/* ---- Profiles ---- */
 
-.trade-form-copy h2 {
-  margin-bottom: 14px;
-}
-
-.trade-form-copy > p:not(.eyebrow) {
-  color: var(--ink-soft);
-  font-size: 1.05rem;
-}
-
-.trade-form-points {
-  display: grid;
-  gap: 10px;
-  margin: 22px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.trade-form-points li {
-  position: relative;
-  padding-left: 22px;
-  color: var(--ink);
-}
-
-.trade-form-points li::before {
-  position: absolute;
-  top: 0.62em;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--tan);
-  content: "";
-}
-
-.trade-form-points a {
-  color: var(--coffee);
-  font-weight: 700;
-  overflow-wrap: anywhere;
-}
-
-.trade-pricing-form .checkbox-label {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-@media (max-width: 1024px) {
-  .trade-steps {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 900px) {
-  .trade-form-grid {
-    grid-template-columns: 1fr;
-  }
-
-}
-
-@media (max-width: 640px) {
-  .trade-finishes,
-  .trade-steps {
-    grid-template-columns: 1fr;
-  }
-
-  .trade-pricing-form .lead-form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .trade-facts li {
-    min-width: 0;
-    flex: 1 1 0;
-    padding: 10px 12px;
-  }
-}
-
-.trade-doors-callout {
-  margin-top: 10px;
-  font-size: 0.98rem;
-}
-
-.trade-doors-callout a {
+.profiles-same-price {
+  display: inline-flex;
+  margin: 10px 0 0;
+  padding: 8px 16px;
+  border: 1px solid rgba(197, 160, 113, 0.55);
+  border-radius: var(--radius);
+  background: #fff;
   color: var(--coffee);
   font-weight: 800;
-  text-decoration: underline;
-  text-decoration-color: rgba(197, 160, 113, 0.7);
-  text-underline-offset: 4px;
-}
-
-/* ---- Trade doors: hero photo and door profiles ---- */
-
-.trade-hero-photo {
-  margin: 0;
-}
-
-.trade-hero-photo img {
-  width: 100%;
-  aspect-ratio: 1500 / 1388;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-}
-
-.profiles-section {
-  background: linear-gradient(180deg, #fff, var(--sand));
 }
 
 .profiles-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
 }
 
 .profile-card {
   display: grid;
-  gap: 22px;
-  padding: clamp(20px, 3vw, 30px);
+  align-content: start;
+  gap: 18px;
+  padding: 20px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: #fff;
@@ -12741,10 +12543,10 @@ html.corecut-intro-pending .corecut-intro {
 
 .profile-visuals {
   display: grid;
-  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
-  gap: 18px;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
+  gap: 12px;
   align-items: center;
-  padding: clamp(16px, 2.4vw, 24px);
+  padding: 16px;
   border-radius: var(--radius-sm);
   background: linear-gradient(180deg, #fbf8f3, var(--sand));
 }
@@ -12752,7 +12554,7 @@ html.corecut-intro-pending .corecut-intro {
 .profile-face {
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 14px 18px rgba(43, 26, 15, 0.22));
+  filter: drop-shadow(0 12px 16px rgba(43, 26, 15, 0.2));
 }
 
 .pf-frame {
@@ -12761,6 +12563,9 @@ html.corecut-intro-pending .corecut-intro {
 }
 .pf-panel {
   fill: #ab9c81;
+}
+.pf-panel--slim {
+  fill: #b0a186;
 }
 .pf-bevel-top {
   fill: #8c7e66;
@@ -12796,7 +12601,6 @@ html.corecut-intro-pending .corecut-intro {
 
 .ps-ext {
   stroke: rgba(111, 66, 27, 0.45);
-  stroke-width: 1;
   stroke-dasharray: 3 3;
 }
 
@@ -12840,15 +12644,15 @@ html.corecut-intro-pending .corecut-intro {
 
 .profile-tag {
   color: var(--coffee);
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .profile-copy h3 {
-  margin: 6px 0 8px;
-  font-size: 1.45rem;
+  margin: 4px 0 6px;
+  font-size: 1.35rem;
 }
 
 .profile-copy p {
@@ -12858,86 +12662,237 @@ html.corecut-intro-pending .corecut-intro {
 
 .profile-specs {
   display: flex;
-  gap: 12px;
-  margin: 16px 0 0;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 0;
 }
 
 .profile-specs div {
-  padding: 10px 14px;
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  padding: 6px 12px;
   border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
+  border-radius: 999px;
   background: var(--cream);
 }
 
 .profile-specs dt {
   color: var(--ink-soft);
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   font-weight: 700;
 }
 
 .profile-specs dd {
   margin: 0;
   color: var(--walnut);
-  font-family: var(--font-display);
-  font-size: 1.15rem;
   font-weight: 800;
+}
+
+/* ---- Finishes ---- */
+
+.trade-finishes {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 20px;
+}
+
+.trade-finishes article {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.trade-finishes h3 {
+  margin: 0 0 4px;
+  font-size: 1.2rem;
+}
+
+.trade-finishes p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.trade-finish-chip {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px rgba(75, 46, 25, 0.16);
+}
+
+.trade-finish-chip--raw {
+  background: linear-gradient(135deg, #ccab83, #b8936a);
+}
+
+.trade-finish-chip--painted {
+  background: conic-gradient(
+    #fff 0 60deg,
+    #f1ece2 0 120deg,
+    #1f1d1b 0 180deg,
+    #8a8d8f 0 240deg,
+    #1f2f4d 0 300deg,
+    #9caf88 0 360deg
+  );
+}
+
+.trade-colours {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px 14px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.trade-colours li {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.trade-colour {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--c);
+  box-shadow: inset 0 0 0 1px rgba(75, 46, 25, 0.22);
+}
+
+/* ---- Ordering steps ---- */
+
+.trade-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.trade-steps li {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.trade-steps span {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #8a5a2c 0%, #b3853f 100%);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+.trade-steps h3 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+}
+
+.trade-steps p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+/* ---- Pricing form ---- */
+
+.trade-form-section {
+  background: linear-gradient(180deg, #fff, var(--sand));
+}
+
+.trade-form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(24px, 5vw, 56px);
+  align-items: start;
+}
+
+.trade-form-copy p:not(.eyebrow) {
+  color: var(--ink-soft);
+}
+
+.trade-form-copy a {
+  color: var(--coffee);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+/* Homepage link to this page. */
+.trade-doors-callout {
+  margin-top: 10px;
+  font-size: 0.98rem;
+}
+
+.trade-doors-callout a {
+  color: var(--coffee);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: rgba(197, 160, 113, 0.7);
+  text-underline-offset: 4px;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 1100px) {
+  .profiles-grid {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    margin-inline: auto;
+  }
 }
 
 @media (max-width: 900px) {
-  .profiles-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 420px) {
-  .profile-visuals {
+  .trade-finishes,
+  .trade-form-grid {
     grid-template-columns: 1fr;
   }
 
-  .profile-face {
-    max-width: 150px;
-    justify-self: center;
+  .trade-jump {
+    top: 74px;
+  }
+
+  .trade-jump-inner {
+    justify-content: flex-start;
   }
 }
 
-/* Three profile cards: stack each card's drawings on wide screens. */
-@media (min-width: 1100px) {
-  .profiles-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+@media (max-width: 640px) {
+  .trade-jump {
+    top: 67px;
   }
 
-  .profiles-grid .profile-visuals {
-    grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
-    gap: 12px;
+  .trade-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .trade-pricing-form .lead-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .trade-facts li {
+    min-width: 0;
+    flex: 1 1 0;
+    padding: 10px 8px;
+  }
+
+  .trade-colours {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 900px) and (max-width: 1099px) {
-  .profiles-grid .profile-card:last-child {
-    grid-column: 1 / -1;
-  }
-}
-
-.pf-panel--slim {
-  fill: #b0a186;
-}
-
-.profile-specs {
-  flex-wrap: wrap;
-}
-
-.profile-card {
-  align-content: start;
-}
-
-.profiles-same-price {
-  display: inline-flex;
-  margin: 14px 0 0;
-  padding: 8px 16px;
-  border: 1px solid rgba(197, 160, 113, 0.55);
-  border-radius: var(--radius);
-  background: #fff;
-  color: var(--coffee);
-  font-size: 0.92rem;
-  font-weight: 800;
+.trade-doors-hero ~ .section {
+  padding-block: clamp(40px, 5vw, 68px);
 }
